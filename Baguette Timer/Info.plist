@@ -6,5 +6,7 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
+	<key>NSUserNotificationsUsageDescription</key>
+	<string>We need to send you notifications when your bread making timers are complete.</string>
 </dict>
 </plist>
