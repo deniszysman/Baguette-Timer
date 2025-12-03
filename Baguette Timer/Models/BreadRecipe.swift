@@ -47,6 +47,21 @@ struct BreadStep: Identifiable, Codable {
 }
 
 extension BreadRecipe {
+    var iconName: String {
+        switch name {
+        case "French Baguette":
+            return "leaf.fill"
+        case "Refresh your starter":
+            return "arrow.triangle.2.circlepath"
+        case "Bread Ball":
+            return "circle.fill"
+        case "Croissant":
+            return "moon.fill"
+        default:
+            return "birthday.cake.fill"
+        }
+    }
+    
     static let frenchBaguette = BreadRecipe(
         name: "French Baguette",
         steps: [
@@ -63,7 +78,31 @@ extension BreadRecipe {
         ]
     )
 
+    static let refreshStarter = BreadRecipe(
+        name: "Refresh your starter",
+        steps: [
+            BreadStep(stepNumber: 1, instruction: "Placeholder step", timerDuration: 60 * 60, notes: "Placeholder notes")
+        ]
+    )
+    
+    static let breadBall = BreadRecipe(
+        name: "Bread Ball",
+        steps: [
+            BreadStep(stepNumber: 1, instruction: "Placeholder step", timerDuration: 60 * 60, notes: "Placeholder notes")
+        ]
+    )
+    
+    static let croissant = BreadRecipe(
+        name: "Croissant",
+        steps: [
+            BreadStep(stepNumber: 1, instruction: "Placeholder step", timerDuration: 60 * 60, notes: "Placeholder notes")
+        ]
+    )
+
     static let availableRecipes: [BreadRecipe] = [
-        frenchBaguette
+        frenchBaguette,
+        refreshStarter,
+        breadBall,
+        croissant
     ]
 }

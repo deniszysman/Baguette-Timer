@@ -31,10 +31,10 @@ struct BreadSelectionView: View {
                 }
                 .ignoresSafeArea()
                 
-                VStack(spacing: 30) {
+                VStack(spacing: 20) {
                     // Title
                     VStack(spacing: 10) {
-                        Text("Bread Maker")
+                        Text("Bread Timer")
                             .font(.system(size: 48, weight: .bold, design: .rounded))
                             .foregroundStyle(
                                 LinearGradient(
@@ -51,19 +51,21 @@ struct BreadSelectionView: View {
                     }
                     .padding(.top, 20)
                     
-                    Spacer()
-                    
                     // Bread selection cards
-                    ForEach(recipes) { recipe in
-                        BreadCard(recipe: recipe) {
-                            selectedRecipe = recipe
-                            showBreadMaking = true
+                    ScrollView {
+                        VStack(spacing: 16) {
+                            ForEach(recipes) { recipe in
+                                BreadCard(recipe: recipe) {
+                                    selectedRecipe = recipe
+                                    showBreadMaking = true
+                                }
+                            }
                         }
+                        .padding(.horizontal, 20)
+                        .padding(.top, 20)
+                        .padding(.bottom, 40)
                     }
-                    
-                    Spacer()
                 }
-                .padding()
             }
             .navigationDestination(isPresented: $showBreadMaking) {
                 if let recipe = selectedRecipe {
@@ -133,9 +135,9 @@ struct BreadCard: View {
                     .shadow(color: .black.opacity(0.3), radius: 20, x: 0, y: 10)
                     .shadow(color: .white.opacity(0.1), radius: 5, x: 0, y: -5)
                 
-                VStack(spacing: 15) {
-                    Image(systemName: "birthday.cake.fill")
-                        .font(.system(size: 60))
+                HStack(spacing: 20) {
+                    Image(systemName: recipe.iconName)
+                        .font(.system(size: 40))
                         .foregroundStyle(
                             LinearGradient(
                                 colors: [.white, .white.opacity(0.8)],
@@ -144,19 +146,25 @@ struct BreadCard: View {
                             )
                         )
                         .shadow(color: .black.opacity(0.2), radius: 5, x: 0, y: 2)
+                        .frame(width: 50)
                     
-                    Text(recipe.name)
-                        .font(.system(size: 28, weight: .bold, design: .rounded))
-                        .foregroundColor(.white)
-                        .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 2)
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(recipe.name)
+                            .font(.system(size: 22, weight: .bold, design: .rounded))
+                            .foregroundColor(.white)
+                            .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 2)
+                        
+                        Text("\(recipe.steps.count) steps")
+                            .font(.system(size: 14, weight: .medium, design: .rounded))
+                            .foregroundColor(.white.opacity(0.8))
+                    }
                     
-                    Text("\(recipe.steps.count) steps")
-                        .font(.system(size: 16, weight: .medium, design: .rounded))
-                        .foregroundColor(.white.opacity(0.8))
+                    Spacer()
                 }
-                .padding(40)
+                .padding(.horizontal, 24)
+                .padding(.vertical, 20)
             }
-            .frame(height: 200)
+            .frame(height: 100)
             .scaleEffect(isPressed ? 0.95 : 1.0)
             .animation(.spring(response: 0.3, dampingFraction: 0.6), value: isPressed)
         }

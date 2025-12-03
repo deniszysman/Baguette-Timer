@@ -146,12 +146,8 @@ struct BreadMakingView: View {
     
     var formattedCompletionTime: String {
         let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        
-        // Use template that respects 12/24 hour preference and includes AM/PM
-        // "j" = preferred hour format, "a" = AM/PM period
-        let timeTemplate = DateFormatter.dateFormat(fromTemplate: "j:mm a", options: 0, locale: Locale.current) ?? "h:mm a"
-        formatter.dateFormat = timeTemplate
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "h:mm a"
         
         let calendar = Calendar.current
         let now = Date()
@@ -164,10 +160,8 @@ struct BreadMakingView: View {
         } else {
             // For dates further out, include date
             let dateFormatter = DateFormatter()
-            dateFormatter.locale = Locale.current
-            let dateTemplate = DateFormatter.dateFormat(fromTemplate: "MMMd", options: 0, locale: Locale.current) ?? "MMM d"
-            let timeTemplate = DateFormatter.dateFormat(fromTemplate: "j:mm a", options: 0, locale: Locale.current) ?? "h:mm a"
-            dateFormatter.dateFormat = "\(dateTemplate), \(timeTemplate)"
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+            dateFormatter.dateFormat = "MMM d, h:mm a"
             return dateFormatter.string(from: completion)
         }
     }
@@ -378,10 +372,8 @@ struct BreadMakingView: View {
     
     private func formatTime(_ date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        // Use template that respects 12/24 hour preference and includes AM/PM
-        let timeTemplate = DateFormatter.dateFormat(fromTemplate: "j:mm a", options: 0, locale: Locale.current) ?? "h:mm a"
-        formatter.dateFormat = timeTemplate
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "h:mm a"
         return formatter.string(from: date)
     }
     
@@ -509,10 +501,8 @@ struct StepCard: View {
         
         let completionTime = Date().addingTimeInterval(remaining)
         let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        // Use template that respects 12/24 hour preference and includes AM/PM
-        let timeTemplate = DateFormatter.dateFormat(fromTemplate: "j:mm a", options: 0, locale: Locale.current) ?? "h:mm a"
-        formatter.dateFormat = timeTemplate
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "h:mm a"
         
         return "Next step at \(formatter.string(from: completionTime))"
     }
@@ -1031,21 +1021,15 @@ struct SchedulingView: View {
     
     var formattedStartTime: String {
         let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        // Use template that respects 12/24 hour preference and includes AM/PM
-        let dateTemplate = DateFormatter.dateFormat(fromTemplate: "MMMd", options: 0, locale: Locale.current) ?? "MMM d"
-        let timeTemplate = DateFormatter.dateFormat(fromTemplate: "j:mm a", options: 0, locale: Locale.current) ?? "h:mm a"
-        formatter.dateFormat = "\(dateTemplate), \(timeTemplate)"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "MMM d, h:mm a"
         return formatter.string(from: startTime)
     }
     
     var formattedTargetTime: String {
         let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        // Use template that respects 12/24 hour preference and includes AM/PM
-        let dateTemplate = DateFormatter.dateFormat(fromTemplate: "MMMd", options: 0, locale: Locale.current) ?? "MMM d"
-        let timeTemplate = DateFormatter.dateFormat(fromTemplate: "j:mm a", options: 0, locale: Locale.current) ?? "h:mm a"
-        formatter.dateFormat = "\(dateTemplate), \(timeTemplate)"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "MMM d, h:mm a"
         return formatter.string(from: targetTime)
     }
     
