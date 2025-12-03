@@ -25,7 +25,6 @@ struct BreadMakingView: View {
     @State private var stepToSkip: BreadStep?
     @State private var showSkipConfirmation = false
     @State private var selectedStepForNotes: BreadStep?
-    @State private var showNotesSheet = false
     @State private var showSchedulingSheet = false
     @State private var targetCompletionTime: Date = Date()
     @State private var scheduledStartTime: Date?
@@ -228,7 +227,6 @@ struct BreadMakingView: View {
                         },
                         onInfoTap: {
                             selectedStepForNotes = currentStep
-                            showNotesSheet = true
                         }
                     )
                     .padding(.horizontal, 16)
@@ -244,7 +242,6 @@ struct BreadMakingView: View {
                                 remainingTime: timerManager.getRemainingTime(for: step.id),
                                 onInfoTap: {
                                     selectedStepForNotes = step
-                                    showNotesSheet = true
                                 }
                             )
                             .onTapGesture {
@@ -333,12 +330,10 @@ struct BreadMakingView: View {
                 Text("Are you sure you want to skip to this step?")
             }
         }
-        .sheet(isPresented: $showNotesSheet) {
-            if let step = selectedStepForNotes {
-                StepNotesView(step: step)
-                    .presentationDetents([.medium, .large])
-                    .presentationDragIndicator(.visible)
-            }
+        .sheet(item: $selectedStepForNotes) { step in
+            StepNotesView(step: step)
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.visible)
         }
         .sheet(isPresented: $showSchedulingSheet) {
             SchedulingView(
@@ -914,11 +909,11 @@ struct StepNotesView: View {
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Step \(step.stepNumber)")
                             .font(.system(size: 34, weight: .bold, design: .rounded))
-                            .foregroundColor(.white)
+                            .foregroundColor(.primary)
                         
                         Text(step.instruction)
                             .font(.system(size: 24, weight: .semibold, design: .rounded))
-                            .foregroundColor(.white.opacity(0.9))
+                            .foregroundColor(.primary.opacity(0.9))
                     }
                     Spacer()
                 }
@@ -929,15 +924,15 @@ struct StepNotesView: View {
                     HStack {
                         Image(systemName: "note.text")
                             .font(.system(size: 24))
-                            .foregroundColor(.white.opacity(0.9))
+                            .foregroundColor(.primary.opacity(0.9))
                         Text("Notes")
                             .font(.system(size: 26, weight: .bold, design: .rounded))
-                            .foregroundColor(.white)
+                            .foregroundColor(.primary)
                         }
                         
                         Text(step.notes)
                             .font(.system(size: 22, weight: .medium, design: .rounded))
-                            .foregroundColor(.white.opacity(0.95))
+                            .foregroundColor(.primary.opacity(0.95))
                             .lineSpacing(10)
                             .fixedSize(horizontal: false, vertical: true)
                     }
@@ -948,8 +943,8 @@ struct StepNotesView: View {
                             .fill(
                                 LinearGradient(
                                     colors: [
-                                        Color.white.opacity(0.25),
-                                        Color.white.opacity(0.1)
+                                        Color.white.opacity(0.08),
+                                        Color.white.opacity(0.03)
                                     ],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
@@ -960,8 +955,8 @@ struct StepNotesView: View {
                                     .stroke(
                                         LinearGradient(
                                             colors: [
-                                                Color.white.opacity(0.6),
-                                                Color.white.opacity(0.2)
+                                                Color.white.opacity(0.15),
+                                                Color.white.opacity(0.05)
                                             ],
                                             startPoint: .topLeading,
                                             endPoint: .bottomTrailing
@@ -969,7 +964,7 @@ struct StepNotesView: View {
                                         lineWidth: 1.5
                                     )
                             )
-                            .shadow(color: .black.opacity(0.15), radius: 20, x: 0, y: 10)
+                            .shadow(color: .black.opacity(0.05), radius: 20, x: 0, y: 10)
                     )
                     
                     Spacer()
@@ -979,14 +974,12 @@ struct StepNotesView: View {
             }
             .background(
                 ZStack {
-                    // Very transparent background
-                    Color.black.opacity(0.2)
-                        .ignoresSafeArea()
+                    // More transparent background
+                    Color.black.opacity(0.02)
                     
-                    // Subtle blur effect
+                    // More transparent blur effect
                     Rectangle()
-                        .fill(.ultraThinMaterial.opacity(0.3))
-                        .ignoresSafeArea()
+                        .fill(.ultraThinMaterial.opacity(0.08))
                 }
             )
     }
