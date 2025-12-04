@@ -22,86 +22,148 @@ class TimerManager: ObservableObject {
         let endTime: Date
         let duration: TimeInterval
         var isActive: Bool = true
+        
+        // Custom coding keys to ensure proper serialization
+        enum CodingKeys: String, CodingKey {
+            case stepId, endTime, duration, isActive
+        }
     }
     
-    private let timersKey = "BreadTimer.activeTimers"
+    private let timersKey = "BreadTimer.activeTimers.v2"  // New key to avoid migration issues
     
     private init() {
         loadTimers()
-        cleanupExpiredTimers()
+        // Don't cleanup on init - let the views handle cleanup to preserve state
     }
     
     private func saveTimers() {
-        if let encoded = try? JSONEncoder().encode(activeTimers) {
+        do {
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .secondsSince1970  // More reliable date encoding
+            let encoded = try encoder.encode(activeTimers)
             UserDefaults.standard.set(encoded, forKey: timersKey)
+            UserDefaults.standard.synchronize()  // Force immediate write
+            print("TimerManager: Saved \(activeTimers.count) timers")
+        } catch {
+            print("TimerManager: Failed to save timers: \(error)")
         }
     }
     
     private func loadTimers() {
-        if let data = UserDefaults.standard.data(forKey: timersKey),
-           let decoded = try? JSONDecoder().decode([UUID: TimerState].self, from: data) {
-            activeTimers = decoded
+        guard let data = UserDefaults.standard.data(forKey: timersKey) else {
+            print("TimerManager: No saved timers found")
+            return
+        }
+        
+        do {
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .secondsSince1970  // Match encoding strategy
+            let decoded = try decoder.decode([UUID: TimerState].self, from: data)
+            
+            // Filter to only keep timers that are still active (not expired or cancelled)
+            var validTimers: [UUID: TimerState] = [:]
+            let now = Date()
+            
+            for (key, timer) in decoded {
+                // Keep timer if it's marked active AND hasn't expired yet
+                if timer.isActive && timer.endTime > now {
+                    validTimers[key] = timer
+                    print("TimerManager: Restored timer for step \(timer.stepId), ends at \(timer.endTime)")
+                } else if timer.isActive && timer.endTime <= now {
+                    // Timer expired while app was closed - keep it but mark for notification
+                    var expiredTimer = timer
+                    expiredTimer.isActive = false
+                    validTimers[key] = expiredTimer
+                    print("TimerManager: Timer for step \(timer.stepId) expired while app was closed")
+                }
+            }
+            
+            // Set without triggering didSet to avoid save loop
+            activeTimers = validTimers
+            print("TimerManager: Loaded \(validTimers.count) valid timers")
+        } catch {
+            print("TimerManager: Failed to load timers: \(error)")
         }
     }
     
-    private func cleanupExpiredTimers() {
+    /// Force reload timers from storage - useful after app becomes active
+    func reloadTimers() {
+        loadTimers()
+    }
+    
+    /// Cleans up expired timers - call this explicitly, NOT during view body evaluation
+    func cleanupExpiredTimers() {
         let now = Date()
+        var hasChanges = false
+        var updatedTimers = activeTimers
+        
         for (stepId, timerState) in activeTimers {
             if timerState.endTime <= now && timerState.isActive {
                 var updatedState = timerState
                 updatedState.isActive = false
-                activeTimers[stepId] = updatedState
+                updatedTimers[stepId] = updatedState
+                hasChanges = true
+            }
+        }
+        
+        if hasChanges {
+            // Defer state update to avoid publishing during view updates
+            DispatchQueue.main.async { [weak self] in
+                self?.activeTimers = updatedTimers
             }
         }
     }
     
-    func startTimer(for step: BreadStep) {
-        let endTime = Date().addingTimeInterval(step.timerDuration)
+    func startTimer(for step: BreadStep, recipeId: UUID) {
+        // Use test duration if test mode is enabled, otherwise use actual step duration
+        let timerDuration = Common.testMode.isEnabled ? Common.testTimerDuration : step.timerDuration
+        
+        let endTime = Date().addingTimeInterval(timerDuration)
         let timerState = TimerState(
             stepId: step.id,
             endTime: endTime,
-            duration: step.timerDuration
+            duration: timerDuration
         )
         
         activeTimers[step.id] = timerState
         
-        // Schedule notification
+        // Schedule notification with recipe and step IDs for deep linking
         NotificationManager.shared.scheduleNotification(
             identifier: step.id.uuidString,
             title: "Bread Making Timer",
             body: "Step \(step.stepNumber): \(step.instruction) - Time's up!",
-            timeInterval: step.timerDuration
+            timeInterval: timerDuration,
+            recipeId: recipeId,
+            stepId: step.id
         )
     }
     
+    /// Pure read method - returns remaining time without modifying state
+    /// Call cleanupExpiredTimers() separately to update expired timer states
     func getRemainingTime(for stepId: UUID) -> TimeInterval? {
-        guard var timerState = activeTimers[stepId],
+        guard let timerState = activeTimers[stepId],
               timerState.isActive else {
             return nil
         }
         
         let remaining = timerState.endTime.timeIntervalSinceNow
         if remaining <= 0 {
-            // Timer finished - mark as inactive
-            timerState.isActive = false
-            activeTimers[stepId] = timerState
+            // Timer has expired - return 0 but don't modify state here
+            // The cleanup will be handled by cleanupExpiredTimers()
             return 0
         }
         return remaining
     }
     
+    /// Pure read method - checks if timer is active without modifying state
+    /// Call cleanupExpiredTimers() separately to update expired timer states
     func isTimerActive(for stepId: UUID) -> Bool {
-        guard var timerState = activeTimers[stepId] else {
+        guard let timerState = activeTimers[stepId] else {
             return false
         }
         
-        if timerState.endTime <= Date() {
-            timerState.isActive = false
-            activeTimers[stepId] = timerState
-            return false
-        }
-        
-        return timerState.isActive
+        // Check both the stored isActive flag and whether the timer has expired
+        return timerState.isActive && timerState.endTime > Date()
     }
     
     func cancelTimer(for stepId: UUID) {

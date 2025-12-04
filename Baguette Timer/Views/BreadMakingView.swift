@@ -28,6 +28,8 @@ struct BreadMakingView: View {
     @State private var showSchedulingSheet = false
     @State private var targetCompletionTime: Date = Date()
     @State private var scheduledStartTime: Date?
+    @State private var showResetConfirmation = false
+    @State private var isResetting = false
     
     init(recipe: BreadRecipe) {
         self.recipe = recipe
@@ -267,12 +269,24 @@ struct BreadMakingView: View {
         .toolbarColorScheme(.dark, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: {
-                    showSchedulingSheet = true
-                }) {
-                    Image(systemName: "clock")
-                        .font(.system(size: 18, weight: .semibold))
-                        .foregroundColor(.white)
+                HStack(spacing: 16) {
+                    // Reset button
+                    Button(action: {
+                        showResetConfirmation = true
+                    }) {
+                        Image(systemName: "arrow.counterclockwise")
+                            .font(.system(size: 18, weight: .semibold))
+                            .foregroundColor(.white)
+                    }
+                    
+                    // Schedule button
+                    Button(action: {
+                        showSchedulingSheet = true
+                    }) {
+                        Image(systemName: "clock")
+                            .font(.system(size: 18, weight: .semibold))
+                            .foregroundColor(.white)
+                    }
                 }
             }
         }
@@ -345,6 +359,14 @@ struct BreadMakingView: View {
             .presentationDetents([.medium])
             .presentationDragIndicator(.visible)
         }
+        .alert("Reset Recipe?", isPresented: $showResetConfirmation) {
+            Button("Cancel", role: .cancel) { }
+            Button("Reset", role: .destructive) {
+                resetRecipe()
+            }
+        } message: {
+            Text("This will stop all timers and reset to Step 1. Are you sure?")
+        }
     }
     
     private func scheduleBreadMaking(targetTime: Date) {
@@ -381,12 +403,14 @@ struct BreadMakingView: View {
         withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
             completedSteps.insert(currentStep.id)
             saveState() // Save immediately after completing step
-            timerManager.startTimer(for: currentStep)
+            timerManager.startTimer(for: currentStep, recipeId: recipe.id)
         }
     }
     
     private func startTimerUpdates() {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            // Cleanup expired timers first (this defers state updates properly)
+            TimerManager.shared.cleanupExpiredTimers()
             // Update timer displays by triggering a state change
             timerUpdateTrigger += 1
         }
@@ -398,71 +422,83 @@ struct BreadMakingView: View {
            completedSteps.contains(currentStep.id) {
             // Timer finished, move to next step
             if currentStepIndex < recipe.steps.count - 1 {
-                withAnimation {
-                    currentStepIndex += 1
+                // Defer state update to avoid publishing during view updates
+                DispatchQueue.main.async {
+                    withAnimation {
+                        currentStepIndex += 1
+                    }
+                    saveState() // Save immediately after advancing
                 }
-                saveState() // Save immediately after advancing
             }
         }
     }
     
     private func checkAllTimersAndAdvance() {
-        // Recalculate the correct current step based on completed steps and timer states
-        // This is critical when app reopens - we need to find the actual active step
+        // First cleanup any expired timers
+        timerManager.cleanupExpiredTimers()
         
-        // First pass: Find any step with an active timer (highest priority)
-        var stepWithActiveTimer: Int? = nil
-        for (index, step) in recipe.steps.enumerated() {
-            if timerManager.isTimerActive(for: step.id) {
-                stepWithActiveTimer = index
-                break
+        // Defer the rest to next run loop to avoid view update conflicts
+        DispatchQueue.main.async {
+            // Recalculate the correct current step based on completed steps and timer states
+            // This is critical when app reopens - we need to find the actual active step
+            
+            // First pass: Find any step with an active timer (highest priority)
+            var stepWithActiveTimer: Int? = nil
+            for (index, step) in recipe.steps.enumerated() {
+                if timerManager.isTimerActive(for: step.id) {
+                    stepWithActiveTimer = index
+                    break
+                }
             }
-        }
-        
-        // If we found a step with an active timer, use that
-        if let activeStepIndex = stepWithActiveTimer {
-            if activeStepIndex != currentStepIndex {
-                currentStepIndex = activeStepIndex
-                saveState()
+            
+            // If we found a step with an active timer, use that
+            if let activeStepIndex = stepWithActiveTimer {
+                if activeStepIndex != currentStepIndex {
+                    currentStepIndex = activeStepIndex
+                    saveState()
+                }
+                checkAndAdvanceStep()
+                return
             }
-            checkAndAdvanceStep()
-            return
-        }
-        
-        // Second pass: Find the first incomplete step or first completed step with finished timer
-        var targetStepIndex = 0
-        for (index, step) in recipe.steps.enumerated() {
-            if !completedSteps.contains(step.id) {
-                // Found a step that hasn't been completed - this is the current step
-                targetStepIndex = index
-                break
-            } else if completedSteps.contains(step.id) {
-                // Step is completed - check if timer finished
-                if !timerManager.isTimerActive(for: step.id) {
-                    // Timer finished - move to next step if available
-                    if index < recipe.steps.count - 1 {
-                        // Continue to next step
-                        continue
-                    } else {
-                        // Last step completed
-                        targetStepIndex = index
-                        break
+            
+            // Second pass: Find the first incomplete step or first completed step with finished timer
+            var targetStepIndex = 0
+            for (index, step) in recipe.steps.enumerated() {
+                if !completedSteps.contains(step.id) {
+                    // Found a step that hasn't been completed - this is the current step
+                    targetStepIndex = index
+                    break
+                } else if completedSteps.contains(step.id) {
+                    // Step is completed - check if timer finished
+                    if !timerManager.isTimerActive(for: step.id) {
+                        // Timer finished - move to next step if available
+                        if index < recipe.steps.count - 1 {
+                            // Continue to next step
+                            continue
+                        } else {
+                            // Last step completed
+                            targetStepIndex = index
+                            break
+                        }
                     }
                 }
             }
+            
+            // Update current step if it's different from what we calculated
+            if targetStepIndex != currentStepIndex {
+                currentStepIndex = targetStepIndex
+                saveState()
+            }
+            
+            // Also check if current step timer finished (for real-time updates)
+            checkAndAdvanceStep()
         }
-        
-        // Update current step if it's different from what we calculated
-        if targetStepIndex != currentStepIndex {
-            currentStepIndex = targetStepIndex
-            saveState()
-        }
-        
-        // Also check if current step timer finished (for real-time updates)
-        checkAndAdvanceStep()
     }
     
     private func saveState() {
+        // Don't save state if we're in the middle of resetting
+        guard !isResetting else { return }
+        
         let state: [String: Any] = [
             "currentStepIndex": currentStepIndex,
             "completedSteps": completedSteps.map { $0.uuidString }
@@ -476,6 +512,36 @@ struct BreadMakingView: View {
     private func loadState() {
         // State is already loaded in init, but we can refresh it here if needed
         // This is mainly for checking timer states
+    }
+    
+    private func resetRecipe() {
+        // Set flag to prevent saving state during reset
+        isResetting = true
+        
+        // Cancel all timers for this recipe
+        for step in recipe.steps {
+            timerManager.cancelTimer(for: step.id)
+        }
+        
+        // Clear saved state
+        UserDefaults.standard.removeObject(forKey: stateKey)
+        UserDefaults.standard.removeObject(forKey: "\(stateKey).hasStarted")
+        UserDefaults.standard.synchronize()
+        
+        // Reset local state
+        withAnimation {
+            currentStepIndex = 0
+            completedSteps = []
+        }
+        
+        // Clear flag after a brief delay to ensure onChange handlers don't save
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.isResetting = false
+            // Ensure state is still cleared
+            UserDefaults.standard.removeObject(forKey: self.stateKey)
+            UserDefaults.standard.removeObject(forKey: "\(self.stateKey).hasStarted")
+            UserDefaults.standard.synchronize()
+        }
     }
 }
 
@@ -902,86 +968,92 @@ struct StepNotesView: View {
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 24) {
-                // Step header
-                HStack {
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("Step \(step.stepNumber)")
-                            .font(.system(size: 34, weight: .bold, design: .rounded))
-                            .foregroundColor(.primary)
-                        
-                        Text(step.instruction)
-                            .font(.system(size: 24, weight: .semibold, design: .rounded))
-                            .foregroundColor(.primary.opacity(0.9))
-                    }
-                    Spacer()
-                }
-                .padding(.top, 16)
-                
-                // Notes section with Liquid Glass card
-                VStack(alignment: .leading, spacing: 18) {
+        ZStack {
+            // Solid background for readability
+            Color(UIColor.systemBackground)
+                .ignoresSafeArea()
+            
+            ScrollView {
+                VStack(alignment: .leading, spacing: 24) {
+                    // Step header
                     HStack {
-                        Image(systemName: "note.text")
-                            .font(.system(size: 24))
-                            .foregroundColor(.primary.opacity(0.9))
-                        Text("Notes")
-                            .font(.system(size: 26, weight: .bold, design: .rounded))
-                            .foregroundColor(.primary)
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("Step \(step.stepNumber)")
+                                .font(.system(size: 34, weight: .bold, design: .rounded))
+                                .foregroundColor(.primary)
+                            
+                            Text(step.instruction)
+                                .font(.system(size: 24, weight: .semibold, design: .rounded))
+                                .foregroundColor(.secondary)
+                        }
+                        Spacer()
+                    }
+                    .padding(.top, 16)
+                    
+                    // Notes section with card design
+                    VStack(alignment: .leading, spacing: 16) {
+                        HStack(spacing: 10) {
+                            Image(systemName: "note.text")
+                                .font(.system(size: 22))
+                                .foregroundColor(.orange)
+                            Text("Notes")
+                                .font(.system(size: 24, weight: .bold, design: .rounded))
+                                .foregroundColor(.primary)
                         }
                         
                         Text(step.notes)
-                            .font(.system(size: 22, weight: .medium, design: .rounded))
-                            .foregroundColor(.primary.opacity(0.95))
-                            .lineSpacing(10)
+                            .font(.system(size: 18, weight: .regular, design: .rounded))
+                            .foregroundColor(.primary.opacity(0.85))
+                            .lineSpacing(8)
                             .fixedSize(horizontal: false, vertical: true)
                     }
-                    .padding(24)
+                    .padding(20)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(
-                        RoundedRectangle(cornerRadius: 25)
-                            .fill(
-                                LinearGradient(
-                                    colors: [
-                                        Color.white.opacity(0.08),
-                                        Color.white.opacity(0.03)
-                                    ],
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
-                                )
-                            )
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Color(UIColor.secondarySystemBackground))
                             .overlay(
-                                RoundedRectangle(cornerRadius: 25)
-                                    .stroke(
-                                        LinearGradient(
-                                            colors: [
-                                                Color.white.opacity(0.15),
-                                                Color.white.opacity(0.05)
-                                            ],
-                                            startPoint: .topLeading,
-                                            endPoint: .bottomTrailing
-                                        ),
-                                        lineWidth: 1.5
-                                    )
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(Color.gray.opacity(0.2), lineWidth: 1)
                             )
-                            .shadow(color: .black.opacity(0.05), radius: 20, x: 0, y: 10)
                     )
+                    .shadow(color: .black.opacity(0.08), radius: 10, x: 0, y: 5)
+                    
+                    // Timer info card if step has a timer
+                    if step.timerDuration > 0 {
+                        VStack(alignment: .leading, spacing: 12) {
+                            HStack(spacing: 10) {
+                                Image(systemName: "timer")
+                                    .font(.system(size: 22))
+                                    .foregroundColor(.green)
+                                Text("Timer")
+                                    .font(.system(size: 24, weight: .bold, design: .rounded))
+                                    .foregroundColor(.primary)
+                            }
+                            
+                            Text("Duration: \(step.formattedDuration)")
+                                .font(.system(size: 18, weight: .medium, design: .rounded))
+                                .foregroundColor(.secondary)
+                        }
+                        .padding(20)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(Color.green.opacity(0.1))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .stroke(Color.green.opacity(0.3), lineWidth: 1)
+                                )
+                        )
+                        .shadow(color: .green.opacity(0.1), radius: 10, x: 0, y: 5)
+                    }
                     
                     Spacer()
                 }
                 .padding(.horizontal, 24)
                 .padding(.bottom, 30)
             }
-            .background(
-                ZStack {
-                    // More transparent background
-                    Color.black.opacity(0.02)
-                    
-                    // More transparent blur effect
-                    Rectangle()
-                        .fill(.ultraThinMaterial.opacity(0.08))
-                }
-            )
+        }
     }
 }
 
@@ -1028,9 +1100,8 @@ struct SchedulingView: View {
     
     var body: some View {
         ZStack {
-            // Liquid Glass background
-            Rectangle()
-                .fill(.ultraThinMaterial)
+            // Solid light background for better readability
+            Color(UIColor.systemBackground)
                 .ignoresSafeArea()
             
             ScrollView {
@@ -1039,11 +1110,11 @@ struct SchedulingView: View {
                     VStack(spacing: 8) {
                         Image(systemName: "clock.fill")
                             .font(.system(size: 40))
-                            .foregroundColor(.white)
+                            .foregroundColor(.orange)
                         
                         Text("Schedule Bread Making")
                             .font(.system(size: 28, weight: .bold, design: .rounded))
-                            .foregroundColor(.white)
+                            .foregroundColor(.primary)
                     }
                     .padding(.top, 20)
                     
@@ -1051,7 +1122,7 @@ struct SchedulingView: View {
                     VStack(alignment: .leading, spacing: 12) {
                         Text("When do you want the bread ready?")
                             .font(.system(size: 18, weight: .semibold, design: .rounded))
-                            .foregroundColor(.white)
+                            .foregroundColor(.primary)
                         
                         DatePicker(
                             "Date",
@@ -1059,8 +1130,7 @@ struct SchedulingView: View {
                             displayedComponents: .date
                         )
                         .datePickerStyle(.compact)
-                        .accentColor(.white)
-                        .colorScheme(.dark)
+                        .tint(.orange)
                         
                         DatePicker(
                             "Time",
@@ -1068,73 +1138,56 @@ struct SchedulingView: View {
                             displayedComponents: .hourAndMinute
                         )
                         .datePickerStyle(.compact)
-                        .accentColor(.white)
-                        .colorScheme(.dark)
+                        .tint(.orange)
                     }
                     .padding(20)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(
                         RoundedRectangle(cornerRadius: 20)
-                            .fill(
-                                LinearGradient(
-                                    colors: [
-                                        Color.white.opacity(0.2),
-                                        Color.white.opacity(0.1)
-                                    ],
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
-                                )
-                            )
+                            .fill(Color(UIColor.secondarySystemBackground))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 20)
-                                    .stroke(Color.white.opacity(0.3), lineWidth: 1.5)
+                                    .stroke(Color.gray.opacity(0.3), lineWidth: 1)
                             )
                     )
+                    .shadow(color: .black.opacity(0.08), radius: 8, x: 0, y: 4)
                     
                     // Calculated start time
                     VStack(alignment: .leading, spacing: 12) {
                         Text("Start Time")
                             .font(.system(size: 18, weight: .semibold, design: .rounded))
-                            .foregroundColor(.white)
+                            .foregroundColor(.primary)
                         
                         VStack(alignment: .leading, spacing: 8) {
                             HStack {
                                 Image(systemName: "clock.badge.checkmark")
                                     .font(.system(size: 20))
-                                    .foregroundColor(.green.opacity(0.9))
+                                    .foregroundColor(.green)
                                 Text("Start at:")
                                     .font(.system(size: 16, weight: .medium, design: .rounded))
-                                    .foregroundColor(.white.opacity(0.9))
+                                    .foregroundColor(.secondary)
                             }
                             
                             Text(formattedStartTime)
                                 .font(.system(size: 20, weight: .bold, design: .rounded))
-                                .foregroundColor(.white)
+                                .foregroundColor(.primary)
                             
                             Text("To finish at: \(formattedTargetTime)")
                                 .font(.system(size: 14, weight: .regular, design: .rounded))
-                                .foregroundColor(.white.opacity(0.8))
+                                .foregroundColor(.secondary)
                         }
                     }
                     .padding(20)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(
                         RoundedRectangle(cornerRadius: 20)
-                            .fill(
-                                LinearGradient(
-                                    colors: [
-                                        Color.green.opacity(0.2),
-                                        Color.green.opacity(0.1)
-                                    ],
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
-                                )
-                            )
+                            .fill(Color.green.opacity(0.12))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 20)
                                     .stroke(Color.green.opacity(0.4), lineWidth: 1.5)
                             )
                     )
+                    .shadow(color: .green.opacity(0.15), radius: 8, x: 0, y: 4)
                     
                     // Schedule button
                     Button(action: {
@@ -1155,19 +1208,15 @@ struct SchedulingView: View {
                                 .fill(
                                     LinearGradient(
                                         colors: [
-                                            Color.green.opacity(0.6),
-                                            Color.green.opacity(0.4)
+                                            Color.green,
+                                            Color.green.opacity(0.8)
                                         ],
                                         startPoint: .topLeading,
                                         endPoint: .bottomTrailing
                                     )
                                 )
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 20)
-                                        .stroke(Color.white.opacity(0.5), lineWidth: 2)
-                                )
                         )
-                        .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 5)
+                        .shadow(color: .green.opacity(0.4), radius: 10, x: 0, y: 5)
                     }
                     .padding(.horizontal, 20)
                     .padding(.bottom, 30)

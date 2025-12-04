@@ -25,13 +25,24 @@ class NotificationManager {
         identifier: String,
         title: String,
         body: String,
-        timeInterval: TimeInterval
+        timeInterval: TimeInterval,
+        recipeId: UUID? = nil,
+        stepId: UUID? = nil
     ) {
         let content = UNMutableNotificationContent()
         content.title = title
         content.body = body
-        content.sound = .default
+        // Use custom bread timer sound (pleasant chime)
+        content.sound = UNNotificationSound(named: UNNotificationSoundName("BreadTimerSound.caf"))
         content.badge = 1
+        
+        // Add userInfo for deep linking
+        if let recipeId = recipeId, let stepId = stepId {
+            content.userInfo = [
+                "recipeId": recipeId.uuidString,
+                "stepId": stepId.uuidString
+            ]
+        }
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: false)
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
