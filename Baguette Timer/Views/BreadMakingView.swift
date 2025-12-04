@@ -374,6 +374,12 @@ struct BreadMakingView: View {
         let startTime = targetTime.addingTimeInterval(-remainingDuration)
         scheduledStartTime = startTime
         
+        // Save scheduled time to UserDefaults for persistence
+        let scheduleKey = "BreadTimer.\(recipe.id.uuidString).scheduledStart"
+        UserDefaults.standard.set(startTime.timeIntervalSince1970, forKey: scheduleKey)
+        UserDefaults.standard.set(targetTime.timeIntervalSince1970, forKey: "\(scheduleKey).target")
+        UserDefaults.standard.synchronize()
+        
         // Schedule notification for start time
         let timeUntilStart = startTime.timeIntervalSinceNow
         
@@ -385,6 +391,15 @@ struct BreadMakingView: View {
                 timeInterval: timeUntilStart
             )
         }
+    }
+    
+    /// Clears the scheduled start time (called when recipe is reset or started)
+    private func clearScheduledTime() {
+        let scheduleKey = "BreadTimer.\(recipe.id.uuidString).scheduledStart"
+        UserDefaults.standard.removeObject(forKey: scheduleKey)
+        UserDefaults.standard.removeObject(forKey: "\(scheduleKey).target")
+        UserDefaults.standard.synchronize()
+        scheduledStartTime = nil
     }
     
     private func formatTime(_ date: Date) -> String {
@@ -400,10 +415,15 @@ struct BreadMakingView: View {
             return
         }
         
+        // Get the next step (if there is one) for the notification
+        let nextStep: BreadStep? = (currentStepIndex + 1 < recipe.steps.count) 
+            ? recipe.steps[currentStepIndex + 1] 
+            : nil
+        
         withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
             completedSteps.insert(currentStep.id)
             saveState() // Save immediately after completing step
-            timerManager.startTimer(for: currentStep, recipeId: recipe.id)
+            timerManager.startTimer(for: currentStep, recipeId: recipe.id, nextStep: nextStep)
         }
     }
     
@@ -522,6 +542,9 @@ struct BreadMakingView: View {
         for step in recipe.steps {
             timerManager.cancelTimer(for: step.id)
         }
+        
+        // Clear scheduled start time
+        clearScheduledTime()
         
         // Clear saved state
         UserDefaults.standard.removeObject(forKey: stateKey)

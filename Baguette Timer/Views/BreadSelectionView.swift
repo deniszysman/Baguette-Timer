@@ -40,7 +40,7 @@ struct BreadSelectionView: View {
                 VStack(spacing: 20) {
                     // Title
                     VStack(spacing: 10) {
-                        Text("Bread Timer")
+                        Text("BreadOClock")
                             .font(.system(size: 48, weight: .bold, design: .rounded))
                             .foregroundStyle(
                                 LinearGradient(
@@ -62,10 +62,12 @@ struct BreadSelectionView: View {
                         VStack(spacing: 16) {
                             ForEach(recipes) { recipe in
                                 let progress = getRecipeProgress(for: recipe)
+                                let scheduled = getScheduledTime(for: recipe)
                                 BreadCard(
                                     recipe: recipe,
                                     currentStep: progress.currentStep,
                                     remainingTime: progress.remainingTime,
+                                    scheduledStartTime: scheduled.startTime,
                                     timerUpdateTrigger: timerUpdateTrigger
                                 ) {
                                     selectedRecipe = recipe
@@ -167,12 +169,36 @@ struct BreadSelectionView: View {
         let currentStep = activeTimerStep ?? savedIndex
         return (currentStep + 1, remainingTime) // +1 for 1-based step display
     }
+    
+    /// Get scheduled start time for a recipe (if user has scheduled when to start)
+    private func getScheduledTime(for recipe: BreadRecipe) -> (startTime: Date?, targetTime: Date?) {
+        let scheduleKey = "BreadTimer.\(recipe.id.uuidString).scheduledStart"
+        
+        guard let startTimestamp = UserDefaults.standard.object(forKey: scheduleKey) as? TimeInterval else {
+            return (nil, nil)
+        }
+        
+        let startTime = Date(timeIntervalSince1970: startTimestamp)
+        
+        // Only return if the scheduled time is in the future
+        if startTime > Date() {
+            let targetTimestamp = UserDefaults.standard.double(forKey: "\(scheduleKey).target")
+            let targetTime = targetTimestamp > 0 ? Date(timeIntervalSince1970: targetTimestamp) : nil
+            return (startTime, targetTime)
+        }
+        
+        // Scheduled time has passed - clear it
+        UserDefaults.standard.removeObject(forKey: scheduleKey)
+        UserDefaults.standard.removeObject(forKey: "\(scheduleKey).target")
+        return (nil, nil)
+    }
 }
 
 struct BreadCard: View {
     let recipe: BreadRecipe
     let currentStep: Int?
     let remainingTime: TimeInterval?
+    let scheduledStartTime: Date?
     let timerUpdateTrigger: Int
     let action: () -> Void
     
@@ -189,6 +215,28 @@ struct BreadCard: View {
             return true
         }
         return false
+    }
+    
+    /// Whether there's a scheduled start time
+    private var hasScheduledTime: Bool {
+        scheduledStartTime != nil
+    }
+    
+    /// Formatted scheduled start time
+    private var formattedScheduledTime: String? {
+        guard let startTime = scheduledStartTime else { return nil }
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        let calendar = Calendar.current
+        if calendar.isDateInToday(startTime) {
+            formatter.dateFormat = "'Today' h:mm a"
+        } else if calendar.isDateInTomorrow(startTime) {
+            formatter.dateFormat = "'Tomorrow' h:mm a"
+        } else {
+            formatter.dateFormat = "MMM d, h:mm a"
+        }
+        return formatter.string(from: startTime)
     }
     
     var body: some View {
@@ -221,6 +269,9 @@ struct BreadCard: View {
                                     colors: isInProgress ? [
                                         Color.green.opacity(0.4),
                                         Color.green.opacity(0.2)
+                                    ] : hasScheduledTime ? [
+                                        Color.orange.opacity(0.35),
+                                        Color.orange.opacity(0.15)
                                     ] : [
                                         Color.blue.opacity(0.3),
                                         Color.purple.opacity(0.3)
@@ -237,6 +288,9 @@ struct BreadCard: View {
                                     colors: isInProgress ? [
                                         Color.green.opacity(0.8),
                                         Color.green.opacity(0.4)
+                                    ] : hasScheduledTime ? [
+                                        Color.orange.opacity(0.8),
+                                        Color.orange.opacity(0.4)
                                     ] : [
                                         Color.white.opacity(0.6),
                                         Color.white.opacity(0.2)
@@ -244,10 +298,10 @@ struct BreadCard: View {
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 ),
-                                lineWidth: isInProgress ? 2.5 : 2
+                                lineWidth: (isInProgress || hasScheduledTime) ? 2.5 : 2
                             )
                     )
-                    .shadow(color: isInProgress ? .green.opacity(0.3) : .black.opacity(0.3), radius: 20, x: 0, y: 10)
+                    .shadow(color: isInProgress ? .green.opacity(0.3) : hasScheduledTime ? .orange.opacity(0.3) : .black.opacity(0.3), radius: 20, x: 0, y: 10)
                     .shadow(color: .white.opacity(0.1), radius: 5, x: 0, y: -5)
                 
                 HStack(spacing: 16) {
@@ -358,6 +412,24 @@ struct BreadCard: View {
                                     .shadow(color: .green.opacity(0.4), radius: 4, x: 0, y: 2)
                                 }
                             }
+                        } else if let scheduledTime = formattedScheduledTime {
+                            // Show scheduled start time with orange badge
+                            HStack(spacing: 4) {
+                                Image(systemName: "calendar.badge.clock")
+                                    .font(.system(size: 14, weight: .semibold))
+                                Text(scheduledTime)
+                                    .font(.system(size: 16, weight: .bold, design: .rounded))
+                                    .lineLimit(1)
+                            }
+                            .fixedSize()
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 5)
+                            .background(
+                                Capsule()
+                                    .fill(Color.orange.opacity(0.85))
+                            )
+                            .shadow(color: .orange.opacity(0.4), radius: 4, x: 0, y: 2)
                         } else {
                             Text("\(recipe.steps.count) steps")
                                 .font(.system(size: 14, weight: .medium, design: .rounded))
@@ -367,12 +439,18 @@ struct BreadCard: View {
                     
                     Spacer()
                     
-                    // Progress indicator or chevron
+                    // Progress indicator, scheduled indicator, or nothing
                     if isInProgress {
                         VStack {
                             Image(systemName: "play.circle.fill")
                                 .font(.system(size: 28))
                                 .foregroundColor(.green.opacity(0.9))
+                        }
+                    } else if hasScheduledTime {
+                        VStack {
+                            Image(systemName: "bell.circle.fill")
+                                .font(.system(size: 28))
+                                .foregroundColor(.orange.opacity(0.9))
                         }
                     }
                 }
@@ -416,6 +494,7 @@ struct BreadCard: View {
             recipe: .frenchBaguette,
             currentStep: nil,
             remainingTime: nil,
+            scheduledStartTime: nil,
             timerUpdateTrigger: 0
         ) {}
         .padding()
@@ -429,6 +508,21 @@ struct BreadCard: View {
             recipe: .frenchBaguette,
             currentStep: 3,
             remainingTime: 3600,
+            scheduledStartTime: nil,
+            timerUpdateTrigger: 0
+        ) {}
+        .padding()
+    }
+}
+
+#Preview("BreadCard - Scheduled") {
+    ZStack {
+        Color.black
+        BreadCard(
+            recipe: .frenchBaguette,
+            currentStep: nil,
+            remainingTime: nil,
+            scheduledStartTime: Date().addingTimeInterval(3600 * 5), // 5 hours from now
             timerUpdateTrigger: 0
         ) {}
         .padding()

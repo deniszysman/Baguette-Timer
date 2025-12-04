@@ -114,7 +114,7 @@ class TimerManager: ObservableObject {
         }
     }
     
-    func startTimer(for step: BreadStep, recipeId: UUID) {
+    func startTimer(for step: BreadStep, recipeId: UUID, nextStep: BreadStep? = nil) {
         // Use test duration if test mode is enabled, otherwise use actual step duration
         let timerDuration = Common.testMode.isEnabled ? Common.testTimerDuration : step.timerDuration
         
@@ -127,11 +127,24 @@ class TimerManager: ObservableObject {
         
         activeTimers[step.id] = timerState
         
+        // Build notification message - show NEXT step if available
+        let notificationTitle: String
+        let notificationBody: String
+        
+        if let next = nextStep {
+            notificationTitle = "Ready for Step \(next.stepNumber)! 🍞"
+            notificationBody = "Next: \(next.instruction)"
+        } else {
+            // Last step - bread is done!
+            notificationTitle = "Your bread is ready! 🥖"
+            notificationBody = "\(step.instruction) complete - Enjoy!"
+        }
+        
         // Schedule notification with recipe and step IDs for deep linking
         NotificationManager.shared.scheduleNotification(
             identifier: step.id.uuidString,
-            title: "Bread Making Timer",
-            body: "Step \(step.stepNumber): \(step.instruction) - Time's up!",
+            title: notificationTitle,
+            body: notificationBody,
             timeInterval: timerDuration,
             recipeId: recipeId,
             stepId: step.id
