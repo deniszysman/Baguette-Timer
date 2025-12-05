@@ -243,3 +243,32 @@
 "recipe.english.muffins.step.10.instruction" = "在烤箱中完成（可选但推荐）";
 "recipe.english.muffins.step.10.notes" = "• 将烤箱预热至 175°C\n• 烘烤 5–7 分钟以完成内部组织\n• 有助于形成标志性的 \"nooks & crannies\"";
 
+// MARK: - Custom Recipe
+"custom.recipe.new.title" = "新食谱";
+"custom.recipe.edit.title" = "编辑食谱";
+"custom.recipe.edit" = "编辑食谱";
+"custom.recipe.cancel" = "取消";
+"custom.recipe.done" = "完成";
+"custom.recipe.delete.title" = "删除食谱？";
+"custom.recipe.delete.message" = "此操作无法撤销。";
+"custom.recipe.delete" = "删除";
+"custom.recipe.delete.button" = "删除食谱";
+"custom.recipe.choose.photo" = "选择照片";
+"custom.recipe.choose.icon" = "选择图标";
+"custom.recipe.name" = "食谱名称";
+"custom.recipe.name.placeholder" = "输入食谱名称";
+"custom.recipe.steps" = "步骤";
+"custom.recipe.add.step" = "添加步骤";
+"custom.recipe.create" = "创建食谱";
+"custom.recipe.save.changes" = "保存更改";
+"custom.recipe.step" = "步骤 %d";
+"custom.recipe.step.name" = "名称";
+"custom.recipe.step.name.placeholder" = "例如：混合材料";
+"custom.recipe.step.notes" = "备注（可选）";
+"custom.recipe.step.notes.placeholder" = "添加详细说明...";
+"custom.recipe.step.duration" = "持续时间";
+"custom.recipe.end.of.recipe" = "食谱结束（无计时器）";
+"custom.recipe.days" = "天";
+"custom.recipe.hours" = "小时";
+"custom.recipe.minutes" = "分钟";
+

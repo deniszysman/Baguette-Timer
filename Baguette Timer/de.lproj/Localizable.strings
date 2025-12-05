@@ -243,3 +243,32 @@
 "recipe.english.muffins.step.10.instruction" = "Im Ofen fertig backen (Optional, aber empfohlen)";
 "recipe.english.muffins.step.10.notes" = "• Ofen auf 175°C vorheizen\n• 5–7 Minuten backen, um die innere Krume zu vollenden\n• Hilft, die charakteristischen \"nooks & crannies\" zu bilden";
 
+// MARK: - Custom Recipe
+"custom.recipe.new.title" = "Neues Rezept";
+"custom.recipe.edit.title" = "Rezept bearbeiten";
+"custom.recipe.edit" = "Rezept bearbeiten";
+"custom.recipe.cancel" = "Abbrechen";
+"custom.recipe.done" = "Fertig";
+"custom.recipe.delete.title" = "Rezept löschen?";
+"custom.recipe.delete.message" = "Diese Aktion kann nicht rückgängig gemacht werden.";
+"custom.recipe.delete" = "Löschen";
+"custom.recipe.delete.button" = "Rezept löschen";
+"custom.recipe.choose.photo" = "Foto wählen";
+"custom.recipe.choose.icon" = "Symbol wählen";
+"custom.recipe.name" = "Rezeptname";
+"custom.recipe.name.placeholder" = "Rezeptnamen eingeben";
+"custom.recipe.steps" = "Schritte";
+"custom.recipe.add.step" = "Schritt hinzufügen";
+"custom.recipe.create" = "Rezept erstellen";
+"custom.recipe.save.changes" = "Änderungen speichern";
+"custom.recipe.step" = "Schritt %d";
+"custom.recipe.step.name" = "Name";
+"custom.recipe.step.name.placeholder" = "z.B. Zutaten mischen";
+"custom.recipe.step.notes" = "Notizen (optional)";
+"custom.recipe.step.notes.placeholder" = "Detaillierte Anweisungen hinzufügen...";
+"custom.recipe.step.duration" = "Dauer";
+"custom.recipe.end.of.recipe" = "Rezeptende (kein Timer)";
+"custom.recipe.days" = "Tage";
+"custom.recipe.hours" = "Stunden";
+"custom.recipe.minutes" = "Minuten";
+

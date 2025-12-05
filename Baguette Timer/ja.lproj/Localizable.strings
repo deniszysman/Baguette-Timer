@@ -243,3 +243,32 @@
 "recipe.english.muffins.step.10.instruction" = "オーブンで仕上げる（オプションだが推奨）";
 "recipe.english.muffins.step.10.notes" = "• オーブンを175°Cに予熱\n• 内部のクラムを仕上げるために5–7分焼く\n• 特徴的な「nooks & crannies」を形成するのに役立つ";
 
+// MARK: - Custom Recipe
+"custom.recipe.new.title" = "新しいレシピ";
+"custom.recipe.edit.title" = "レシピを編集";
+"custom.recipe.edit" = "レシピを編集";
+"custom.recipe.cancel" = "キャンセル";
+"custom.recipe.done" = "完了";
+"custom.recipe.delete.title" = "レシピを削除しますか？";
+"custom.recipe.delete.message" = "この操作は元に戻せません。";
+"custom.recipe.delete" = "削除";
+"custom.recipe.delete.button" = "レシピを削除";
+"custom.recipe.choose.photo" = "写真を選択";
+"custom.recipe.choose.icon" = "アイコンを選択";
+"custom.recipe.name" = "レシピ名";
+"custom.recipe.name.placeholder" = "レシピ名を入力";
+"custom.recipe.steps" = "ステップ";
+"custom.recipe.add.step" = "ステップを追加";
+"custom.recipe.create" = "レシピを作成";
+"custom.recipe.save.changes" = "変更を保存";
+"custom.recipe.step" = "ステップ %d";
+"custom.recipe.step.name" = "名前";
+"custom.recipe.step.name.placeholder" = "例：材料を混ぜる";
+"custom.recipe.step.notes" = "メモ（任意）";
+"custom.recipe.step.notes.placeholder" = "詳細な手順を追加...";
+"custom.recipe.step.duration" = "所要時間";
+"custom.recipe.end.of.recipe" = "レシピ終了（タイマーなし）";
+"custom.recipe.days" = "日";
+"custom.recipe.hours" = "時間";
+"custom.recipe.minutes" = "分";
+

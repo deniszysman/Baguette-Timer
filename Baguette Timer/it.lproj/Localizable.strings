@@ -243,3 +243,32 @@
 "recipe.english.muffins.step.10.instruction" = "Finire in forno (Opzionale ma consigliato)";
 "recipe.english.muffins.step.10.notes" = "• Preriscaldare il forno a 175°C\n• Cuocere 5–7 minuti per finire la mollica interna\n• Aiuta a formare le caratteristiche \"nooks & crannies\"";
 
+// MARK: - Custom Recipe
+"custom.recipe.new.title" = "Nuova ricetta";
+"custom.recipe.edit.title" = "Modifica ricetta";
+"custom.recipe.edit" = "Modifica ricetta";
+"custom.recipe.cancel" = "Annulla";
+"custom.recipe.done" = "Fatto";
+"custom.recipe.delete.title" = "Eliminare la ricetta?";
+"custom.recipe.delete.message" = "Questa azione non può essere annullata.";
+"custom.recipe.delete" = "Elimina";
+"custom.recipe.delete.button" = "Elimina ricetta";
+"custom.recipe.choose.photo" = "Scegli foto";
+"custom.recipe.choose.icon" = "Scegli icona";
+"custom.recipe.name" = "Nome della ricetta";
+"custom.recipe.name.placeholder" = "Inserisci il nome della ricetta";
+"custom.recipe.steps" = "Passaggi";
+"custom.recipe.add.step" = "Aggiungi passaggio";
+"custom.recipe.create" = "Crea ricetta";
+"custom.recipe.save.changes" = "Salva modifiche";
+"custom.recipe.step" = "Passaggio %d";
+"custom.recipe.step.name" = "Nome";
+"custom.recipe.step.name.placeholder" = "es. Mescolare gli ingredienti";
+"custom.recipe.step.notes" = "Note (opzionale)";
+"custom.recipe.step.notes.placeholder" = "Aggiungi istruzioni dettagliate...";
+"custom.recipe.step.duration" = "Durata";
+"custom.recipe.end.of.recipe" = "Fine della ricetta (nessun timer)";
+"custom.recipe.days" = "Giorni";
+"custom.recipe.hours" = "Ore";
+"custom.recipe.minutes" = "Minuti";
+

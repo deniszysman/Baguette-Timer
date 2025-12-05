@@ -29,6 +29,12 @@ class NotificationManager {
         recipeId: UUID? = nil,
         stepId: UUID? = nil
     ) {
+        // Guard against invalid time intervals (must be > 0)
+        guard timeInterval > 0 else {
+            print("Skipping notification - timeInterval must be greater than 0")
+            return
+        }
+        
         let content = UNMutableNotificationContent()
         content.title = title
         content.body = body

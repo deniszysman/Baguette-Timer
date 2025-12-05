@@ -243,3 +243,32 @@
 "recipe.english.muffins.step.10.instruction" = "오븐에서 마무리 (선택사항이지만 권장)";
 "recipe.english.muffins.step.10.notes" = "• 오븐을 175°C로 예열\n• 내부 크럼을 마무리하기 위해 5–7분 굽기\n• 특징적인 \"nooks & crannies\" 형성에 도움";
 
+// MARK: - Custom Recipe
+"custom.recipe.new.title" = "새 레시피";
+"custom.recipe.edit.title" = "레시피 편집";
+"custom.recipe.edit" = "레시피 편집";
+"custom.recipe.cancel" = "취소";
+"custom.recipe.done" = "완료";
+"custom.recipe.delete.title" = "레시피를 삭제하시겠습니까?";
+"custom.recipe.delete.message" = "이 작업은 취소할 수 없습니다.";
+"custom.recipe.delete" = "삭제";
+"custom.recipe.delete.button" = "레시피 삭제";
+"custom.recipe.choose.photo" = "사진 선택";
+"custom.recipe.choose.icon" = "아이콘 선택";
+"custom.recipe.name" = "레시피 이름";
+"custom.recipe.name.placeholder" = "레시피 이름 입력";
+"custom.recipe.steps" = "단계";
+"custom.recipe.add.step" = "단계 추가";
+"custom.recipe.create" = "레시피 만들기";
+"custom.recipe.save.changes" = "변경 사항 저장";
+"custom.recipe.step" = "단계 %d";
+"custom.recipe.step.name" = "이름";
+"custom.recipe.step.name.placeholder" = "예: 재료 섞기";
+"custom.recipe.step.notes" = "메모 (선택사항)";
+"custom.recipe.step.notes.placeholder" = "자세한 지침 추가...";
+"custom.recipe.step.duration" = "소요 시간";
+"custom.recipe.end.of.recipe" = "레시피 끝 (타이머 없음)";
+"custom.recipe.days" = "일";
+"custom.recipe.hours" = "시간";
+"custom.recipe.minutes" = "분";
+

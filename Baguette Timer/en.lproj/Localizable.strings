@@ -243,3 +243,32 @@
 "recipe.english.muffins.step.10.instruction" = "Finish in oven (Optional but recommended)";
 "recipe.english.muffins.step.10.notes" = "• Preheat oven to 350°F (175°C)\n• Bake 5–7 minutes to finish interior crumb\n• Helps form iconic \"nooks & crannies\"";
 
+// MARK: - Custom Recipe
+"custom.recipe.new.title" = "New Recipe";
+"custom.recipe.edit.title" = "Edit Recipe";
+"custom.recipe.edit" = "Edit Recipe";
+"custom.recipe.cancel" = "Cancel";
+"custom.recipe.done" = "Done";
+"custom.recipe.delete.title" = "Delete Recipe?";
+"custom.recipe.delete.message" = "This action cannot be undone.";
+"custom.recipe.delete" = "Delete";
+"custom.recipe.delete.button" = "Delete Recipe";
+"custom.recipe.choose.photo" = "Choose Photo";
+"custom.recipe.choose.icon" = "Choose Icon";
+"custom.recipe.name" = "Recipe Name";
+"custom.recipe.name.placeholder" = "Enter recipe name";
+"custom.recipe.steps" = "Steps";
+"custom.recipe.add.step" = "Add Step";
+"custom.recipe.create" = "Create Recipe";
+"custom.recipe.save.changes" = "Save Changes";
+"custom.recipe.step" = "Step %d";
+"custom.recipe.step.name" = "Name";
+"custom.recipe.step.name.placeholder" = "e.g., Mix ingredients";
+"custom.recipe.step.notes" = "Notes (optional)";
+"custom.recipe.step.notes.placeholder" = "Add detailed instructions...";
+"custom.recipe.step.duration" = "Duration";
+"custom.recipe.end.of.recipe" = "End of Recipe (no timer)";
+"custom.recipe.days" = "Days";
+"custom.recipe.hours" = "Hours";
+"custom.recipe.minutes" = "Minutes";
+

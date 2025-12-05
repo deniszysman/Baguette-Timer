@@ -211,6 +211,7 @@
 "recipe.bagels.step.4.instruction" = "Diviser la pâte";
 "recipe.bagels.step.4.notes" = "• Couper la pâte en 8 parts égales\n• Rouler chacune en boule serrée";
 "recipe.bagels.step.5.instruction" = "Façonner les bagels";
+/Users/deniszysman/Desktop/Screenshot 2025-12-04 at 2.16.13 PM.png
 "recipe.bagels.step.5.notes" = "Utiliser une des deux méthodes :\n• Méthode A : Percer un trou au centre, étirer à 3–4 cm\n• Méthode B : Rouler en corde et sceller les extrémités ensemble\n• Placer sur la plaque";
 "recipe.bagels.step.6.instruction" = "Deuxième pousse";
 "recipe.bagels.step.6.notes" = "• Couvrir les bagels façonnés avec torchon\n• Laisser reposer avant l'ébullition";
@@ -242,4 +243,33 @@
 "recipe.english.muffins.step.9.notes" = "• Retourner les muffins\n• Cuire encore 6–7 minutes\n• Ils doivent lever et se raffermir";
 "recipe.english.muffins.step.10.instruction" = "Finir au four (Optionnel mais recommandé)";
 "recipe.english.muffins.step.10.notes" = "• Préchauffer le four à 175°C\n• Cuire 5–7 minutes pour finir la mie intérieure\n• Aide à former les \"nooks & crannies\" emblématiques";
+
+// MARK: - Custom Recipe
+"custom.recipe.new.title" = "Nouvelle recette";
+"custom.recipe.edit.title" = "Modifier la recette";
+"custom.recipe.edit" = "Modifier la recette";
+"custom.recipe.cancel" = "Annuler";
+"custom.recipe.done" = "Terminé";
+"custom.recipe.delete.title" = "Supprimer la recette ?";
+"custom.recipe.delete.message" = "Cette action est irréversible.";
+"custom.recipe.delete" = "Supprimer";
+"custom.recipe.delete.button" = "Supprimer la recette";
+"custom.recipe.choose.photo" = "Choisir une photo";
+"custom.recipe.choose.icon" = "Choisir une icône";
+"custom.recipe.name" = "Nom de la recette";
+"custom.recipe.name.placeholder" = "Entrez le nom de la recette";
+"custom.recipe.steps" = "Étapes";
+"custom.recipe.add.step" = "Ajouter une étape";
+"custom.recipe.create" = "Créer la recette";
+"custom.recipe.save.changes" = "Enregistrer";
+"custom.recipe.step" = "Étape %d";
+"custom.recipe.step.name" = "Nom";
+"custom.recipe.step.name.placeholder" = "ex. Mélanger les ingrédients";
+"custom.recipe.step.notes" = "Notes (optionnel)";
+"custom.recipe.step.notes.placeholder" = "Ajoutez des instructions détaillées...";
+"custom.recipe.step.duration" = "Durée";
+"custom.recipe.end.of.recipe" = "Fin de la recette (pas de minuteur)";
+"custom.recipe.days" = "Jours";
+"custom.recipe.hours" = "Heures";
+"custom.recipe.minutes" = "Minutes";
 

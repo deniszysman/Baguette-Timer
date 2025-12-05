@@ -11,14 +11,22 @@ import Combine
 struct BreadSelectionView: View {
     @EnvironmentObject var navigationManager: NavigationManager
     @ObservedObject private var timerManager = TimerManager.shared
+    @ObservedObject private var customRecipeManager = CustomRecipeManager.shared
     @State private var selectedRecipe: BreadRecipe?
     @State private var showBreadMaking = false
+    @State private var showAddRecipe = false
+    @State private var recipeToEdit: BreadRecipe?
     @State private var scale: CGFloat = 1.0
     @State private var navigationSubscription: AnyCancellable?
     @State private var timerUpdateTrigger: Int = 0
     @State private var updateTimer: Timer?
     
-    let recipes = BreadRecipe.availableRecipes
+    let builtInRecipes = BreadRecipe.availableRecipes
+    
+    /// Combined list of built-in and custom recipes
+    var recipes: [BreadRecipe] {
+        builtInRecipes + customRecipeManager.customRecipes
+    }
     
     var body: some View {
         NavigationStack {
@@ -38,22 +46,60 @@ struct BreadSelectionView: View {
                 .ignoresSafeArea()
                 
                 VStack(spacing: 20) {
-                    // Title
-                    VStack(spacing: 10) {
-                        Text("app.title".localized)
-                            .font(.system(size: 48, weight: .bold, design: .rounded))
-                            .foregroundStyle(
-                                LinearGradient(
-                                    colors: [.white, .white.opacity(0.8)],
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
-                                )
-                            )
-                            .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 5)
+                    // Title with add button
+                    HStack {
+                        Spacer()
                         
-                        Text("app.subtitle".localized)
-                            .font(.system(size: 20, weight: .medium, design: .rounded))
-                            .foregroundColor(.white.opacity(0.9))
+                        VStack(spacing: 10) {
+                            Text("app.title".localized)
+                                .font(.system(size: 48, weight: .bold, design: .rounded))
+                                .foregroundStyle(
+                                    LinearGradient(
+                                        colors: [.white, .white.opacity(0.8)],
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    )
+                                )
+                                .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 5)
+                            
+                            Text("app.subtitle".localized)
+                                .font(.system(size: 20, weight: .medium, design: .rounded))
+                                .foregroundColor(.white.opacity(0.9))
+                        }
+                        
+                        Spacer()
+                    }
+                    .overlay(alignment: .topTrailing) {
+                        // Add Recipe Button
+                        Button(action: {
+                            recipeToEdit = nil
+                            showAddRecipe = true
+                        }) {
+                            ZStack {
+                                Circle()
+                                    .fill(
+                                        LinearGradient(
+                                            colors: [
+                                                Color.white.opacity(0.3),
+                                                Color.white.opacity(0.15)
+                                            ],
+                                            startPoint: .topLeading,
+                                            endPoint: .bottomTrailing
+                                        )
+                                    )
+                                    .frame(width: 44, height: 44)
+                                    .overlay(
+                                        Circle()
+                                            .stroke(Color.white.opacity(0.5), lineWidth: 2)
+                                    )
+                                    .shadow(color: .black.opacity(0.2), radius: 8, x: 0, y: 4)
+                                
+                                Image(systemName: "plus")
+                                    .font(.system(size: 22, weight: .bold))
+                                    .foregroundColor(.white)
+                            }
+                        }
+                        .padding(.trailing, 4)
                     }
                     .padding(.top, 20)
                     
@@ -68,11 +114,16 @@ struct BreadSelectionView: View {
                                     currentStep: progress.currentStep,
                                     remainingTime: progress.remainingTime,
                                     scheduledStartTime: scheduled.startTime,
-                                    timerUpdateTrigger: timerUpdateTrigger
-                                ) {
-                                    selectedRecipe = recipe
-                                    showBreadMaking = true
-                                }
+                                    timerUpdateTrigger: timerUpdateTrigger,
+                                    action: {
+                                        selectedRecipe = recipe
+                                        showBreadMaking = true
+                                    },
+                                    onEdit: recipe.isCustom ? {
+                                        recipeToEdit = recipe
+                                        showAddRecipe = true
+                                    } : nil
+                                )
                             }
                         }
                         .padding(.horizontal, 20)
@@ -89,6 +140,9 @@ struct BreadSelectionView: View {
                     Text("app.loading".localized)
                         .foregroundColor(.white)
                 }
+            }
+            .sheet(isPresented: $showAddRecipe) {
+                AddCustomRecipeView(existingRecipe: recipeToEdit)
             }
             .onAppear {
                 // Start timer updates for displaying remaining time
@@ -201,8 +255,20 @@ struct BreadCard: View {
     let scheduledStartTime: Date?
     let timerUpdateTrigger: Int
     let action: () -> Void
+    let onEdit: (() -> Void)?
     
     @State private var isPressed = false
+    @State private var customImage: UIImage?
+    
+    init(recipe: BreadRecipe, currentStep: Int?, remainingTime: TimeInterval?, scheduledStartTime: Date?, timerUpdateTrigger: Int, action: @escaping () -> Void, onEdit: (() -> Void)? = nil) {
+        self.recipe = recipe
+        self.currentStep = currentStep
+        self.remainingTime = remainingTime
+        self.scheduledStartTime = scheduledStartTime
+        self.timerUpdateTrigger = timerUpdateTrigger
+        self.action = action
+        self.onEdit = onEdit
+    }
     
     /// Whether this recipe has been started (has progress)
     private var isInProgress: Bool {
@@ -311,12 +377,36 @@ struct BreadCard: View {
                 HStack(spacing: 16) {
                     // Recipe image with liquid glass dome effect
                     ZStack {
-                        // The actual recipe image
-                        Image(recipe.imageName)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 60, height: 60)
-                            .clipShape(Circle())
+                        // The actual recipe image or custom icon
+                        if let customImg = customImage {
+                            Image(uiImage: customImg)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 60, height: 60)
+                                .clipShape(Circle())
+                        } else if let imageName = recipe.imageName {
+                            Image(imageName)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 60, height: 60)
+                                .clipShape(Circle())
+                        } else {
+                            // Custom recipe with icon only
+                            Circle()
+                                .fill(
+                                    LinearGradient(
+                                        colors: [Color.orange.opacity(0.5), Color.orange.opacity(0.3)],
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    )
+                                )
+                                .frame(width: 60, height: 60)
+                                .overlay(
+                                    Image(systemName: recipe.iconName)
+                                        .font(.system(size: 26))
+                                        .foregroundColor(.white)
+                                )
+                        }
                         
                         // Glass dome overlay - centered subtle gradient
                         Circle()
@@ -466,6 +556,19 @@ struct BreadCard: View {
             .animation(.spring(response: 0.3, dampingFraction: 0.6), value: isPressed)
         }
         .buttonStyle(PlainButtonStyle())
+        .contextMenu {
+            if recipe.isCustom, let onEdit = onEdit {
+                Button(action: onEdit) {
+                    Label("custom.recipe.edit".localized, systemImage: "pencil")
+                }
+            }
+        }
+        .onAppear {
+            // Load custom image for custom recipes
+            if recipe.isCustom {
+                customImage = CustomRecipeManager.shared.loadCustomImage(for: recipe.id)
+            }
+        }
     }
     
     private func formatTime(_ timeInterval: TimeInterval) -> String {
@@ -499,8 +602,9 @@ struct BreadCard: View {
             currentStep: nil,
             remainingTime: nil,
             scheduledStartTime: nil,
-            timerUpdateTrigger: 0
-        ) {}
+            timerUpdateTrigger: 0,
+            action: {}
+        )
         .padding()
     }
 }
@@ -513,8 +617,9 @@ struct BreadCard: View {
             currentStep: 3,
             remainingTime: 3600,
             scheduledStartTime: nil,
-            timerUpdateTrigger: 0
-        ) {}
+            timerUpdateTrigger: 0,
+            action: {}
+        )
         .padding()
     }
 }
@@ -527,8 +632,9 @@ struct BreadCard: View {
             currentStep: nil,
             remainingTime: nil,
             scheduledStartTime: Date().addingTimeInterval(3600 * 5), // 5 hours from now
-            timerUpdateTrigger: 0
-        ) {}
+            timerUpdateTrigger: 0,
+            action: {}
+        )
         .padding()
     }
 }

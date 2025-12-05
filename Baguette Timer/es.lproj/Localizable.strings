@@ -243,3 +243,32 @@
 "recipe.english.muffins.step.10.instruction" = "Terminar en el horno (Opcional pero recomendado)";
 "recipe.english.muffins.step.10.notes" = "• Precalentar el horno a 175°C\n• Hornear 5–7 minutos para terminar la miga interior\n• Ayuda a formar los característicos \"nooks & crannies\"";
 
+// MARK: - Custom Recipe
+"custom.recipe.new.title" = "Nueva receta";
+"custom.recipe.edit.title" = "Editar receta";
+"custom.recipe.edit" = "Editar receta";
+"custom.recipe.cancel" = "Cancelar";
+"custom.recipe.done" = "Listo";
+"custom.recipe.delete.title" = "¿Eliminar receta?";
+"custom.recipe.delete.message" = "Esta acción no se puede deshacer.";
+"custom.recipe.delete" = "Eliminar";
+"custom.recipe.delete.button" = "Eliminar receta";
+"custom.recipe.choose.photo" = "Elegir foto";
+"custom.recipe.choose.icon" = "Elegir icono";
+"custom.recipe.name" = "Nombre de la receta";
+"custom.recipe.name.placeholder" = "Ingresa el nombre de la receta";
+"custom.recipe.steps" = "Pasos";
+"custom.recipe.add.step" = "Añadir paso";
+"custom.recipe.create" = "Crear receta";
+"custom.recipe.save.changes" = "Guardar cambios";
+"custom.recipe.step" = "Paso %d";
+"custom.recipe.step.name" = "Nombre";
+"custom.recipe.step.name.placeholder" = "ej. Mezclar ingredientes";
+"custom.recipe.step.notes" = "Notas (opcional)";
+"custom.recipe.step.notes.placeholder" = "Añadir instrucciones detalladas...";
+"custom.recipe.step.duration" = "Duración";
+"custom.recipe.end.of.recipe" = "Fin de la receta (sin temporizador)";
+"custom.recipe.days" = "Días";
+"custom.recipe.hours" = "Horas";
+"custom.recipe.minutes" = "Minutos";
+

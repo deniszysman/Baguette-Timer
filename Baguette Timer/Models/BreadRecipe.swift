@@ -12,16 +12,26 @@ struct BreadRecipe: Identifiable, Codable {
     let id: UUID
     let name: String
     let steps: [BreadStep]
+    let isCustom: Bool
+    let customIconName: String?
 
-    init(id: UUID? = nil, name: String, steps: [BreadStep]) {
-        // Use deterministic UUID based on recipe name for persistence
-        self.id = id ?? UUID.deterministic(from: "recipe.\(name)")
+    init(id: UUID? = nil, name: String, steps: [BreadStep], isCustom: Bool = false, customIconName: String? = nil) {
+        // Use deterministic UUID based on recipe name for persistence (unless custom or ID provided)
+        if let providedId = id {
+            self.id = providedId
+        } else if isCustom {
+            self.id = UUID() // Custom recipes get random UUIDs
+        } else {
+            self.id = UUID.deterministic(from: "recipe.\(name)")
+        }
         self.name = name
+        self.isCustom = isCustom
+        self.customIconName = customIconName
         
         // Assign deterministic IDs to steps based on recipe name + step number
         self.steps = steps.map { step in
             BreadStep(
-                id: UUID.deterministic(from: "step.\(name).\(step.stepNumber)"),
+                id: isCustom ? UUID() : UUID.deterministic(from: "step.\(name).\(step.stepNumber)"),
                 stepNumber: step.stepNumber,
                 instruction: step.instruction,
                 timerDuration: step.timerDuration,
@@ -109,6 +119,11 @@ extension BreadStep {
 
 extension BreadRecipe {
     var iconName: String {
+        // Custom recipes use their custom icon name
+        if isCustom, let customIcon = customIconName {
+            return customIcon
+        }
+        
         switch name {
         case "French Baguette":
             return "leaf.fill"
@@ -131,7 +146,12 @@ extension BreadRecipe {
         }
     }
     
-    var imageName: String {
+    var imageName: String? {
+        // Custom recipes don't use asset catalog images
+        if isCustom {
+            return nil
+        }
+        
         switch name {
         case "French Baguette":
             return "FrenchBaguetteImage"
@@ -156,6 +176,11 @@ extension BreadRecipe {
     
     /// Localized recipe name
     var localizedName: String {
+        // Custom recipes use their name directly (not localized)
+        if isCustom {
+            return name
+        }
+        
         let key: String
         switch name {
         case "French Baguette":
@@ -182,6 +207,11 @@ extension BreadRecipe {
     
     /// Recipe key prefix for localization (e.g., "recipe.french.baguette")
     var recipeKeyPrefix: String {
+        // Custom recipes use a unique prefix based on ID
+        if isCustom {
+            return "custom.\(id.uuidString)"
+        }
+        
         switch name {
         case "French Baguette":
             return "recipe.french.baguette"
