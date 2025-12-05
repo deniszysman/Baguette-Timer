@@ -276,3 +276,18 @@
 "custom.recipe.keep.editing" = "继续编辑";
 "custom.recipe.discard" = "放弃";
 
+// MARK: - Kitchen Timer
+"timer.title" = "厨房计时器";
+"timer.name.placeholder" = "计时器名称（可选）";
+"timer.minutes" = "分钟";
+"timer.active" = "活动计时器";
+"timer.done" = "完成！";
+"timer.total" = "总计：%@";
+"timer.delete" = "删除计时器";
+"timer.delete.confirm" = "删除此计时器？";
+"timer.clear.completed" = "清除已完成";
+"timer.clear.all" = "全部清除";
+"timer.default.name" = "计时器";
+"timer.complete.title" = "计时器完成！";
+"timer.complete.body" = "%@已完成！";
+

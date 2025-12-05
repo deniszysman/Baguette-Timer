@@ -276,3 +276,18 @@
 "custom.recipe.keep.editing" = "Seguir editando";
 "custom.recipe.discard" = "Descartar";
 
+// MARK: - Kitchen Timer
+"timer.title" = "Temporizador de cocina";
+"timer.name.placeholder" = "Nombre del temporizador (opcional)";
+"timer.minutes" = "min";
+"timer.active" = "Temporizadores activos";
+"timer.done" = "¡Listo!";
+"timer.total" = "Total: %@";
+"timer.delete" = "Eliminar temporizador";
+"timer.delete.confirm" = "¿Eliminar este temporizador?";
+"timer.clear.completed" = "Borrar completados";
+"timer.clear.all" = "Borrar todos";
+"timer.default.name" = "Temporizador";
+"timer.complete.title" = "¡Temporizador completo!";
+"timer.complete.body" = "¡%@ está listo!";
+

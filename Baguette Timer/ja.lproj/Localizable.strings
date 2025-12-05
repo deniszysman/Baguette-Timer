@@ -276,3 +276,18 @@
 "custom.recipe.keep.editing" = "編集を続ける";
 "custom.recipe.discard" = "破棄";
 
+// MARK: - Kitchen Timer
+"timer.title" = "キッチンタイマー";
+"timer.name.placeholder" = "タイマー名（任意）";
+"timer.minutes" = "分";
+"timer.active" = "アクティブなタイマー";
+"timer.done" = "完了！";
+"timer.total" = "合計：%@";
+"timer.delete" = "タイマーを削除";
+"timer.delete.confirm" = "このタイマーを削除しますか？";
+"timer.clear.completed" = "完了を消去";
+"timer.clear.all" = "すべて消去";
+"timer.default.name" = "タイマー";
+"timer.complete.title" = "タイマー完了！";
+"timer.complete.body" = "%@が完了しました！";
+

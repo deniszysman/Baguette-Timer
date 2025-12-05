@@ -16,6 +16,7 @@ struct BreadSelectionView: View {
     @State private var selectedRecipe: BreadRecipe?
     @State private var showBreadMaking = false
     @State private var showAddRecipe = false
+    @State private var showKitchenTimer = false
     @State private var recipeToEdit: BreadRecipe?
     @State private var scale: CGFloat = 1.0
     @State private var navigationSubscription: AnyCancellable?
@@ -72,6 +73,37 @@ struct BreadSelectionView: View {
                         }
                         
                         Spacer()
+                    }
+                    .overlay(alignment: .topLeading) {
+                        // Kitchen Timer Button
+                        Button(action: {
+                            showKitchenTimer = true
+                        }) {
+                            ZStack {
+                                Circle()
+                                    .fill(
+                                        LinearGradient(
+                                            colors: [
+                                                Color.white.opacity(0.3),
+                                                Color.white.opacity(0.15)
+                                            ],
+                                            startPoint: .topLeading,
+                                            endPoint: .bottomTrailing
+                                        )
+                                    )
+                                    .frame(width: 44, height: 44)
+                                    .overlay(
+                                        Circle()
+                                            .stroke(Color.white.opacity(0.5), lineWidth: 2)
+                                    )
+                                    .shadow(color: .black.opacity(0.2), radius: 8, x: 0, y: 4)
+                                
+                                Image(systemName: "timer")
+                                    .font(.system(size: 20, weight: .bold))
+                                    .foregroundColor(.white)
+                            }
+                        }
+                        .padding(.leading, 4)
                     }
                     .overlay(alignment: .topTrailing) {
                         // Add Recipe Button
@@ -153,6 +185,9 @@ struct BreadSelectionView: View {
             }
             .sheet(isPresented: $showAddRecipe) {
                 AddCustomRecipeView(existingRecipe: recipeToEdit)
+            }
+            .sheet(isPresented: $showKitchenTimer) {
+                KitchenTimerView()
             }
             .onAppear {
                 // Trigger sort refresh when view appears

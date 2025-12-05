@@ -276,3 +276,18 @@
 "custom.recipe.keep.editing" = "Continua a modificare";
 "custom.recipe.discard" = "Elimina";
 
+// MARK: - Kitchen Timer
+"timer.title" = "Timer da cucina";
+"timer.name.placeholder" = "Nome del timer (opzionale)";
+"timer.minutes" = "min";
+"timer.active" = "Timer attivi";
+"timer.done" = "Fatto!";
+"timer.total" = "Totale: %@";
+"timer.delete" = "Elimina timer";
+"timer.delete.confirm" = "Eliminare questo timer?";
+"timer.clear.completed" = "Cancella completati";
+"timer.clear.all" = "Cancella tutti";
+"timer.default.name" = "Timer";
+"timer.complete.title" = "Timer completato!";
+"timer.complete.body" = "%@ è pronto!";
+

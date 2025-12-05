@@ -52,12 +52,14 @@ struct BreadMakingView: View {
             initialCompletedSteps = Set(savedSteps.compactMap { UUID(uuidString: $0) })
             
             // Calculate correct step index based on active timers (priority) or saved index
-            // First, check if any step has an active timer
+            // Find the HIGHEST step with an active timer (most recent step)
+            // This matches the logic in BreadSelectionView.getRecipeProgress()
             var foundActiveTimerStep: Int? = nil
             for (index, step) in recipe.steps.enumerated() {
                 if timerManager.isTimerActive(for: step.id) {
+                    // Always take the higher step index (don't break on first match)
+                    // This handles cases where multiple steps have running timers
                     foundActiveTimerStep = index
-                    break
                 }
             }
             
@@ -230,6 +232,14 @@ struct BreadMakingView: View {
                         },
                         onInfoTap: {
                             selectedStepForNotes = currentStep
+                        },
+                        onSkip: {
+                            // Find the next step
+                            if currentStepIndex + 1 < recipe.steps.count {
+                                let nextStep = recipe.steps[currentStepIndex + 1]
+                                stepToSkip = nextStep
+                                showSkipConfirmation = true
+                            }
                         }
                     )
                     .padding(.horizontal, 16)
@@ -467,12 +477,14 @@ struct BreadMakingView: View {
             // Recalculate the correct current step based on completed steps and timer states
             // This is critical when app reopens - we need to find the actual active step
             
-            // First pass: Find any step with an active timer (highest priority)
+            // First pass: Find the HIGHEST step with an active timer (most recent step)
+            // This matches the logic in BreadSelectionView.getRecipeProgress()
             var stepWithActiveTimer: Int? = nil
             for (index, step) in recipe.steps.enumerated() {
                 if timerManager.isTimerActive(for: step.id) {
+                    // Always take the higher step index (don't break on first match)
+                    // This handles cases where multiple steps have running timers
                     stepWithActiveTimer = index
-                    break
                 }
             }
             
@@ -581,8 +593,20 @@ struct StepCard: View {
     let remainingTime: TimeInterval?
     let onComplete: () -> Void
     let onInfoTap: () -> Void
+    let onSkip: (() -> Void)?
     
     @State private var isPressed = false
+    
+    init(step: BreadStep, recipeKeyPrefix: String, isCompleted: Bool, isTimerActive: Bool, remainingTime: TimeInterval?, onComplete: @escaping () -> Void, onInfoTap: @escaping () -> Void, onSkip: (() -> Void)? = nil) {
+        self.step = step
+        self.recipeKeyPrefix = recipeKeyPrefix
+        self.isCompleted = isCompleted
+        self.isTimerActive = isTimerActive
+        self.remainingTime = remainingTime
+        self.onComplete = onComplete
+        self.onInfoTap = onInfoTap
+        self.onSkip = onSkip
+    }
     
     var nextStepTimeText: String {
         guard let remaining = remainingTime, remaining > 0 else {
@@ -748,9 +772,14 @@ struct StepCard: View {
     @ViewBuilder
     private var completeButton: some View {
         if isTimerActive {
-            // Timer is running - show disabled state with next step time
-            completeButtonContent(opacity: 0.3, text: nextStepTimeText)
-                .allowsHitTesting(false)
+            // Timer is running - show next step time button that triggers skip
+            Button(action: {
+                onSkip?()
+            }) {
+                completeButtonContent(opacity: 0.6, text: nextStepTimeText)
+            }
+            .scaleEffect(isPressed ? 0.95 : 1.0)
+            .animation(.spring(response: 0.3, dampingFraction: 0.6), value: isPressed)
         } else if isCompleted {
             // Step completed and timer finished
             completeButtonContent(opacity: 0.4, text: "Completed")

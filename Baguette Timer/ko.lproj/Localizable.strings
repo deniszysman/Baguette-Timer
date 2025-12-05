@@ -276,3 +276,18 @@
 "custom.recipe.keep.editing" = "계속 편집";
 "custom.recipe.discard" = "삭제";
 
+// MARK: - Kitchen Timer
+"timer.title" = "주방 타이머";
+"timer.name.placeholder" = "타이머 이름 (선택사항)";
+"timer.minutes" = "분";
+"timer.active" = "활성 타이머";
+"timer.done" = "완료!";
+"timer.total" = "총: %@";
+"timer.delete" = "타이머 삭제";
+"timer.delete.confirm" = "이 타이머를 삭제하시겠습니까?";
+"timer.clear.completed" = "완료된 항목 지우기";
+"timer.clear.all" = "모두 지우기";
+"timer.default.name" = "타이머";
+"timer.complete.title" = "타이머 완료!";
+"timer.complete.body" = "%@이(가) 완료되었습니다!";
+

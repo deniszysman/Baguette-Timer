@@ -276,3 +276,18 @@
 "custom.recipe.keep.editing" = "Keep Editing";
 "custom.recipe.discard" = "Discard";
 
+// MARK: - Kitchen Timer
+"timer.title" = "Kitchen Timer";
+"timer.name.placeholder" = "Timer name (optional)";
+"timer.minutes" = "min";
+"timer.active" = "Active Timers";
+"timer.done" = "Done!";
+"timer.total" = "Total: %@";
+"timer.delete" = "Delete Timer";
+"timer.delete.confirm" = "Delete this timer?";
+"timer.clear.completed" = "Clear Completed";
+"timer.clear.all" = "Clear All";
+"timer.default.name" = "Timer";
+"timer.complete.title" = "Timer Complete!";
+"timer.complete.body" = "%@ is done!";
+
