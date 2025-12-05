@@ -458,7 +458,7 @@ struct AddCustomRecipeView: View {
                 }
             }
         }
-        .presentationDetents([.medium])
+        .presentationDetents([.height(500)])
     }
     
     // MARK: - Helper Methods

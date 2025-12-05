@@ -103,7 +103,7 @@ struct BreadSelectionView: View {
                                     .foregroundColor(.white)
                             }
                         }
-                        .padding(.leading, 4)
+                        .padding(.leading, 16)
                     }
                     .overlay(alignment: .topTrailing) {
                         // Add Recipe Button
@@ -135,7 +135,7 @@ struct BreadSelectionView: View {
                                     .foregroundColor(.white)
                             }
                         }
-                        .padding(.trailing, 4)
+                        .padding(.trailing, 16)
                     }
                     .padding(.top, 20)
                     

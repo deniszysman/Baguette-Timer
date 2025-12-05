@@ -361,7 +361,7 @@ struct BreadMakingView: View {
         }
         .sheet(item: $selectedStepForNotes) { step in
             StepNotesView(step: step, recipeKeyPrefix: recipe.recipeKeyPrefix)
-                .presentationDetents([.medium, .large])
+                .presentationDetents([.height(650)])
                 .presentationDragIndicator(.visible)
         }
         .sheet(isPresented: $showSchedulingSheet) {
@@ -371,7 +371,7 @@ struct BreadMakingView: View {
                     scheduleBreadMaking(targetTime: targetTime)
                 }
             )
-            .presentationDetents([.medium])
+            .presentationDetents([.height(650)])
             .presentationDragIndicator(.visible)
         }
         .alert("alert.reset.title".localized, isPresented: $showResetConfirmation) {
