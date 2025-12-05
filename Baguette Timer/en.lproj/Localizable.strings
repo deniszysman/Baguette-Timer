@@ -1,0 +1,245 @@
+/* 
+  Localizable.strings
+  Baguette Timer
+  
+  English localization strings
+*/
+
+// MARK: - App Title & Navigation
+"app.title" = "BreadOClock";
+"app.subtitle" = "Select your bread recipe";
+"app.loading" = "Loading...";
+
+// MARK: - Steps & Progress
+"step.current" = "Step %d of %d";
+"step.number" = "Step %d";
+"step.steps" = "%d steps";
+"step.done" = "Done";
+"step.timer.running" = "Timer Running";
+"step.timer.duration" = "Timer: %@";
+"step.notes" = "Notes";
+"step.timer" = "Timer";
+"step.timer.duration.label" = "Duration: %@";
+
+// MARK: - Scheduling
+"schedule.title" = "Schedule Bread Making";
+"schedule.question" = "When do you want the bread ready?";
+"schedule.start.time" = "Start Time";
+"schedule.start.at" = "Start at:";
+"schedule.finish.at" = "To finish at: %@";
+"schedule.alert.button" = "Schedule Alert";
+"schedule.start.label" = "Start: %@";
+"schedule.start.today" = "Today %@";
+"schedule.start.tomorrow" = "Tomorrow %@";
+
+// MARK: - Notifications
+"notification.ready.step" = "Ready for Step %d! 🍞";
+"notification.next" = "Next: %@";
+"notification.bread.ready" = "Your bread is ready! 🥖";
+"notification.complete.enjoy" = "%@ complete - Enjoy!";
+"notification.start.title" = "Time to Start Making Bread!";
+"notification.start.body" = "It's time to start making %@. Target completion: %@";
+
+// MARK: - Alerts & Confirmations
+"alert.skip.title" = "Skip to Step?";
+"alert.skip.message.step" = "Are you sure you want to skip to Step %d?\n\n%@";
+"alert.skip.message.generic" = "Are you sure you want to skip to this step?";
+"alert.skip.cancel" = "Cancel";
+"alert.skip.confirm" = "Skip";
+
+"alert.reset.title" = "Reset Recipe?";
+"alert.reset.message" = "This will stop all timers and reset to Step 1. Are you sure?";
+"alert.reset.cancel" = "Cancel";
+"alert.reset.confirm" = "Reset";
+
+// MARK: - Time Formatting
+"time.today" = "Today";
+"time.tomorrow" = "Tomorrow";
+"time.day" = "%d day";
+"time.days" = "%d days";
+"time.week" = "%d week";
+"time.weeks" = "%d weeks";
+"time.hour" = "%dhr";
+"time.hours" = "%dhr";
+"time.minute" = "%dmin";
+"time.minutes" = "%dmin";
+"time.day.hour" = "%dd %dhr";
+
+// MARK: - Recipe Names
+"recipe.french.baguette.name" = "French Baguette";
+"recipe.refresh.starter.name" = "Refresh your starter";
+"recipe.sourdough.bread.ball.name" = "Sourdough Bread Ball";
+"recipe.brioche.name" = "Brioche";
+"recipe.croissants.name" = "Croissants";
+"recipe.pain.au.chocolat.name" = "Pain au Chocolat";
+"recipe.bagels.name" = "Bagels";
+"recipe.english.muffins.name" = "English Muffins";
+
+// MARK: - French Baguette
+"recipe.french.baguette.step.1.instruction" = "Feed starter";
+"recipe.french.baguette.step.1.notes" = "50gr. of Water and 50 gr. of Flour for 2 baguettes";
+"recipe.french.baguette.step.2.instruction" = "Prepare the dough";
+"recipe.french.baguette.step.2.notes" = "325gr. Water\n10gr. Salt\n100gr. Starter\n450gr. Bread Flower\nRest with Towel on top";
+"recipe.french.baguette.step.3.instruction" = "Stretch the dough";
+"recipe.french.baguette.step.3.notes" = "Stretch and fold 4 sides\nRest with towel on top";
+"recipe.french.baguette.step.4.instruction" = "Stretch the dough";
+"recipe.french.baguette.step.4.notes" = "Stretch and fold 4 sides\nRest with towel on top";
+"recipe.french.baguette.step.5.instruction" = "Stretch the dough";
+"recipe.french.baguette.step.5.notes" = "Stretch and fold 4 sides\nRest with towel on top";
+"recipe.french.baguette.step.6.instruction" = "Prepare for baking";
+"recipe.french.baguette.step.6.notes" = "Take half out of the bowl (keep other half for the next day)\nSplit in 2 balls and let it rest";
+"recipe.french.baguette.step.7.instruction" = "Shape the baguettes";
+"recipe.french.baguette.step.7.notes" = "Shape the 2 balls in baguettes\nBread flower on top\nPlace on Parchment paper on tray\nCover with towel";
+"recipe.french.baguette.step.8.instruction" = "Place in oven";
+"recipe.french.baguette.step.8.notes" = "Score the bread (3 slashes)\nAdd 1cup water for steam\nPlace tray in oven\nPre-heat oven to 500 degrees";
+"recipe.french.baguette.step.9.instruction" = "Turn the tray";
+"recipe.french.baguette.step.9.notes" = "Turn the tray in the oven and if needed turn the baguettes upside down";
+"recipe.french.baguette.step.10.instruction" = "Take out of the oven";
+"recipe.french.baguette.step.10.notes" = "Cover with a cloth";
+
+// MARK: - Refresh your starter
+"recipe.refresh.starter.step.1.instruction" = "Feed the starter";
+"recipe.refresh.starter.step.1.notes" = "Remove the starter from the fridge and discard 2 tablespoons of starter.\n\nAdd 2 tablespoons of fresh flour and 2 tablespoons of filtered or spring water.\n\nMix well, cover with a breathable cloth & rubber band.\n\nLet rest at room temperature for 12 hours.";
+"recipe.refresh.starter.step.2.instruction" = "Return to fridge";
+"recipe.refresh.starter.step.2.notes" = "Cover with a closed lid and return to the fridge.\n\nReminder set for 1 week to refresh the starter again.";
+
+// MARK: - Sourdough Bread Ball
+"recipe.sourdough.bread.ball.step.1.instruction" = "Prepare the dough";
+"recipe.sourdough.bread.ball.step.1.notes" = "• 325 g water\n• 10 g salt\n• 100 g starter\n• 450 g bread flour\n• Mix until combined\n• Cover with towel";
+"recipe.sourdough.bread.ball.step.2.instruction" = "Stretch & Fold #1";
+"recipe.sourdough.bread.ball.step.2.notes" = "• Wet hands\n• Lift one side of the dough and fold over\n• Rotate bowl ¼ turn and repeat 3–4 times\n• Cover with towel";
+"recipe.sourdough.bread.ball.step.3.instruction" = "Stretch & Fold #2";
+"recipe.sourdough.bread.ball.step.3.notes" = "• Repeat stretch-and-fold process\n• Keep dough covered";
+"recipe.sourdough.bread.ball.step.4.instruction" = "Stretch & Fold #3";
+"recipe.sourdough.bread.ball.step.4.notes" = "• Repeat stretch-and-fold process\n• Keep dough covered";
+"recipe.sourdough.bread.ball.step.5.instruction" = "Stretch & Fold #4";
+"recipe.sourdough.bread.ball.step.5.notes" = "• Final stretch-and-fold\n• Dough should feel tighter and smoother\n• Cover with towel";
+"recipe.sourdough.bread.ball.step.6.instruction" = "Shape the dough ball";
+"recipe.sourdough.bread.ball.step.6.notes" = "• Lightly flour the counter\n• Shape into a tight round ball (boule)\n• Place seam-side up in a floured bowl/banneton\n• Cover with towel";
+"recipe.sourdough.bread.ball.step.7.instruction" = "Final Proof (Cold Fermentation)";
+"recipe.sourdough.bread.ball.step.7.notes" = "• Place dough in refrigerator\n• Proof overnight (12–16 hours)\n• Dough will rise slowly and develop flavor";
+"recipe.sourdough.bread.ball.step.8.instruction" = "Preheat the oven";
+"recipe.sourdough.bread.ball.step.8.notes" = "• Preheat oven to 475°F (245°C)\n• Put Dutch oven inside to heat\n• Allow at least 30 minutes of preheating";
+"recipe.sourdough.bread.ball.step.9.instruction" = "Score & Bake";
+"recipe.sourdough.bread.ball.step.9.notes" = "• Remove dough from fridge\n• Flip onto parchment\n• Score the top\n• Bake in Dutch oven:\n• 20 min lid ON\n• 20–25 min lid OFF\n• Cool 1 hour before slicing";
+"recipe.sourdough.bread.ball.step.10.instruction" = "Your bread is ready!";
+"recipe.sourdough.bread.ball.step.10.notes" = "• Slice and enjoy\n\nEnd of the recipe";
+
+// MARK: - Brioche
+"recipe.brioche.step.1.instruction" = "Prepare the dough (Mixing #1)";
+"recipe.brioche.step.1.notes" = "• 250 g milk (lukewarm)\n• 10 g dry yeast\n• 60 g sugar\n• 3 eggs\n• Mix until combined";
+"recipe.brioche.step.2.instruction" = "Add flour & salt (Mixing #2)";
+"recipe.brioche.step.2.notes" = "• Add 500 g flour\n• Add 10 g salt\n• Mix until dough starts forming";
+"recipe.brioche.step.3.instruction" = "Knead with butter (Mixing #3)";
+"recipe.brioche.step.3.notes" = "• Add 150 g softened butter, piece by piece\n• Knead until dough is smooth, elastic, and shiny\n• Dough will be sticky — this is normal";
+"recipe.brioche.step.4.instruction" = "First Rise (Bulk Fermentation)";
+"recipe.brioche.step.4.notes" = "• Cover the bowl\n• Leave in warm room\n• Dough should double in size";
+"recipe.brioche.step.5.instruction" = "Degas the dough";
+"recipe.brioche.step.5.notes" = "• Gently press down to remove excess air\n• Do not over-knead\n• Prepare for shaping";
+"recipe.brioche.step.6.instruction" = "Shape the Brioche";
+"recipe.brioche.step.6.notes" = "Choose one:\n• Brioche loaf → divide into 3–4 balls, place in loaf pan\n• Brioche balls → form tight round balls, place in mold\n• Cover with towel";
+"recipe.brioche.step.7.instruction" = "Second Rise (Proofing)";
+"recipe.brioche.step.7.notes" = "• Dough should rise until almost doubled\n• Very important for softness";
+"recipe.brioche.step.8.instruction" = "Egg Wash";
+"recipe.brioche.step.8.notes" = "• Mix 1 egg + a splash of milk\n• Brush gently on top";
+"recipe.brioche.step.9.instruction" = "Bake";
+"recipe.brioche.step.9.notes" = "• Preheat oven to 350°F (175°C)\n• Bake 25–30 minutes (loaf)\n• Or 18–22 minutes (individual balls)\n• Golden brown on top";
+
+// MARK: - Croissants
+"recipe.croissants.step.1.instruction" = "Prepare the dough (Détrempe)";
+"recipe.croissants.step.1.notes" = "• 500 g flour\n• 10 g salt\n• 60 g sugar\n• 10 g dry yeast\n• 300 g cold milk\n• Mix until dough forms (no butter yet)\n• Cover bowl";
+"recipe.croissants.step.2.instruction" = "Light Kneading";
+"recipe.croissants.step.2.notes" = "• Knead gently until smooth (2–3 minutes)\n• Do not overwork\n• Shape into a rectangle\n• Wrap and refrigerate";
+"recipe.croissants.step.3.instruction" = "Prepare butter block";
+"recipe.croissants.step.3.notes" = "• 250 g cold butter\n• Shape into flat square (about 15×15 cm)\n• Wrap and refrigerate\n\n(Same duration as dough; they should be equally cold)";
+"recipe.croissants.step.4.instruction" = "Encasing the butter";
+"recipe.croissants.step.4.notes" = "• Place butter block in center of dough\n• Fold dough over butter (envelope shape)\n• Seal edges tightly\n• Refrigerate to relax gluten";
+"recipe.croissants.step.5.instruction" = "Lamination — Roll + First Fold (Single Fold)";
+"recipe.croissants.step.5.notes" = "• Roll dough into a long rectangle\n• Fold in thirds (like a letter)\n• Wrap and chill";
+"recipe.croissants.step.6.instruction" = "Lamination — Second Fold (Single Fold)";
+"recipe.croissants.step.6.notes" = "• Roll out again into long rectangle\n• Fold in thirds again\n• Wrap and chill";
+"recipe.croissants.step.7.instruction" = "Lamination — Third Fold (Final Fold)";
+"recipe.croissants.step.7.notes" = "• Roll and fold in thirds one last time\n• This completes 3 folds\n• Wrap and chill";
+"recipe.croissants.step.8.instruction" = "Roll final sheet";
+"recipe.croissants.step.8.notes" = "• Roll dough to ~4 mm thickness\n• Keep edges even\n• Lightly flour as needed";
+"recipe.croissants.step.9.instruction" = "Cut triangles";
+"recipe.croissants.step.9.notes" = "• Cut long isosceles triangles (base ~8–10 cm)\n• Make small slit at base\n• Stretch gently";
+"recipe.croissants.step.10.instruction" = "Shape croissants";
+"recipe.croissants.step.10.notes" = "• Roll from base to tip\n• Do not press too hard\n• Place tip underneath on baking tray";
+"recipe.croissants.step.11.instruction" = "Proofing (Final Rise)";
+"recipe.croissants.step.11.notes" = "• Let croissants rise at 77–80°F (25–27°C)\n• Should become puffy, slightly jiggly\n• Do NOT let butter melt";
+"recipe.croissants.step.12.instruction" = "Egg wash";
+"recipe.croissants.step.12.notes" = "• Mix 1 egg + splash of milk\n• Brush gently on top";
+"recipe.croissants.step.13.instruction" = "Bake";
+"recipe.croissants.step.13.notes" = "• Preheat oven to 400°F (200°C)\n• Bake 12 min, then lower to 375°F (190°C)\n• Bake additional 8–10 minutes\n• Golden, flaky, crispy layers";
+
+// MARK: - Pain au Chocolat
+"recipe.pain.au.chocolat.step.1.instruction" = "Prepare the dough (Détrempe)";
+"recipe.pain.au.chocolat.step.1.notes" = "• 500 g flour\n• 10 g salt\n• 60 g sugar\n• 10 g dry yeast\n• 300 g cold milk\n• Mix until dough forms (no butter yet)\n• Cover bowl";
+"recipe.pain.au.chocolat.step.2.instruction" = "Light Kneading";
+"recipe.pain.au.chocolat.step.2.notes" = "• Knead gently 2–3 minutes\n• Shape into rectangle\n• Wrap and refrigerate";
+"recipe.pain.au.chocolat.step.3.instruction" = "Prepare the butter block";
+"recipe.pain.au.chocolat.step.3.notes" = "• 250 g cold butter\n• Shape into 15×15 cm flat square\n• Wrap and refrigerate";
+"recipe.pain.au.chocolat.step.4.instruction" = "Encasing the butter";
+"recipe.pain.au.chocolat.step.4.notes" = "• Place butter block in the center of dough\n• Fold dough over butter (envelope)\n• Seal edges\n• Refrigerate";
+"recipe.pain.au.chocolat.step.5.instruction" = "Lamination — First Fold (Single Fold)";
+"recipe.pain.au.chocolat.step.5.notes" = "• Roll dough into long rectangle\n• Fold in thirds (like a letter)\n• Wrap and chill";
+"recipe.pain.au.chocolat.step.6.instruction" = "Lamination — Second Fold (Single Fold)";
+"recipe.pain.au.chocolat.step.6.notes" = "• Roll again\n• Fold in thirds\n• Wrap and chill";
+"recipe.pain.au.chocolat.step.7.instruction" = "Lamination — Third Fold (Final Fold)";
+"recipe.pain.au.chocolat.step.7.notes" = "• Roll and fold thirds one last time\n• Wrap and chill";
+"recipe.pain.au.chocolat.step.8.instruction" = "Roll final sheet";
+"recipe.pain.au.chocolat.step.8.notes" = "• Roll dough to ~4 mm thickness\n• Keep edges straight";
+"recipe.pain.au.chocolat.step.9.instruction" = "Cut rectangles";
+"recipe.pain.au.chocolat.step.9.notes" = "• Cut rectangles about 8×12 cm\n• Keep dough chilled to prevent butter melting";
+"recipe.pain.au.chocolat.step.10.instruction" = "Add the chocolate batons";
+"recipe.pain.au.chocolat.step.10.notes" = "• Place one chocolate baton near the short edge\n• Roll once\n• Add second baton\n• Finish rolling, seam underneath";
+"recipe.pain.au.chocolat.step.11.instruction" = "Proofing (Final Rise)";
+"recipe.pain.au.chocolat.step.11.notes" = "• Let rise at 77–80°F (25–27°C)\n• Should become puffy and aerated\n• Butter must not melt";
+"recipe.pain.au.chocolat.step.12.instruction" = "Egg Wash";
+"recipe.pain.au.chocolat.step.12.notes" = "• Mix 1 egg + splash of milk\n• Brush lightly on top";
+"recipe.pain.au.chocolat.step.13.instruction" = "Bake";
+"recipe.pain.au.chocolat.step.13.notes" = "• Preheat oven to 400°F (200°C)\n• Bake 12 minutes\n• Lower to 375°F (190°C) and bake 8–10 more minutes\n• Should be golden and flaky";
+
+// MARK: - Bagels
+"recipe.bagels.step.1.instruction" = "Prepare the dough";
+"recipe.bagels.step.1.notes" = "• 500 g bread flour\n• 10 g salt\n• 10 g sugar\n• 7 g dry yeast\n• 300 g warm water\n• Mix until dough comes together\n• Cover bowl";
+"recipe.bagels.step.2.instruction" = "Knead the dough";
+"recipe.bagels.step.2.notes" = "• Knead 8–10 minutes until smooth and firm\n• Dough should be stiffer than bread dough\n• Form into a ball";
+"recipe.bagels.step.3.instruction" = "First Rise (Bulk Fermentation)";
+"recipe.bagels.step.3.notes" = "• Place dough in lightly oiled bowl\n• Cover\n• Let rise until doubled";
+"recipe.bagels.step.4.instruction" = "Divide the dough";
+"recipe.bagels.step.4.notes" = "• Cut dough into 8 equal pieces\n• Roll each into a tight ball";
+"recipe.bagels.step.5.instruction" = "Shape the bagels";
+"recipe.bagels.step.5.notes" = "Use one of two methods:\n• Method A: Poke hole in center, stretch to 3–4 cm\n• Method B: Roll rope & seal ends together\n• Place on tray";
+"recipe.bagels.step.6.instruction" = "Second Rise";
+"recipe.bagels.step.6.notes" = "• Cover shaped bagels with towel\n• Let rest before boiling";
+"recipe.bagels.step.7.instruction" = "Boil the bagels";
+"recipe.bagels.step.7.notes" = "• Bring water to boil\n• Add 1 tbsp sugar or honey (optional)\n• Boil bagels 30–45 sec per side\n• Remove and drain";
+"recipe.bagels.step.8.instruction" = "Add toppings";
+"recipe.bagels.step.8.notes" = "Choose toppings:\n• Sesame\n• Poppy\n• Everything mix\n• Onion flakes\n• Or leave plain\n\nPress gently onto wet dough";
+"recipe.bagels.step.9.instruction" = "Bake";
+"recipe.bagels.step.9.notes" = "• Preheat oven to 425°F (220°C)\n• Bake 18–22 minutes\n• Should be golden and shiny";
+
+// MARK: - English Muffins
+"recipe.english.muffins.step.1.instruction" = "Prepare the dough";
+"recipe.english.muffins.step.1.notes" = "• 350 g milk (warm)\n• 30 g butter (melted)\n• 20 g sugar\n• 7 g dry yeast\n• Mix until dissolved";
+"recipe.english.muffins.step.2.instruction" = "Add dry ingredients";
+"recipe.english.muffins.step.2.notes" = "• Add 500 g flour\n• Add 10 g salt\n• Mix until dough forms\n• Dough should be soft and slightly sticky";
+"recipe.english.muffins.step.3.instruction" = "Knead the dough";
+"recipe.english.muffins.step.3.notes" = "• Knead 5–7 minutes until smooth\n• Avoid adding too much flour";
+"recipe.english.muffins.step.4.instruction" = "First Rise (Bulk Fermentation)";
+"recipe.english.muffins.step.4.notes" = "• Place dough in lightly oiled bowl\n• Cover with towel\n• Allow to double in size";
+"recipe.english.muffins.step.5.instruction" = "Roll out the dough";
+"recipe.english.muffins.step.5.notes" = "• Turn dough onto floured surface\n• Roll to ~2 cm thickness\n• Dust surface with flour or semolina";
+"recipe.english.muffins.step.6.instruction" = "Cut muffin rounds";
+"recipe.english.muffins.step.6.notes" = "• Use a 7–8 cm cutter\n• Transfer rounds onto semolina-covered tray\n• Dust tops with semolina as well";
+"recipe.english.muffins.step.7.instruction" = "Second Rise";
+"recipe.english.muffins.step.7.notes" = "• Cover muffins lightly\n• Let puff up slightly\n• Do not overproof";
+"recipe.english.muffins.step.8.instruction" = "Cook on skillet (First Side)";
+"recipe.english.muffins.step.8.notes" = "• Preheat skillet on low-medium heat\n• No oil or butter\n• Cook muffins 6–7 minutes on first side\n• Should brown gently";
+"recipe.english.muffins.step.9.instruction" = "Cook on skillet (Second Side)";
+"recipe.english.muffins.step.9.notes" = "• Flip muffins\n• Cook another 6–7 minutes\n• They should rise and firm up";
+"recipe.english.muffins.step.10.instruction" = "Finish in oven (Optional but recommended)";
+"recipe.english.muffins.step.10.notes" = "• Preheat oven to 350°F (175°C)\n• Bake 5–7 minutes to finish interior crumb\n• Helps form iconic \"nooks & crannies\"";
+

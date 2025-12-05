@@ -114,7 +114,7 @@ class TimerManager: ObservableObject {
         }
     }
     
-    func startTimer(for step: BreadStep, recipeId: UUID, nextStep: BreadStep? = nil) {
+    func startTimer(for step: BreadStep, recipeId: UUID, nextStep: BreadStep? = nil, recipeKeyPrefix: String? = nil) {
         // Use test duration if test mode is enabled, otherwise use actual step duration
         let timerDuration = Common.testMode.isEnabled ? Common.testTimerDuration : step.timerDuration
         
@@ -131,13 +131,20 @@ class TimerManager: ObservableObject {
         let notificationTitle: String
         let notificationBody: String
         
-        if let next = nextStep {
-            notificationTitle = "Ready for Step \(next.stepNumber)! 🍞"
-            notificationBody = "Next: \(next.instruction)"
+        if let next = nextStep, let prefix = recipeKeyPrefix {
+            notificationTitle = String(format: NSLocalizedString("notification.ready.step", comment: ""), next.stepNumber)
+            notificationBody = String(format: NSLocalizedString("notification.next", comment: ""), next.localizedInstruction(recipeKeyPrefix: prefix))
+        } else if let next = nextStep {
+            notificationTitle = String(format: NSLocalizedString("notification.ready.step", comment: ""), next.stepNumber)
+            notificationBody = String(format: NSLocalizedString("notification.next", comment: ""), next.instruction)
+        } else if let prefix = recipeKeyPrefix {
+            // Last step - bread is done!
+            notificationTitle = NSLocalizedString("notification.bread.ready", comment: "")
+            notificationBody = String(format: NSLocalizedString("notification.complete.enjoy", comment: ""), step.localizedInstruction(recipeKeyPrefix: prefix))
         } else {
             // Last step - bread is done!
-            notificationTitle = "Your bread is ready! 🥖"
-            notificationBody = "\(step.instruction) complete - Enjoy!"
+            notificationTitle = NSLocalizedString("notification.bread.ready", comment: "")
+            notificationBody = String(format: NSLocalizedString("notification.complete.enjoy", comment: ""), step.instruction)
         }
         
         // Schedule notification with recipe and step IDs for deep linking

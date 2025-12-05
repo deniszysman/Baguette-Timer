@@ -1,0 +1,245 @@
+/* 
+  Localizable.strings
+  Baguette Timer
+  
+  German localization strings
+*/
+
+// MARK: - App Title & Navigation
+"app.title" = "BreadOClock";
+"app.subtitle" = "Wähle dein Brotrezept";
+"app.loading" = "Lädt...";
+
+// MARK: - Steps & Progress
+"step.current" = "Schritt %d von %d";
+"step.number" = "Schritt %d";
+"step.steps" = "%d Schritte";
+"step.done" = "Fertig";
+"step.timer.running" = "Timer läuft";
+"step.timer.duration" = "Timer: %@";
+"step.notes" = "Notizen";
+"step.timer" = "Timer";
+"step.timer.duration.label" = "Dauer: %@";
+
+// MARK: - Scheduling
+"schedule.title" = "Brotherstellung planen";
+"schedule.question" = "Wann soll das Brot fertig sein?";
+"schedule.start.time" = "Startzeit";
+"schedule.start.at" = "Beginn um:";
+"schedule.finish.at" = "Fertig um: %@";
+"schedule.alert.button" = "Erinnerung planen";
+"schedule.start.label" = "Beginn: %@";
+"schedule.start.today" = "Heute %@";
+"schedule.start.tomorrow" = "Morgen %@";
+
+// MARK: - Notifications
+"notification.ready.step" = "Bereit für Schritt %d! 🍞";
+"notification.next" = "Nächster: %@";
+"notification.bread.ready" = "Dein Brot ist fertig! 🥖";
+"notification.complete.enjoy" = "%@ abgeschlossen - Guten Appetit!";
+"notification.start.title" = "Zeit, Brot zu backen!";
+"notification.start.body" = "Es ist Zeit, %@ zu backen. Geplante Fertigstellung: %@";
+
+// MARK: - Alerts & Confirmations
+"alert.skip.title" = "Zum Schritt springen?";
+"alert.skip.message.step" = "Bist du sicher, dass du zu Schritt %d springen möchtest?\n\n%@";
+"alert.skip.message.generic" = "Bist du sicher, dass du zu diesem Schritt springen möchtest?";
+"alert.skip.cancel" = "Abbrechen";
+"alert.skip.confirm" = "Überspringen";
+
+"alert.reset.title" = "Rezept zurücksetzen?";
+"alert.reset.message" = "Dies stoppt alle Timer und setzt auf Schritt 1 zurück. Bist du sicher?";
+"alert.reset.cancel" = "Abbrechen";
+"alert.reset.confirm" = "Zurücksetzen";
+
+// MARK: - Time Formatting
+"time.today" = "Heute";
+"time.tomorrow" = "Morgen";
+"time.day" = "%d Tag";
+"time.days" = "%d Tage";
+"time.week" = "%d Woche";
+"time.weeks" = "%d Wochen";
+"time.hour" = "%d Std";
+"time.hours" = "%d Std";
+"time.minute" = "%d Min";
+"time.minutes" = "%d Min";
+"time.day.hour" = "%d T %d Std";
+
+// MARK: - Recipe Names
+"recipe.french.baguette.name" = "Französisches Baguette";
+"recipe.refresh.starter.name" = "Sauerteig auffrischen";
+"recipe.sourdough.bread.ball.name" = "Sauerteig-Brotkugel";
+"recipe.brioche.name" = "Brioche";
+"recipe.croissants.name" = "Croissants";
+"recipe.pain.au.chocolat.name" = "Pain au Chocolat";
+"recipe.bagels.name" = "Bagels";
+"recipe.english.muffins.name" = "English Muffins";
+
+// MARK: - French Baguette
+"recipe.french.baguette.step.1.instruction" = "Sauerteig füttern";
+"recipe.french.baguette.step.1.notes" = "50 g Wasser und 50 g Mehl für 2 Baguettes";
+"recipe.french.baguette.step.2.instruction" = "Teig vorbereiten";
+"recipe.french.baguette.step.2.notes" = "325 g Wasser\n10 g Salz\n100 g Sauerteig\n450 g Brotmehl\nMit Tuch abdecken und ruhen lassen";
+"recipe.french.baguette.step.3.instruction" = "Teig dehnen";
+"recipe.french.baguette.step.3.notes" = "4 Seiten dehnen und falten\nMit Tuch abdecken und ruhen lassen";
+"recipe.french.baguette.step.4.instruction" = "Teig dehnen";
+"recipe.french.baguette.step.4.notes" = "4 Seiten dehnen und falten\nMit Tuch abdecken und ruhen lassen";
+"recipe.french.baguette.step.5.instruction" = "Teig dehnen";
+"recipe.french.baguette.step.5.notes" = "4 Seiten dehnen und falten\nMit Tuch abdecken und ruhen lassen";
+"recipe.french.baguette.step.6.instruction" = "Fürs Backen vorbereiten";
+"recipe.french.baguette.step.6.notes" = "Die Hälfte aus der Schüssel nehmen (andere Hälfte für den nächsten Tag aufbewahren)\nIn 2 Kugeln teilen und ruhen lassen";
+"recipe.french.baguette.step.7.instruction" = "Baguettes formen";
+"recipe.french.baguette.step.7.notes" = "Die 2 Kugeln zu Baguettes formen\nMehl auf die Oberseite\nAuf Backpapier auf das Blech legen\nMit Tuch abdecken";
+"recipe.french.baguette.step.8.instruction" = "In den Ofen geben";
+"recipe.french.baguette.step.8.notes" = "Brot einschneiden (3 Schnitte)\n1 Tasse Wasser für Dampf hinzufügen\nBlech in den Ofen stellen\nOfen auf 260°C vorheizen";
+"recipe.french.baguette.step.9.instruction" = "Blech drehen";
+"recipe.french.baguette.step.9.notes" = "Blech im Ofen drehen und bei Bedarf Baguettes umdrehen";
+"recipe.french.baguette.step.10.instruction" = "Aus dem Ofen nehmen";
+"recipe.french.baguette.step.10.notes" = "Mit einem Tuch abdecken";
+
+// MARK: - Refresh your starter
+"recipe.refresh.starter.step.1.instruction" = "Sauerteig füttern";
+"recipe.refresh.starter.step.1.notes" = "Sauerteig aus dem Kühlschrank nehmen und 2 Esslöffel Sauerteig wegwerfen.\n\n2 Esslöffel frisches Mehl und 2 Esslöffel gefiltertes oder Quellwasser hinzufügen.\n\nGut mischen, mit atmungsaktivem Tuch und Gummiband abdecken.\n\n12 Stunden bei Raumtemperatur ruhen lassen.";
+"recipe.refresh.starter.step.2.instruction" = "Zurück in den Kühlschrank";
+"recipe.refresh.starter.step.2.notes" = "Mit geschlossenem Deckel abdecken und zurück in den Kühlschrank stellen.\n\nErinnerung für 1 Woche gesetzt, um den Sauerteig erneut aufzufrischen.";
+
+// MARK: - Sourdough Bread Ball
+"recipe.sourdough.bread.ball.step.1.instruction" = "Teig vorbereiten";
+"recipe.sourdough.bread.ball.step.1.notes" = "• 325 g Wasser\n• 10 g Salz\n• 100 g Sauerteig\n• 450 g Brotmehl\n• Mischen, bis alles kombiniert ist\n• Mit Tuch abdecken";
+"recipe.sourdough.bread.ball.step.2.instruction" = "Dehnen & Falten #1";
+"recipe.sourdough.bread.ball.step.2.notes" = "• Hände anfeuchten\n• Eine Seite des Teigs anheben und falten\n• Schüssel um ¼ drehen und 3–4 Mal wiederholen\n• Mit Tuch abdecken";
+"recipe.sourdough.bread.ball.step.3.instruction" = "Dehnen & Falten #2";
+"recipe.sourdough.bread.ball.step.3.notes" = "• Dehn- und Faltprozess wiederholen\n• Teig abgedeckt halten";
+"recipe.sourdough.bread.ball.step.4.instruction" = "Dehnen & Falten #3";
+"recipe.sourdough.bread.ball.step.4.notes" = "• Dehn- und Faltprozess wiederholen\n• Teig abgedeckt halten";
+"recipe.sourdough.bread.ball.step.5.instruction" = "Dehnen & Falten #4";
+"recipe.sourdough.bread.ball.step.5.notes" = "• Letztes Dehnen und Falten\n• Teig sollte sich fester und glatter anfühlen\n• Mit Tuch abdecken";
+"recipe.sourdough.bread.ball.step.6.instruction" = "Teigkugel formen";
+"recipe.sourdough.bread.ball.step.6.notes" = "• Arbeitsfläche leicht bemehlen\n• Zu einer festen runden Kugel (Boule) formen\n• Mit Naht nach oben in bemehlte Schüssel/Banneton legen\n• Mit Tuch abdecken";
+"recipe.sourdough.bread.ball.step.7.instruction" = "Finale Gare (Kaltgärung)";
+"recipe.sourdough.bread.ball.step.7.notes" = "• Teig in den Kühlschrank stellen\n• Über Nacht gären lassen (12–16 Stunden)\n• Teig geht langsam auf und entwickelt Geschmack";
+"recipe.sourdough.bread.ball.step.8.instruction" = "Ofen vorheizen";
+"recipe.sourdough.bread.ball.step.8.notes" = "• Ofen auf 245°C vorheizen\n• Gusseisernen Topf hineinstellen, um ihn zu erhitzen\n• Mindestens 30 Minuten vorheizen lassen";
+"recipe.sourdough.bread.ball.step.9.instruction" = "Einschneiden & Backen";
+"recipe.sourdough.bread.ball.step.9.notes" = "• Teig aus dem Kühlschrank nehmen\n• Auf Backpapier wenden\n• Oberseite einschneiden\n• Im Gusseisernen Topf backen:\n• 20 Min Deckel GESCHLOSSEN\n• 20–25 Min Deckel OFFEN\n• 1 Stunde abkühlen lassen vor dem Schneiden";
+"recipe.sourdough.bread.ball.step.10.instruction" = "Dein Brot ist fertig!";
+"recipe.sourdough.bread.ball.step.10.notes" = "• Schneiden und genießen\n\nEnde des Rezepts";
+
+// MARK: - Brioche
+"recipe.brioche.step.1.instruction" = "Teig vorbereiten (Mischen #1)";
+"recipe.brioche.step.1.notes" = "• 250 g Milch (lauwarm)\n• 10 g Trockenhefe\n• 60 g Zucker\n• 3 Eier\n• Mischen, bis alles kombiniert ist";
+"recipe.brioche.step.2.instruction" = "Mehl & Salz hinzufügen (Mischen #2)";
+"recipe.brioche.step.2.notes" = "• 500 g Mehl hinzufügen\n• 10 g Salz hinzufügen\n• Mischen, bis der Teig sich zu formen beginnt";
+"recipe.brioche.step.3.instruction" = "Mit Butter kneten (Mischen #3)";
+"recipe.brioche.step.3.notes" = "• 150 g weiche Butter, Stück für Stück hinzufügen\n• Kneten, bis der Teig glatt, elastisch und glänzend ist\n• Teig wird klebrig sein — das ist normal";
+"recipe.brioche.step.4.instruction" = "Erste Gare (Massenfermentation)";
+"recipe.brioche.step.4.notes" = "• Schüssel abdecken\n• In warmem Raum stehen lassen\n• Teig sollte sich verdoppeln";
+"recipe.brioche.step.5.instruction" = "Teig entspannen";
+"recipe.brioche.step.5.notes" = "• Sanft niederdrücken, um überschüssige Luft zu entfernen\n• Nicht überkneten\n• Fürs Formen vorbereiten";
+"recipe.brioche.step.6.instruction" = "Brioche formen";
+"recipe.brioche.step.6.notes" = "Eine Option wählen:\n• Brioche-Laib → in 3–4 Kugeln teilen, in Laibform legen\n• Brioche-Kugeln → feste runde Kugeln formen, in Form legen\n• Mit Tuch abdecken";
+"recipe.brioche.step.7.instruction" = "Zweite Gare (Stückgare)";
+"recipe.brioche.step.7.notes" = "• Teig sollte fast verdoppeln\n• Sehr wichtig für die Weichheit";
+"recipe.brioche.step.8.instruction" = "Mit Ei bestreichen";
+"recipe.brioche.step.8.notes" = "• 1 Ei + einen Schuss Milch mischen\n• Sanft auf die Oberseite streichen";
+"recipe.brioche.step.9.instruction" = "Backen";
+"recipe.brioche.step.9.notes" = "• Ofen auf 175°C vorheizen\n• 25–30 Minuten backen (Laib)\n• Oder 18–22 Minuten (einzelne Kugeln)\n• Goldbraun auf der Oberseite";
+
+// MARK: - Croissants
+"recipe.croissants.step.1.instruction" = "Teig vorbereiten (Détrempe)";
+"recipe.croissants.step.1.notes" = "• 500 g Mehl\n• 10 g Salz\n• 60 g Zucker\n• 10 g Trockenhefe\n• 300 g kalte Milch\n• Mischen, bis sich der Teig bildet (noch keine Butter)\n• Schüssel abdecken";
+"recipe.croissants.step.2.instruction" = "Leichtes Kneten";
+"recipe.croissants.step.2.notes" = "• Sanft kneten, bis glatt (2–3 Minuten)\n• Nicht überarbeiten\n• Zu einem Rechteck formen\n• Einwickeln und kühlen";
+"recipe.croissants.step.3.instruction" = "Butterblock vorbereiten";
+"recipe.croissants.step.3.notes" = "• 250 g kalte Butter\n• Zu flachem Quadrat formen (ca. 15×15 cm)\n• Einwickeln und kühlen\n\n(Gleiche Dauer wie Teig; sollten gleich kalt sein)";
+"recipe.croissants.step.4.instruction" = "Butter einpacken";
+"recipe.croissants.step.4.notes" = "• Butterblock in die Mitte des Teigs legen\n• Teig über Butter falten (Briefumschlagform)\n• Ränder fest verschließen\n• Kühlen, um Gluten zu entspannen";
+"recipe.croissants.step.5.instruction" = "Laminierung — Ausrollen + Erste Falte (Einfache Falte)";
+"recipe.croissants.step.5.notes" = "• Teig zu langem Rechteck ausrollen\n• In Drittel falten (wie ein Brief)\n• Einwickeln und kühlen";
+"recipe.croissants.step.6.instruction" = "Laminierung — Zweite Falte (Einfache Falte)";
+"recipe.croissants.step.6.notes" = "• Erneut zu langem Rechteck ausrollen\n• Erneut in Drittel falten\n• Einwickeln und kühlen";
+"recipe.croissants.step.7.instruction" = "Laminierung — Dritte Falte (Finale Falte)";
+"recipe.croissants.step.7.notes" = "• Ein letztes Mal ausrollen und in Drittel falten\n• Das vervollständigt 3 Falten\n• Einwickeln und kühlen";
+"recipe.croissants.step.8.instruction" = "Finale Platte ausrollen";
+"recipe.croissants.step.8.notes" = "• Teig auf ~4 mm Dicke ausrollen\n• Ränder gerade halten\n• Bei Bedarf leicht bemehlen";
+"recipe.croissants.step.9.instruction" = "Dreiecke schneiden";
+"recipe.croissants.step.9.notes" = "• Lange gleichschenklige Dreiecke schneiden (Basis ~8–10 cm)\n• Kleinen Schlitz an der Basis machen\n• Sanft dehnen";
+"recipe.croissants.step.10.instruction" = "Croissants formen";
+"recipe.croissants.step.10.notes" = "• Von Basis zur Spitze rollen\n• Nicht zu fest drücken\n• Spitze unten auf Backblech legen";
+"recipe.croissants.step.11.instruction" = "Stückgare (Finale Gare)";
+"recipe.croissants.step.11.notes" = "• Croissants bei 25–27°C gehen lassen\n• Sollten luftig, leicht wackelig werden\n• Butter NICHT schmelzen lassen";
+"recipe.croissants.step.12.instruction" = "Mit Ei bestreichen";
+"recipe.croissants.step.12.notes" = "• 1 Ei + einen Schuss Milch mischen\n• Sanft auf die Oberseite streichen";
+"recipe.croissants.step.13.instruction" = "Backen";
+"recipe.croissants.step.13.notes" = "• Ofen auf 200°C vorheizen\n• 12 Min backen, dann auf 190°C reduzieren\n• Weitere 8–10 Minuten backen\n• Goldene, blättrige, knusprige Schichten";
+
+// MARK: - Pain au Chocolat
+"recipe.pain.au.chocolat.step.1.instruction" = "Teig vorbereiten (Détrempe)";
+"recipe.pain.au.chocolat.step.1.notes" = "• 500 g Mehl\n• 10 g Salz\n• 60 g Zucker\n• 10 g Trockenhefe\n• 300 g kalte Milch\n• Mischen, bis sich der Teig bildet (noch keine Butter)\n• Schüssel abdecken";
+"recipe.pain.au.chocolat.step.2.instruction" = "Leichtes Kneten";
+"recipe.pain.au.chocolat.step.2.notes" = "• Sanft 2–3 Minuten kneten\n• Zu einem Rechteck formen\n• Einwickeln und kühlen";
+"recipe.pain.au.chocolat.step.3.instruction" = "Butterblock vorbereiten";
+"recipe.pain.au.chocolat.step.3.notes" = "• 250 g kalte Butter\n• Zu flachem Quadrat von 15×15 cm formen\n• Einwickeln und kühlen";
+"recipe.pain.au.chocolat.step.4.instruction" = "Butter einpacken";
+"recipe.pain.au.chocolat.step.4.notes" = "• Butterblock in die Mitte des Teigs legen\n• Teig über Butter falten (Briefumschlag)\n• Ränder verschließen\n• Kühlen";
+"recipe.pain.au.chocolat.step.5.instruction" = "Laminierung — Erste Falte (Einfache Falte)";
+"recipe.pain.au.chocolat.step.5.notes" = "• Teig zu langem Rechteck ausrollen\n• In Drittel falten (wie ein Brief)\n• Einwickeln und kühlen";
+"recipe.pain.au.chocolat.step.6.instruction" = "Laminierung — Zweite Falte (Einfache Falte)";
+"recipe.pain.au.chocolat.step.6.notes" = "• Erneut ausrollen\n• In Drittel falten\n• Einwickeln und kühlen";
+"recipe.pain.au.chocolat.step.7.instruction" = "Laminierung — Dritte Falte (Finale Falte)";
+"recipe.pain.au.chocolat.step.7.notes" = "• Ein letztes Mal ausrollen und in Drittel falten\n• Einwickeln und kühlen";
+"recipe.pain.au.chocolat.step.8.instruction" = "Finale Platte ausrollen";
+"recipe.pain.au.chocolat.step.8.notes" = "• Teig auf ~4 mm Dicke ausrollen\n• Ränder gerade halten";
+"recipe.pain.au.chocolat.step.9.instruction" = "Rechtecke schneiden";
+"recipe.pain.au.chocolat.step.9.notes" = "• Rechtecke von ca. 8×12 cm schneiden\n• Teig kühl halten, um Butter zu schmelzen zu verhindern";
+"recipe.pain.au.chocolat.step.10.instruction" = "Schokoladenstäbchen hinzufügen";
+"recipe.pain.au.chocolat.step.10.notes" = "• Ein Schokoladenstäbchen nahe dem kurzen Rand platzieren\n• Einmal rollen\n• Zweites Stäbchen hinzufügen\n• Fertig rollen, Naht unten";
+"recipe.pain.au.chocolat.step.11.instruction" = "Stückgare (Finale Gare)";
+"recipe.pain.au.chocolat.step.11.notes" = "• Bei 25–27°C gehen lassen\n• Sollten luftig und aufgelockert werden\n• Butter darf nicht schmelzen";
+"recipe.pain.au.chocolat.step.12.instruction" = "Mit Ei bestreichen";
+"recipe.pain.au.chocolat.step.12.notes" = "• 1 Ei + einen Schuss Milch mischen\n• Leicht auf die Oberseite streichen";
+"recipe.pain.au.chocolat.step.13.instruction" = "Backen";
+"recipe.pain.au.chocolat.step.13.notes" = "• Ofen auf 200°C vorheizen\n• 12 Minuten backen\n• Auf 190°C reduzieren und weitere 8–10 Minuten backen\n• Sollte goldbraun und blättrig sein";
+
+// MARK: - Bagels
+"recipe.bagels.step.1.instruction" = "Teig vorbereiten";
+"recipe.bagels.step.1.notes" = "• 500 g Brotmehl\n• 10 g Salz\n• 10 g Zucker\n• 7 g Trockenhefe\n• 300 g warmes Wasser\n• Mischen, bis sich der Teig bildet\n• Schüssel abdecken";
+"recipe.bagels.step.2.instruction" = "Teig kneten";
+"recipe.bagels.step.2.notes" = "• 8–10 Minuten kneten, bis glatt und fest\n• Teig sollte fester sein als Brotteig\n• Zu einer Kugel formen";
+"recipe.bagels.step.3.instruction" = "Erste Gare (Massenfermentation)";
+"recipe.bagels.step.3.notes" = "• Teig in leicht geölte Schüssel geben\n• Abdecken\n• Gehen lassen, bis verdoppelt";
+"recipe.bagels.step.4.instruction" = "Teig teilen";
+"recipe.bagels.step.4.notes" = "• Teig in 8 gleiche Stücke schneiden\n• Jedes zu einer festen Kugel rollen";
+"recipe.bagels.step.5.instruction" = "Bagels formen";
+"recipe.bagels.step.5.notes" = "Eine von zwei Methoden verwenden:\n• Methode A: Loch in die Mitte stechen, auf 3–4 cm dehnen\n• Methode B: Zu Strang rollen & Enden zusammen verschließen\n• Auf Blech legen";
+"recipe.bagels.step.6.instruction" = "Zweite Gare";
+"recipe.bagels.step.6.notes" = "• Geformte Bagels mit Tuch abdecken\n• Vor dem Kochen ruhen lassen";
+"recipe.bagels.step.7.instruction" = "Bagels kochen";
+"recipe.bagels.step.7.notes" = "• Wasser zum Kochen bringen\n• 1 EL Zucker oder Honig hinzufügen (optional)\n• Bagels 30–45 Sek pro Seite kochen\n• Herausnehmen und abtropfen";
+"recipe.bagels.step.8.instruction" = "Beläge hinzufügen";
+"recipe.bagels.step.8.notes" = "Beläge wählen:\n• Sesam\n• Mohn\n• Alles-Mix\n• Zwiebelflocken\n• Oder natur belassen\n\nSanft auf nassen Teig drücken";
+"recipe.bagels.step.9.instruction" = "Backen";
+"recipe.bagels.step.9.notes" = "• Ofen auf 220°C vorheizen\n• 18–22 Minuten backen\n• Sollte goldbraun und glänzend sein";
+
+// MARK: - English Muffins
+"recipe.english.muffins.step.1.instruction" = "Teig vorbereiten";
+"recipe.english.muffins.step.1.notes" = "• 350 g Milch (warm)\n• 30 g Butter (geschmolzen)\n• 20 g Zucker\n• 7 g Trockenhefe\n• Mischen, bis aufgelöst";
+"recipe.english.muffins.step.2.instruction" = "Trockene Zutaten hinzufügen";
+"recipe.english.muffins.step.2.notes" = "• 500 g Mehl hinzufügen\n• 10 g Salz hinzufügen\n• Mischen, bis sich der Teig bildet\n• Teig sollte weich und leicht klebrig sein";
+"recipe.english.muffins.step.3.instruction" = "Teig kneten";
+"recipe.english.muffins.step.3.notes" = "• 5–7 Minuten kneten, bis glatt\n• Vermeiden, zu viel Mehl hinzuzufügen";
+"recipe.english.muffins.step.4.instruction" = "Erste Gare (Massenfermentation)";
+"recipe.english.muffins.step.4.notes" = "• Teig in leicht geölte Schüssel geben\n• Mit Tuch abdecken\n• Verdoppeln lassen";
+"recipe.english.muffins.step.5.instruction" = "Teig ausrollen";
+"recipe.english.muffins.step.5.notes" = "• Teig auf bemehlte Fläche wenden\n• Auf ~2 cm Dicke ausrollen\n• Fläche mit Mehl oder Grieß bestäuben";
+"recipe.english.muffins.step.6.instruction" = "Muffin-Runden ausstechen";
+"recipe.english.muffins.step.6.notes" = "• 7–8 cm Ausstecher verwenden\n• Runden auf mit Grieß bestäubtes Blech legen\n• Oberseiten ebenfalls mit Grieß bestäuben";
+"recipe.english.muffins.step.7.instruction" = "Zweite Gare";
+"recipe.english.muffins.step.7.notes" = "• Muffins leicht abdecken\n• Leicht aufgehen lassen\n• Nicht übergehen lassen";
+"recipe.english.muffins.step.8.instruction" = "In Pfanne braten (Erste Seite)";
+"recipe.english.muffins.step.8.notes" = "• Pfanne auf mittlere Hitze vorheizen\n• Kein Öl oder Butter\n• Muffins 6–7 Minuten auf erster Seite braten\n• Sollte sanft bräunen";
+"recipe.english.muffins.step.9.instruction" = "In Pfanne braten (Zweite Seite)";
+"recipe.english.muffins.step.9.notes" = "• Muffins wenden\n• Weitere 6–7 Minuten braten\n• Sollten aufgehen und fest werden";
+"recipe.english.muffins.step.10.instruction" = "Im Ofen fertig backen (Optional, aber empfohlen)";
+"recipe.english.muffins.step.10.notes" = "• Ofen auf 175°C vorheizen\n• 5–7 Minuten backen, um die innere Krume zu vollenden\n• Hilft, die charakteristischen \"nooks & crannies\" zu bilden";
+

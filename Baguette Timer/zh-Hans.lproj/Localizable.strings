@@ -1,0 +1,245 @@
+/* 
+  Localizable.strings
+  Baguette Timer
+  
+  Simplified Chinese localization strings
+*/
+
+// MARK: - App Title & Navigation
+"app.title" = "BreadOClock";
+"app.subtitle" = "选择你的面包食谱";
+"app.loading" = "加载中...";
+
+// MARK: - Steps & Progress
+"step.current" = "第 %d 步，共 %d 步";
+"step.number" = "第 %d 步";
+"step.steps" = "%d 个步骤";
+"step.done" = "完成";
+"step.timer.running" = "计时器运行中";
+"step.timer.duration" = "计时器：%@";
+"step.notes" = "备注";
+"step.timer" = "计时器";
+"step.timer.duration.label" = "时长：%@";
+
+// MARK: - Scheduling
+"schedule.title" = "安排制作面包";
+"schedule.question" = "您希望面包何时完成？";
+"schedule.start.time" = "开始时间";
+"schedule.start.at" = "开始时间：";
+"schedule.finish.at" = "完成时间：%@";
+"schedule.alert.button" = "设置提醒";
+"schedule.start.label" = "开始：%@";
+"schedule.start.today" = "今天 %@";
+"schedule.start.tomorrow" = "明天 %@";
+
+// MARK: - Notifications
+"notification.ready.step" = "准备进行第 %d 步！🍞";
+"notification.next" = "下一步：%@";
+"notification.bread.ready" = "您的面包做好了！🥖";
+"notification.complete.enjoy" = "%@ 已完成 - 请享用！";
+"notification.start.title" = "开始制作面包的时间到了！";
+"notification.start.body" = "该开始制作 %@ 了。预计完成时间：%@";
+
+// MARK: - Alerts & Confirmations
+"alert.skip.title" = "跳转到步骤？";
+"alert.skip.message.step" = "您确定要跳转到第 %d 步吗？\n\n%@";
+"alert.skip.message.generic" = "您确定要跳转到此步骤吗？";
+"alert.skip.cancel" = "取消";
+"alert.skip.confirm" = "跳过";
+
+"alert.reset.title" = "重置食谱？";
+"alert.reset.message" = "这将停止所有计时器并重置到第 1 步。您确定吗？";
+"alert.reset.cancel" = "取消";
+"alert.reset.confirm" = "重置";
+
+// MARK: - Time Formatting
+"time.today" = "今天";
+"time.tomorrow" = "明天";
+"time.day" = "%d 天";
+"time.days" = "%d 天";
+"time.week" = "%d 周";
+"time.weeks" = "%d 周";
+"time.hour" = "%d 小时";
+"time.hours" = "%d 小时";
+"time.minute" = "%d 分钟";
+"time.minutes" = "%d 分钟";
+"time.day.hour" = "%d 天 %d 小时";
+
+// MARK: - Recipe Names
+"recipe.french.baguette.name" = "法式长棍面包";
+"recipe.refresh.starter.name" = "刷新你的酵种";
+"recipe.sourdough.bread.ball.name" = "酸面团圆面包";
+"recipe.brioche.name" = "布里欧修";
+"recipe.croissants.name" = "牛角包";
+"recipe.pain.au.chocolat.name" = "巧克力面包";
+"recipe.bagels.name" = "贝果";
+"recipe.english.muffins.name" = "英式松饼";
+
+// MARK: - French Baguette
+"recipe.french.baguette.step.1.instruction" = "喂养酵种";
+"recipe.french.baguette.step.1.notes" = "50 克水和 50 克面粉，可制作 2 根长棍面包";
+"recipe.french.baguette.step.2.instruction" = "准备面团";
+"recipe.french.baguette.step.2.notes" = "325 克水\n10 克盐\n100 克酵种\n450 克面包粉\n用毛巾覆盖，静置";
+"recipe.french.baguette.step.3.instruction" = "拉伸面团";
+"recipe.french.baguette.step.3.notes" = "拉伸并折叠 4 个边\n用毛巾覆盖，静置";
+"recipe.french.baguette.step.4.instruction" = "拉伸面团";
+"recipe.french.baguette.step.4.notes" = "拉伸并折叠 4 个边\n用毛巾覆盖，静置";
+"recipe.french.baguette.step.5.instruction" = "拉伸面团";
+"recipe.french.baguette.step.5.notes" = "拉伸并折叠 4 个边\n用毛巾覆盖，静置";
+"recipe.french.baguette.step.6.instruction" = "准备烘烤";
+"recipe.french.baguette.step.6.notes" = "从碗中取出一半（另一半留到第二天）\n分成 2 个球，静置";
+"recipe.french.baguette.step.7.instruction" = "整形长棍面包";
+"recipe.french.baguette.step.7.notes" = "将 2 个球整形为长棍面包\n顶部撒面粉\n放在烤盘上的烘焙纸上\n用毛巾覆盖";
+"recipe.french.baguette.step.8.instruction" = "放入烤箱";
+"recipe.french.baguette.step.8.notes" = "在面包上划口（3 道）\n加入 1 杯水产生蒸汽\n将烤盘放入烤箱\n预热烤箱至 260°C";
+"recipe.french.baguette.step.9.instruction" = "转动烤盘";
+"recipe.french.baguette.step.9.notes" = "在烤箱中转动烤盘，如需要可翻转长棍面包";
+"recipe.french.baguette.step.10.instruction" = "从烤箱取出";
+"recipe.french.baguette.step.10.notes" = "用布覆盖";
+
+// MARK: - Refresh your starter
+"recipe.refresh.starter.step.1.instruction" = "喂养酵种";
+"recipe.refresh.starter.step.1.notes" = "从冰箱中取出酵种，丢弃 2 汤匙酵种。\n\n加入 2 汤匙新鲜面粉和 2 汤匙过滤水或泉水。\n\n充分混合，用透气布和橡皮筋覆盖。\n\n在室温下静置 12 小时。";
+"recipe.refresh.starter.step.2.instruction" = "放回冰箱";
+"recipe.refresh.starter.step.2.notes" = "用密封盖覆盖并放回冰箱。\n\n已设置 1 周后提醒再次刷新酵种。";
+
+// MARK: - Sourdough Bread Ball
+"recipe.sourdough.bread.ball.step.1.instruction" = "准备面团";
+"recipe.sourdough.bread.ball.step.1.notes" = "• 325 克水\n• 10 克盐\n• 100 克酵种\n• 450 克面包粉\n• 混合至完全结合\n• 用毛巾覆盖";
+"recipe.sourdough.bread.ball.step.2.instruction" = "拉伸和折叠 #1";
+"recipe.sourdough.bread.ball.step.2.notes" = "• 弄湿双手\n• 抬起面团的一边并折叠\n• 将碗旋转 ¼ 圈，重复 3–4 次\n• 用毛巾覆盖";
+"recipe.sourdough.bread.ball.step.3.instruction" = "拉伸和折叠 #2";
+"recipe.sourdough.bread.ball.step.3.notes" = "• 重复拉伸和折叠过程\n• 保持面团覆盖";
+"recipe.sourdough.bread.ball.step.4.instruction" = "拉伸和折叠 #3";
+"recipe.sourdough.bread.ball.step.4.notes" = "• 重复拉伸和折叠过程\n• 保持面团覆盖";
+"recipe.sourdough.bread.ball.step.5.instruction" = "拉伸和折叠 #4";
+"recipe.sourdough.bread.ball.step.5.notes" = "• 最后一次拉伸和折叠\n• 面团应感觉更紧实、更光滑\n• 用毛巾覆盖";
+"recipe.sourdough.bread.ball.step.6.instruction" = "整形面团球";
+"recipe.sourdough.bread.ball.step.6.notes" = "• 在台面上轻撒面粉\n• 整形为紧实的圆球（圆形面包）\n• 接缝面朝上放入撒粉的碗/发酵篮中\n• 用毛巾覆盖";
+"recipe.sourdough.bread.ball.step.7.instruction" = "最终发酵（冷发酵）";
+"recipe.sourdough.bread.ball.step.7.notes" = "• 将面团放入冰箱\n• 过夜发酵（12–16 小时）\n• 面团会缓慢膨胀并发展风味";
+"recipe.sourdough.bread.ball.step.8.instruction" = "预热烤箱";
+"recipe.sourdough.bread.ball.step.8.notes" = "• 将烤箱预热至 245°C\n• 将荷兰锅放入加热\n• 至少预热 30 分钟";
+"recipe.sourdough.bread.ball.step.9.instruction" = "划口和烘烤";
+"recipe.sourdough.bread.ball.step.9.notes" = "• 从冰箱中取出面团\n• 翻转到烘焙纸上\n• 在顶部划口\n• 在荷兰锅中烘烤：\n• 20 分钟盖盖\n• 20–25 分钟开盖\n• 切片前冷却 1 小时";
+"recipe.sourdough.bread.ball.step.10.instruction" = "您的面包做好了！";
+"recipe.sourdough.bread.ball.step.10.notes" = "• 切片并享用\n\n食谱结束";
+
+// MARK: - Brioche
+"recipe.brioche.step.1.instruction" = "准备面团（混合 #1）";
+"recipe.brioche.step.1.notes" = "• 250 克牛奶（温的）\n• 10 克干酵母\n• 60 克糖\n• 3 个鸡蛋\n• 混合至完全结合";
+"recipe.brioche.step.2.instruction" = "加入面粉和盐（混合 #2）";
+"recipe.brioche.step.2.notes" = "• 加入 500 克面粉\n• 加入 10 克盐\n• 混合至面团开始形成";
+"recipe.brioche.step.3.instruction" = "用黄油揉面（混合 #3）";
+"recipe.brioche.step.3.notes" = "• 逐块加入 150 克软化的黄油\n• 揉至面团光滑、有弹性且发亮\n• 面团会粘手 — 这是正常的";
+"recipe.brioche.step.4.instruction" = "第一次发酵（整体发酵）";
+"recipe.brioche.step.4.notes" = "• 覆盖碗\n• 放在温暖的地方\n• 面团应膨胀至两倍大小";
+"recipe.brioche.step.5.instruction" = "给面团排气";
+"recipe.brioche.step.5.notes" = "• 轻轻按压以去除多余空气\n• 不要过度揉面\n• 准备整形";
+"recipe.brioche.step.6.instruction" = "整形布里欧修";
+"recipe.brioche.step.6.notes" = "选择一种：\n• 布里欧修面包 → 分成 3–4 个球，放入面包模具\n• 布里欧修球 → 形成紧实的圆球，放入模具\n• 用毛巾覆盖";
+"recipe.brioche.step.7.instruction" = "第二次发酵（最终发酵）";
+"recipe.brioche.step.7.notes" = "• 面团应发酵至几乎两倍大小\n• 对柔软度非常重要";
+"recipe.brioche.step.8.instruction" = "刷蛋液";
+"recipe.brioche.step.8.notes" = "• 混合 1 个鸡蛋 + 少量牛奶\n• 轻轻刷在顶部";
+"recipe.brioche.step.9.instruction" = "烘烤";
+"recipe.brioche.step.9.notes" = "• 将烤箱预热至 175°C\n• 烘烤 25–30 分钟（面包）\n• 或 18–22 分钟（单个球）\n• 顶部呈金黄色";
+
+// MARK: - Croissants
+"recipe.croissants.step.1.instruction" = "准备面团（基础面团）";
+"recipe.croissants.step.1.notes" = "• 500 克面粉\n• 10 克盐\n• 60 克糖\n• 10 克干酵母\n• 300 克冷牛奶\n• 混合至形成面团（此时不加黄油）\n• 覆盖碗";
+"recipe.croissants.step.2.instruction" = "轻揉";
+"recipe.croissants.step.2.notes" = "• 轻轻揉至光滑（2–3 分钟）\n• 不要过度揉面\n• 整形为矩形\n• 包裹并冷藏";
+"recipe.croissants.step.3.instruction" = "准备黄油块";
+"recipe.croissants.step.3.notes" = "• 250 克冷黄油\n• 整形为扁平正方形（约 15×15 厘米）\n• 包裹并冷藏\n\n（与面团相同时间；应同样冷）";
+"recipe.croissants.step.4.instruction" = "包裹黄油";
+"recipe.croissants.step.4.notes" = "• 将黄油块放在面团中心\n• 将面团折叠在黄油上（信封形状）\n• 紧紧封边\n• 冷藏以松弛面筋";
+"recipe.croissants.step.5.instruction" = "开酥 — 擀制 + 第一次折叠（单折）";
+"recipe.croissants.step.5.notes" = "• 将面团擀成长矩形\n• 三折（像信一样）\n• 包裹并冷藏";
+"recipe.croissants.step.6.instruction" = "开酥 — 第二次折叠（单折）";
+"recipe.croissants.step.6.notes" = "• 再次擀成长矩形\n• 再次三折\n• 包裹并冷藏";
+"recipe.croissants.step.7.instruction" = "开酥 — 第三次折叠（最终折叠）";
+"recipe.croissants.step.7.notes" = "• 最后一次擀制并三折\n• 这完成了 3 次折叠\n• 包裹并冷藏";
+"recipe.croissants.step.8.instruction" = "擀制最终面片";
+"recipe.croissants.step.8.notes" = "• 将面团擀至约 4 毫米厚\n• 保持边缘均匀\n• 如需要可轻撒面粉";
+"recipe.croissants.step.9.instruction" = "切三角形";
+"recipe.croissants.step.9.notes" = "• 切长等腰三角形（底边约 8–10 厘米）\n• 在底部做小切口\n• 轻轻拉伸";
+"recipe.croissants.step.10.instruction" = "整形牛角包";
+"recipe.croissants.step.10.notes" = "• 从底部向尖端卷起\n• 不要按得太用力\n• 将尖端放在烤盘下方";
+"recipe.croissants.step.11.instruction" = "最终发酵（最后发酵）";
+"recipe.croissants.step.11.notes" = "• 让牛角包在 25–27°C 下发酵\n• 应变得蓬松，略微摇晃\n• 不要让黄油融化";
+"recipe.croissants.step.12.instruction" = "刷蛋液";
+"recipe.croissants.step.12.notes" = "• 混合 1 个鸡蛋 + 少量牛奶\n• 轻轻刷在顶部";
+"recipe.croissants.step.13.instruction" = "烘烤";
+"recipe.croissants.step.13.notes" = "• 将烤箱预热至 200°C\n• 烘烤 12 分钟，然后降至 190°C\n• 再烘烤 8–10 分钟\n• 金黄色、层次分明、酥脆的层次";
+
+// MARK: - Pain au Chocolat
+"recipe.pain.au.chocolat.step.1.instruction" = "准备面团（基础面团）";
+"recipe.pain.au.chocolat.step.1.notes" = "• 500 克面粉\n• 10 克盐\n• 60 克糖\n• 10 克干酵母\n• 300 克冷牛奶\n• 混合至形成面团（此时不加黄油）\n• 覆盖碗";
+"recipe.pain.au.chocolat.step.2.instruction" = "轻揉";
+"recipe.pain.au.chocolat.step.2.notes" = "• 轻轻揉 2–3 分钟\n• 整形为矩形\n• 包裹并冷藏";
+"recipe.pain.au.chocolat.step.3.instruction" = "准备黄油块";
+"recipe.pain.au.chocolat.step.3.notes" = "• 250 克冷黄油\n• 整形为 15×15 厘米的扁平正方形\n• 包裹并冷藏";
+"recipe.pain.au.chocolat.step.4.instruction" = "包裹黄油";
+"recipe.pain.au.chocolat.step.4.notes" = "• 将黄油块放在面团中心\n• 将面团折叠在黄油上（信封）\n• 封边\n• 冷藏";
+"recipe.pain.au.chocolat.step.5.instruction" = "开酥 — 第一次折叠（单折）";
+"recipe.pain.au.chocolat.step.5.notes" = "• 将面团擀成长矩形\n• 三折（像信一样）\n• 包裹并冷藏";
+"recipe.pain.au.chocolat.step.6.instruction" = "开酥 — 第二次折叠（单折）";
+"recipe.pain.au.chocolat.step.6.notes" = "• 再次擀制\n• 三折\n• 包裹并冷藏";
+"recipe.pain.au.chocolat.step.7.instruction" = "开酥 — 第三次折叠（最终折叠）";
+"recipe.pain.au.chocolat.step.7.notes" = "• 最后一次擀制并三折\n• 包裹并冷藏";
+"recipe.pain.au.chocolat.step.8.instruction" = "擀制最终面片";
+"recipe.pain.au.chocolat.step.8.notes" = "• 将面团擀至约 4 毫米厚\n• 保持边缘笔直";
+"recipe.pain.au.chocolat.step.9.instruction" = "切矩形";
+"recipe.pain.au.chocolat.step.9.notes" = "• 切约 8×12 厘米的矩形\n• 保持面团冷却以防止黄油融化";
+"recipe.pain.au.chocolat.step.10.instruction" = "加入巧克力条";
+"recipe.pain.au.chocolat.step.10.notes" = "• 在短边附近放置一根巧克力条\n• 卷一次\n• 加入第二根巧克力条\n• 完成卷制，接缝在下方";
+"recipe.pain.au.chocolat.step.11.instruction" = "最终发酵（最后发酵）";
+"recipe.pain.au.chocolat.step.11.notes" = "• 在 25–27°C 下发酵\n• 应变得蓬松且充满空气\n• 黄油不能融化";
+"recipe.pain.au.chocolat.step.12.instruction" = "刷蛋液";
+"recipe.pain.au.chocolat.step.12.notes" = "• 混合 1 个鸡蛋 + 少量牛奶\n• 轻轻刷在顶部";
+"recipe.pain.au.chocolat.step.13.instruction" = "烘烤";
+"recipe.pain.au.chocolat.step.13.notes" = "• 将烤箱预热至 200°C\n• 烘烤 12 分钟\n• 降至 190°C 再烘烤 8–10 分钟\n• 应呈金黄色且层次分明";
+
+// MARK: - Bagels
+"recipe.bagels.step.1.instruction" = "准备面团";
+"recipe.bagels.step.1.notes" = "• 500 克面包粉\n• 10 克盐\n• 10 克糖\n• 7 克干酵母\n• 300 克温水\n• 混合至形成面团\n• 覆盖碗";
+"recipe.bagels.step.2.instruction" = "揉面";
+"recipe.bagels.step.2.notes" = "• 揉 8–10 分钟至光滑且紧实\n• 面团应比面包面团更硬\n• 整形为球";
+"recipe.bagels.step.3.instruction" = "第一次发酵（整体发酵）";
+"recipe.bagels.step.3.notes" = "• 将面团放入轻涂油的碗中\n• 覆盖\n• 发酵至两倍大小";
+"recipe.bagels.step.4.instruction" = "分割面团";
+"recipe.bagels.step.4.notes" = "• 将面团切成 8 等份\n• 将每份揉成紧实的球";
+"recipe.bagels.step.5.instruction" = "整形贝果";
+"recipe.bagels.step.5.notes" = "使用两种方法之一：\n• 方法 A：在中心戳洞，拉伸至 3–4 厘米\n• 方法 B：卷成绳状并将两端密封在一起\n• 放在烤盘上";
+"recipe.bagels.step.6.instruction" = "第二次发酵";
+"recipe.bagels.step.6.notes" = "• 用毛巾覆盖已整形的贝果\n• 在煮之前静置";
+"recipe.bagels.step.7.instruction" = "煮贝果";
+"recipe.bagels.step.7.notes" = "• 将水煮沸\n• 加入 1 汤匙糖或蜂蜜（可选）\n• 每面煮 30–45 秒\n• 取出并沥干";
+"recipe.bagels.step.8.instruction" = "添加配料";
+"recipe.bagels.step.8.notes" = "选择配料：\n• 芝麻\n• 罂粟籽\n• 混合配料\n• 洋葱片\n• 或保持原味\n\n轻轻按压在湿面团上";
+"recipe.bagels.step.9.instruction" = "烘烤";
+"recipe.bagels.step.9.notes" = "• 将烤箱预热至 220°C\n• 烘烤 18–22 分钟\n• 应呈金黄色且发亮";
+
+// MARK: - English Muffins
+"recipe.english.muffins.step.1.instruction" = "准备面团";
+"recipe.english.muffins.step.1.notes" = "• 350 克牛奶（温的）\n• 30 克黄油（融化的）\n• 20 克糖\n• 7 克干酵母\n• 混合至溶解";
+"recipe.english.muffins.step.2.instruction" = "加入干性配料";
+"recipe.english.muffins.step.2.notes" = "• 加入 500 克面粉\n• 加入 10 克盐\n• 混合至形成面团\n• 面团应柔软且略微粘手";
+"recipe.english.muffins.step.3.instruction" = "揉面";
+"recipe.english.muffins.step.3.notes" = "• 揉 5–7 分钟至光滑\n• 避免添加过多面粉";
+"recipe.english.muffins.step.4.instruction" = "第一次发酵（整体发酵）";
+"recipe.english.muffins.step.4.notes" = "• 将面团放入轻涂油的碗中\n• 用毛巾覆盖\n• 允许膨胀至两倍大小";
+"recipe.english.muffins.step.5.instruction" = "擀制面团";
+"recipe.english.muffins.step.5.notes" = "• 将面团翻到撒粉的台面上\n• 擀至约 2 厘米厚\n• 在台面上撒面粉或粗面粉";
+"recipe.english.muffins.step.6.instruction" = "切松饼圆形";
+"recipe.english.muffins.step.6.notes" = "• 使用 7–8 厘米的切模\n• 将圆形转移到撒有粗面粉的烤盘上\n• 顶部也撒粗面粉";
+"recipe.english.muffins.step.7.instruction" = "第二次发酵";
+"recipe.english.muffins.step.7.notes" = "• 轻轻覆盖松饼\n• 让它们稍微膨胀\n• 不要过度发酵";
+"recipe.english.muffins.step.8.instruction" = "在平底锅中煎（第一面）";
+"recipe.english.muffins.step.8.notes" = "• 将平底锅预热至中低火\n• 不加油或黄油\n• 第一面煎 6–7 分钟\n• 应轻微变黄";
+"recipe.english.muffins.step.9.instruction" = "在平底锅中煎（第二面）";
+"recipe.english.muffins.step.9.notes" = "• 翻转松饼\n• 再煎 6–7 分钟\n• 它们应膨胀并变硬";
+"recipe.english.muffins.step.10.instruction" = "在烤箱中完成（可选但推荐）";
+"recipe.english.muffins.step.10.notes" = "• 将烤箱预热至 175°C\n• 烘烤 5–7 分钟以完成内部组织\n• 有助于形成标志性的 \"nooks & crannies\"";
+

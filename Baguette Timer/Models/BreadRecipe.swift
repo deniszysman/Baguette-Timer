@@ -76,18 +76,34 @@ extension BreadStep {
             let weeks = days / 7
             return weeks == 1 ? "1 week" : "\(weeks) weeks"
         } else if days > 0 {
-            if hours > 0 {
+        if hours > 0 {
                 return "\(days)d \(hours)hr"
             }
             return days == 1 ? "1 day" : "\(days) days"
         } else if hours > 0 {
             if minutes > 0 {
-                return "\(hours)hr \(minutes)min"
+            return "\(hours)hr \(minutes)min"
             }
             return "\(hours)hr"
         } else {
             return "\(minutes)min"
         }
+    }
+    
+    /// Localized instruction for this step, given a recipe key prefix
+    func localizedInstruction(recipeKeyPrefix: String) -> String {
+        let key = "\(recipeKeyPrefix).step.\(stepNumber).instruction"
+        let localized = key.localized
+        // If localization key doesn't exist, fall back to original
+        return localized == key ? instruction : localized
+    }
+    
+    /// Localized notes for this step, given a recipe key prefix
+    func localizedNotes(recipeKeyPrefix: String) -> String {
+        let key = "\(recipeKeyPrefix).step.\(stepNumber).notes"
+        let localized = key.localized
+        // If localization key doesn't exist, fall back to original
+        return localized == key ? notes : localized
     }
 }
 
@@ -135,6 +151,56 @@ extension BreadRecipe {
             return "EnglishMuffinsImage"
         default:
             return "FrenchBaguetteImage"
+        }
+    }
+    
+    /// Localized recipe name
+    var localizedName: String {
+        let key: String
+        switch name {
+        case "French Baguette":
+            key = "recipe.french.baguette.name"
+        case "Refresh your starter":
+            key = "recipe.refresh.starter.name"
+        case "Bread Ball", "Sourdough Bread Ball":
+            key = "recipe.sourdough.bread.ball.name"
+        case "Croissant", "Croissants":
+            key = "recipe.croissants.name"
+        case "Brioche":
+            key = "recipe.brioche.name"
+        case "Pain au Chocolat":
+            key = "recipe.pain.au.chocolat.name"
+        case "Bagels":
+            key = "recipe.bagels.name"
+        case "English Muffins":
+            key = "recipe.english.muffins.name"
+        default:
+            return name
+        }
+        return key.localized
+    }
+    
+    /// Recipe key prefix for localization (e.g., "recipe.french.baguette")
+    var recipeKeyPrefix: String {
+        switch name {
+        case "French Baguette":
+            return "recipe.french.baguette"
+        case "Refresh your starter":
+            return "recipe.refresh.starter"
+        case "Bread Ball", "Sourdough Bread Ball":
+            return "recipe.sourdough.bread.ball"
+        case "Croissant", "Croissants":
+            return "recipe.croissants"
+        case "Brioche":
+            return "recipe.brioche"
+        case "Pain au Chocolat":
+            return "recipe.pain.au.chocolat"
+        case "Bagels":
+            return "recipe.bagels"
+        case "English Muffins":
+            return "recipe.english.muffins"
+        default:
+            return "recipe.unknown"
         }
     }
     

@@ -1,0 +1,245 @@
+/* 
+  Localizable.strings
+  Baguette Timer
+  
+  Korean localization strings
+*/
+
+// MARK: - App Title & Navigation
+"app.title" = "BreadOClock";
+"app.subtitle" = "빵 레시피를 선택하세요";
+"app.loading" = "로딩 중...";
+
+// MARK: - Steps & Progress
+"step.current" = "%d단계 / %d단계";
+"step.number" = "%d단계";
+"step.steps" = "%d단계";
+"step.done" = "완료";
+"step.timer.running" = "타이머 실행 중";
+"step.timer.duration" = "타이머: %@";
+"step.notes" = "메모";
+"step.timer" = "타이머";
+"step.timer.duration.label" = "소요 시간: %@";
+
+// MARK: - Scheduling
+"schedule.title" = "빵 만들기 일정";
+"schedule.question" = "빵을 언제 완성하고 싶으신가요?";
+"schedule.start.time" = "시작 시간";
+"schedule.start.at" = "시작 시간:";
+"schedule.finish.at" = "완성 시간: %@";
+"schedule.alert.button" = "알림 설정";
+"schedule.start.label" = "시작: %@";
+"schedule.start.today" = "오늘 %@";
+"schedule.start.tomorrow" = "내일 %@";
+
+// MARK: - Notifications
+"notification.ready.step" = "%d단계 준비 완료! 🍞";
+"notification.next" = "다음: %@";
+"notification.bread.ready" = "빵이 완성되었습니다! 🥖";
+"notification.complete.enjoy" = "%@ 완료 - 맛있게 드세요!";
+"notification.start.title" = "빵 만들기를 시작할 시간입니다!";
+"notification.start.body" = "%@ 만들기를 시작할 시간입니다. 완성 예정 시간: %@";
+
+// MARK: - Alerts & Confirmations
+"alert.skip.title" = "단계를 건너뛰시겠습니까?";
+"alert.skip.message.step" = "%d단계로 건너뛰시겠습니까?\n\n%@";
+"alert.skip.message.generic" = "이 단계로 건너뛰시겠습니까?";
+"alert.skip.cancel" = "취소";
+"alert.skip.confirm" = "건너뛰기";
+
+"alert.reset.title" = "레시피를 초기화하시겠습니까?";
+"alert.reset.message" = "모든 타이머가 중지되고 1단계로 초기화됩니다. 계속하시겠습니까?";
+"alert.reset.cancel" = "취소";
+"alert.reset.confirm" = "초기화";
+
+// MARK: - Time Formatting
+"time.today" = "오늘";
+"time.tomorrow" = "내일";
+"time.day" = "%d일";
+"time.days" = "%d일";
+"time.week" = "%d주";
+"time.weeks" = "%d주";
+"time.hour" = "%d시간";
+"time.hours" = "%d시간";
+"time.minute" = "%d분";
+"time.minutes" = "%d분";
+"time.day.hour" = "%d일 %d시간";
+
+// MARK: - Recipe Names
+"recipe.french.baguette.name" = "프랑스 바게트";
+"recipe.refresh.starter.name" = "발효종 갱신";
+"recipe.sourdough.bread.ball.name" = "사워도우 빵볼";
+"recipe.brioche.name" = "브리오슈";
+"recipe.croissants.name" = "크루아상";
+"recipe.pain.au.chocolat.name" = "팡 오 쇼콜라";
+"recipe.bagels.name" = "베이글";
+"recipe.english.muffins.name" = "잉글리시 머핀";
+
+// MARK: - French Baguette
+"recipe.french.baguette.step.1.instruction" = "발효종 먹이기";
+"recipe.french.baguette.step.1.notes" = "바게트 2개 분량: 물 50g, 밀가루 50g";
+"recipe.french.baguette.step.2.instruction" = "반죽 준비";
+"recipe.french.baguette.step.2.notes" = "물 325g\n소금 10g\n발효종 100g\n강력분 450g\n천으로 덮고 휴지";
+"recipe.french.baguette.step.3.instruction" = "반죽 펴기";
+"recipe.french.baguette.step.3.notes" = "4방향으로 펴고 접기\n천으로 덮고 휴지";
+"recipe.french.baguette.step.4.instruction" = "반죽 펴기";
+"recipe.french.baguette.step.4.notes" = "4방향으로 펴고 접기\n천으로 덮고 휴지";
+"recipe.french.baguette.step.5.instruction" = "반죽 펴기";
+"recipe.french.baguette.step.5.notes" = "4방향으로 펴고 접기\n천으로 덮고 휴지";
+"recipe.french.baguette.step.6.instruction" = "굽기 준비";
+"recipe.french.baguette.step.6.notes" = "볼에서 절반 꺼내기 (나머지 절반은 다음 날까지 보관)\n2개의 공으로 나누고 휴지";
+"recipe.french.baguette.step.7.instruction" = "바게트 성형";
+"recipe.french.baguette.step.7.notes" = "2개의 공을 바게트로 성형\n위에 밀가루 뿌리기\n쿠킹시트를 깐 베이킹 시트에 올리기\n천으로 덮기";
+"recipe.french.baguette.step.8.instruction" = "오븐에 넣기";
+"recipe.french.baguette.step.8.notes" = "빵에 칼집 넣기 (3줄)\n증기용 물 1컵 넣기\n베이킹 시트를 오븐에 넣기\n오븐을 260°C로 예열";
+"recipe.french.baguette.step.9.instruction" = "베이킹 시트 돌리기";
+"recipe.french.baguette.step.9.notes" = "오븐 안에서 베이킹 시트를 돌리고 필요시 바게트 뒤집기";
+"recipe.french.baguette.step.10.instruction" = "오븐에서 꺼내기";
+"recipe.french.baguette.step.10.notes" = "천으로 덮기";
+
+// MARK: - Refresh your starter
+"recipe.refresh.starter.step.1.instruction" = "발효종 먹이기";
+"recipe.refresh.starter.step.1.notes" = "냉장고에서 발효종을 꺼내고 발효종 2큰술을 버립니다.\n\n신선한 밀가루 2큰술과 여과수 또는 생수 2큰술을 넣습니다.\n\n잘 섞고, 통기성 있는 천과 고무줄로 덮습니다.\n\n실온에서 12시간 휴지합니다.";
+"recipe.refresh.starter.step.2.instruction" = "냉장고에 다시 넣기";
+"recipe.refresh.starter.step.2.notes" = "밀봉 뚜껑으로 덮고 냉장고에 다시 넣습니다.\n\n1주일 후 발효종을 다시 갱신하도록 알림이 설정되었습니다.";
+
+// MARK: - Sourdough Bread Ball
+"recipe.sourdough.bread.ball.step.1.instruction" = "반죽 준비";
+"recipe.sourdough.bread.ball.step.1.notes" = "• 물 325g\n• 소금 10g\n• 발효종 100g\n• 강력분 450g\n• 섞어서 결합\n• 천으로 덮기";
+"recipe.sourdough.bread.ball.step.2.instruction" = "펴기 & 접기 #1";
+"recipe.sourdough.bread.ball.step.2.notes" = "• 손을 적시기\n• 반죽의 한쪽을 들어 올려 접기\n• 볼을 ¼ 회전시키고 3–4회 반복\n• 천으로 덮기";
+"recipe.sourdough.bread.ball.step.3.instruction" = "펴기 & 접기 #2";
+"recipe.sourdough.bread.ball.step.3.notes" = "• 펴기와 접기 과정 반복\n• 반죽을 덮어두기";
+"recipe.sourdough.bread.ball.step.4.instruction" = "펴기 & 접기 #3";
+"recipe.sourdough.bread.ball.step.4.notes" = "• 펴기와 접기 과정 반복\n• 반죽을 덮어두기";
+"recipe.sourdough.bread.ball.step.5.instruction" = "펴기 & 접기 #4";
+"recipe.sourdough.bread.ball.step.5.notes" = "• 마지막 펴기와 접기\n• 반죽이 더 탄탄하고 매끄러워져야 함\n• 천으로 덮기";
+"recipe.sourdough.bread.ball.step.6.instruction" = "빵볼 성형";
+"recipe.sourdough.bread.ball.step.6.notes" = "• 작업대에 가볍게 밀가루 뿌리기\n• 탄탄한 둥근 공(불)으로 성형\n• 이음새를 위로 하여 밀가루를 뿌린 볼/바네통에 넣기\n• 천으로 덮기";
+"recipe.sourdough.bread.ball.step.7.instruction" = "최종 발효 (냉장 발효)";
+"recipe.sourdough.bread.ball.step.7.notes" = "• 반죽을 냉장고에 넣기\n• 하룻밤 발효 (12–16시간)\n• 반죽이 천천히 부풀고 풍미가 발달함";
+"recipe.sourdough.bread.ball.step.8.instruction" = "오븐 예열";
+"recipe.sourdough.bread.ball.step.8.notes" = "• 오븐을 245°C로 예열\n• 더치 오븐을 안에 넣어 가열\n• 최소 30분 예열";
+"recipe.sourdough.bread.ball.step.9.instruction" = "칼집 넣기 & 굽기";
+"recipe.sourdough.bread.ball.step.9.notes" = "• 냉장고에서 반죽 꺼내기\n• 쿠킹시트 위로 뒤집기\n• 위에 칼집 넣기\n• 더치 오븐에서 굽기:\n• 뚜껑 닫고 20분\n• 뚜껑 열고 20–25분\n• 자르기 전 1시간 식히기";
+"recipe.sourdough.bread.ball.step.10.instruction" = "빵이 완성되었습니다!";
+"recipe.sourdough.bread.ball.step.10.notes" = "• 자르고 즐기기\n\n레시피 종료";
+
+// MARK: - Brioche
+"recipe.brioche.step.1.instruction" = "반죽 준비 (혼합 #1)";
+"recipe.brioche.step.1.notes" = "• 우유 250g (미지근함)\n• 드라이 이스트 10g\n• 설탕 60g\n• 달걀 3개\n• 섞어서 결합";
+"recipe.brioche.step.2.instruction" = "밀가루 & 소금 추가 (혼합 #2)";
+"recipe.brioche.step.2.notes" = "• 밀가루 500g 추가\n• 소금 10g 추가\n• 반죽이 형성되기 시작할 때까지 섞기";
+"recipe.brioche.step.3.instruction" = "버터로 반죽하기 (혼합 #3)";
+"recipe.brioche.step.3.notes" = "• 부드러워진 버터 150g을 조금씩 추가\n• 반죽이 매끄럽고 탄력 있고 반질반질해질 때까지 반죽하기\n• 반죽이 끈적일 것 — 정상입니다";
+"recipe.brioche.step.4.instruction" = "1차 발효 (벌크 발효)";
+"recipe.brioche.step.4.notes" = "• 볼 덮기\n• 따뜻한 방에 두기\n• 반죽이 2배 크기가 되어야 함";
+"recipe.brioche.step.5.instruction" = "반죽 가스 빼기";
+"recipe.brioche.step.5.notes" = "• 과도한 공기를 제거하기 위해 부드럽게 누르기\n• 과도하게 반죽하지 않기\n• 성형 준비";
+"recipe.brioche.step.6.instruction" = "브리오슈 성형";
+"recipe.brioche.step.6.notes" = "하나 선택:\n• 브리오슈 덩어리 → 3–4개의 공으로 나누어 덩어리 팬에 넣기\n• 브리오슈 공 → 탄탄한 둥근 공으로 성형하여 틀에 넣기\n• 천으로 덮기";
+"recipe.brioche.step.7.instruction" = "2차 발효 (최종 발효)";
+"recipe.brioche.step.7.notes" = "• 반죽이 거의 2배가 될 때까지 발효\n• 부드러움에 매우 중요";
+"recipe.brioche.step.8.instruction" = "달걀물 바르기";
+"recipe.brioche.step.8.notes" = "• 달걀 1개 + 우유 조금 섞기\n• 위에 부드럽게 바르기";
+"recipe.brioche.step.9.instruction" = "굽기";
+"recipe.brioche.step.9.notes" = "• 오븐을 175°C로 예열\n• 25–30분 굽기 (덩어리)\n• 또는 18–22분 (개별 공)\n• 위가 황금색";
+
+// MARK: - Croissants
+"recipe.croissants.step.1.instruction" = "반죽 준비 (데트렘프)";
+"recipe.croissants.step.1.notes" = "• 밀가루 500g\n• 소금 10g\n• 설탕 60g\n• 드라이 이스트 10g\n• 차가운 우유 300g\n• 반죽이 형성될 때까지 섞기 (아직 버터 없음)\n• 볼 덮기";
+"recipe.croissants.step.2.instruction" = "가볍게 반죽하기";
+"recipe.croissants.step.2.notes" = "• 부드러워질 때까지 부드럽게 반죽 (2–3분)\n• 과도하게 작업하지 않기\n• 직사각형으로 성형\n• 포장하여 냉장";
+"recipe.croissants.step.3.instruction" = "버터 블록 준비";
+"recipe.croissants.step.3.notes" = "• 차가운 버터 250g\n• 평평한 정사각형으로 성형 (약 15×15cm)\n• 포장하여 냉장\n\n(반죽과 같은 시간; 같은 정도로 차갑게)";
+"recipe.croissants.step.4.instruction" = "버터 감싸기";
+"recipe.croissants.step.4.notes" = "• 버터 블록을 반죽 중앙에 놓기\n• 반죽을 버터 위로 접기 (봉투 모양)\n• 가장자리를 단단히 밀봉\n• 글루텐을 이완시키기 위해 냉장";
+"recipe.croissants.step.5.instruction" = "레이어링 — 펴기 + 첫 번째 접기 (싱글 접기)";
+"recipe.croissants.step.5.notes" = "• 반죽을 긴 직사각형으로 펴기\n• 3등분 접기 (편지처럼)\n• 포장하여 냉장";
+"recipe.croissants.step.6.instruction" = "레이어링 — 두 번째 접기 (싱글 접기)";
+"recipe.croissants.step.6.notes" = "• 다시 긴 직사각형으로 펴기\n• 다시 3등분 접기\n• 포장하여 냉장";
+"recipe.croissants.step.7.instruction" = "레이어링 — 세 번째 접기 (최종 접기)";
+"recipe.croissants.step.7.notes" = "• 마지막으로 펴고 3등분 접기\n• 이것으로 3번의 접기가 완료\n• 포장하여 냉장";
+"recipe.croissants.step.8.instruction" = "최종 시트 펴기";
+"recipe.croissants.step.8.notes" = "• 반죽을 약 4mm 두께로 펴기\n• 가장자리를 균일하게 유지\n• 필요시 가볍게 밀가루 뿌리기";
+"recipe.croissants.step.9.instruction" = "삼각형 자르기";
+"recipe.croissants.step.9.notes" = "• 긴 이등변 삼각형 자르기 (밑변 약 8–10cm)\n• 밑변에 작은 칼집 넣기\n• 부드럽게 늘이기";
+"recipe.croissants.step.10.instruction" = "크루아상 성형";
+"recipe.croissants.step.10.notes" = "• 밑변에서 끝까지 말기\n• 너무 세게 누르지 않기\n• 끝을 아래로 하여 베이킹 시트에 놓기";
+"recipe.croissants.step.11.instruction" = "최종 발효 (마지막 발효)";
+"recipe.croissants.step.11.notes" = "• 크루아상을 25–27°C에서 발효\n• 푹신하고 약간 흔들려야 함\n• 버터를 녹이지 않기";
+"recipe.croissants.step.12.instruction" = "달걀물 바르기";
+"recipe.croissants.step.12.notes" = "• 달걀 1개 + 우유 조금 섞기\n• 위에 부드럽게 바르기";
+"recipe.croissants.step.13.instruction" = "굽기";
+"recipe.croissants.step.13.notes" = "• 오븐을 200°C로 예열\n• 12분 굽기, 그 다음 190°C로 낮추기\n• 추가로 8–10분 굽기\n• 황금색, 층층이, 바삭한 층";
+
+// MARK: - Pain au Chocolat
+"recipe.pain.au.chocolat.step.1.instruction" = "반죽 준비 (데트렘프)";
+"recipe.pain.au.chocolat.step.1.notes" = "• 밀가루 500g\n• 소금 10g\n• 설탕 60g\n• 드라이 이스트 10g\n• 차가운 우유 300g\n• 반죽이 형성될 때까지 섞기 (아직 버터 없음)\n• 볼 덮기";
+"recipe.pain.au.chocolat.step.2.instruction" = "가볍게 반죽하기";
+"recipe.pain.au.chocolat.step.2.notes" = "• 부드럽게 2–3분 반죽하기\n• 직사각형으로 성형\n• 포장하여 냉장";
+"recipe.pain.au.chocolat.step.3.instruction" = "버터 블록 준비";
+"recipe.pain.au.chocolat.step.3.notes" = "• 차가운 버터 250g\n• 15×15cm 평평한 정사각형으로 성형\n• 포장하여 냉장";
+"recipe.pain.au.chocolat.step.4.instruction" = "버터 감싸기";
+"recipe.pain.au.chocolat.step.4.notes" = "• 버터 블록을 반죽 중앙에 놓기\n• 반죽을 버터 위로 접기 (봉투)\n• 가장자리 밀봉\n• 냉장";
+"recipe.pain.au.chocolat.step.5.instruction" = "레이어링 — 첫 번째 접기 (싱글 접기)";
+"recipe.pain.au.chocolat.step.5.notes" = "• 반죽을 긴 직사각형으로 펴기\n• 3등분 접기 (편지처럼)\n• 포장하여 냉장";
+"recipe.pain.au.chocolat.step.6.instruction" = "레이어링 — 두 번째 접기 (싱글 접기)";
+"recipe.pain.au.chocolat.step.6.notes" = "• 다시 펴기\n• 3등분 접기\n• 포장하여 냉장";
+"recipe.pain.au.chocolat.step.7.instruction" = "레이어링 — 세 번째 접기 (최종 접기)";
+"recipe.pain.au.chocolat.step.7.notes" = "• 마지막으로 펴고 3등분 접기\n• 포장하여 냉장";
+"recipe.pain.au.chocolat.step.8.instruction" = "최종 시트 펴기";
+"recipe.pain.au.chocolat.step.8.notes" = "• 반죽을 약 4mm 두께로 펴기\n• 가장자리를 곧게 유지";
+"recipe.pain.au.chocolat.step.9.instruction" = "직사각형 자르기";
+"recipe.pain.au.chocolat.step.9.notes" = "• 약 8×12cm 직사각형 자르기\n• 버터가 녹지 않도록 반죽을 차갑게 유지";
+"recipe.pain.au.chocolat.step.10.instruction" = "초콜릿 바톤 추가";
+"recipe.pain.au.chocolat.step.10.notes" = "• 짧은 가장자리 근처에 초콜릿 바톤 1개 놓기\n• 한 번 말기\n• 두 번째 바톤 추가\n• 말기 완료, 이음새 아래로";
+"recipe.pain.au.chocolat.step.11.instruction" = "최종 발효 (마지막 발효)";
+"recipe.pain.au.chocolat.step.11.notes" = "• 25–27°C에서 발효\n• 푹신하고 공기가 들어가야 함\n• 버터가 녹으면 안 됨";
+"recipe.pain.au.chocolat.step.12.instruction" = "달걀물 바르기";
+"recipe.pain.au.chocolat.step.12.notes" = "• 달걀 1개 + 우유 조금 섞기\n• 위에 가볍게 바르기";
+"recipe.pain.au.chocolat.step.13.instruction" = "굽기";
+"recipe.pain.au.chocolat.step.13.notes" = "• 오븐을 200°C로 예열\n• 12분 굽기\n• 190°C로 낮추고 8–10분 더 굽기\n• 황금색이고 층층이여야 함";
+
+// MARK: - Bagels
+"recipe.bagels.step.1.instruction" = "반죽 준비";
+"recipe.bagels.step.1.notes" = "• 강력분 500g\n• 소금 10g\n• 설탕 10g\n• 드라이 이스트 7g\n• 따뜻한 물 300g\n• 반죽이 형성될 때까지 섞기\n• 볼 덮기";
+"recipe.bagels.step.2.instruction" = "반죽하기";
+"recipe.bagels.step.2.notes" = "• 매끄럽고 탄탄해질 때까지 8–10분 반죽하기\n• 반죽이 빵 반죽보다 더 탄탄해야 함\n• 공으로 성형";
+"recipe.bagels.step.3.instruction" = "1차 발효 (벌크 발효)";
+"recipe.bagels.step.3.notes" = "• 반죽을 가볍게 기름칠한 볼에 넣기\n• 덮기\n• 2배가 될 때까지 발효";
+"recipe.bagels.step.4.instruction" = "반죽 나누기";
+"recipe.bagels.step.4.notes" = "• 반죽을 8등분으로 자르기\n• 각각을 탄탄한 공으로 만들기";
+"recipe.bagels.step.5.instruction" = "베이글 성형";
+"recipe.bagels.step.5.notes" = "두 가지 방법 중 하나 사용:\n• 방법 A: 중앙에 구멍 뚫고 3–4cm로 늘이기\n• 방법 B: 밧줄 모양으로 말고 끝을 함께 밀봉\n• 베이킹 시트에 놓기";
+"recipe.bagels.step.6.instruction" = "2차 발효";
+"recipe.bagels.step.6.notes" = "• 성형한 베이글을 천으로 덮기\n• 끓이기 전에 휴지";
+"recipe.bagels.step.7.instruction" = "베이글 끓이기";
+"recipe.bagels.step.7.notes" = "• 물을 끓이기\n• 설탕 또는 꿀 1큰술 추가 (선택사항)\n• 베이글을 각 면 30–45초씩 끓이기\n• 꺼내서 물기 제거";
+"recipe.bagels.step.8.instruction" = "토핑 추가";
+"recipe.bagels.step.8.notes" = "토핑 선택:\n• 참깨\n• 양귀비씨\n• 에브리씽 믹스\n• 양파 플레이크\n• 또는 그대로 두기\n\n젖은 반죽에 부드럽게 누르기";
+"recipe.bagels.step.9.instruction" = "굽기";
+"recipe.bagels.step.9.notes" = "• 오븐을 220°C로 예열\n• 18–22분 굽기\n• 황금색이고 반짝여야 함";
+
+// MARK: - English Muffins
+"recipe.english.muffins.step.1.instruction" = "반죽 준비";
+"recipe.english.muffins.step.1.notes" = "• 우유 350g (따뜻함)\n• 버터 30g (녹임)\n• 설탕 20g\n• 드라이 이스트 7g\n• 섞어서 녹이기";
+"recipe.english.muffins.step.2.instruction" = "건조 재료 추가";
+"recipe.english.muffins.step.2.notes" = "• 밀가루 500g 추가\n• 소금 10g 추가\n• 반죽이 형성될 때까지 섞기\n• 반죽이 부드럽고 약간 끈적여야 함";
+"recipe.english.muffins.step.3.instruction" = "반죽하기";
+"recipe.english.muffins.step.3.notes" = "• 매끄러워질 때까지 5–7분 반죽하기\n• 과도하게 밀가루 추가하지 않기";
+"recipe.english.muffins.step.4.instruction" = "1차 발효 (벌크 발효)";
+"recipe.english.muffins.step.4.notes" = "• 반죽을 가볍게 기름칠한 볼에 넣기\n• 천으로 덮기\n• 2배 크기가 될 때까지 발효";
+"recipe.english.muffins.step.5.instruction" = "반죽 펴기";
+"recipe.english.muffins.step.5.notes" = "• 반죽을 밀가루를 뿌린 작업대에 뒤집기\n• 약 2cm 두께로 펴기\n• 작업대에 밀가루 또는 세몰리나 뿌리기";
+"recipe.english.muffins.step.6.instruction" = "머핀 원형 자르기";
+"recipe.english.muffins.step.6.notes" = "• 7–8cm 커터 사용\n• 원형을 세몰리나를 뿌린 베이킹 시트로 옮기기\n• 위에도 세몰리나 뿌리기";
+"recipe.english.muffins.step.7.instruction" = "2차 발효";
+"recipe.english.muffins.step.7.notes" = "• 머핀을 가볍게 덮기\n• 약간 부풀리기\n• 과도하게 발효하지 않기";
+"recipe.english.muffins.step.8.instruction" = "프라이팬에서 굽기 (첫 번째 면)";
+"recipe.english.muffins.step.8.notes" = "• 프라이팬을 중약불로 예열\n• 기름이나 버터 없이\n• 머핀을 첫 번째 면에서 6–7분 굽기\n• 부드럽게 갈색이 되어야 함";
+"recipe.english.muffins.step.9.instruction" = "프라이팬에서 굽기 (두 번째 면)";
+"recipe.english.muffins.step.9.notes" = "• 머핀 뒤집기\n• 추가로 6–7분 굽기\n• 부풀고 단단해져야 함";
+"recipe.english.muffins.step.10.instruction" = "오븐에서 마무리 (선택사항이지만 권장)";
+"recipe.english.muffins.step.10.notes" = "• 오븐을 175°C로 예열\n• 내부 크럼을 마무리하기 위해 5–7분 굽기\n• 특징적인 \"nooks & crannies\" 형성에 도움";
+

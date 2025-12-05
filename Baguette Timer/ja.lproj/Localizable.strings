@@ -1,0 +1,245 @@
+/* 
+  Localizable.strings
+  Baguette Timer
+  
+  Japanese localization strings
+*/
+
+// MARK: - App Title & Navigation
+"app.title" = "BreadOClock";
+"app.subtitle" = "パンのレシピを選択";
+"app.loading" = "読み込み中...";
+
+// MARK: - Steps & Progress
+"step.current" = "ステップ %d / %d";
+"step.number" = "ステップ %d";
+"step.steps" = "%dステップ";
+"step.done" = "完了";
+"step.timer.running" = "タイマー実行中";
+"step.timer.duration" = "タイマー：%@";
+"step.notes" = "メモ";
+"step.timer" = "タイマー";
+"step.timer.duration.label" = "時間：%@";
+
+// MARK: - Scheduling
+"schedule.title" = "パン作りをスケジュール";
+"schedule.question" = "パンをいつ完成させたいですか？";
+"schedule.start.time" = "開始時間";
+"schedule.start.at" = "開始時刻：";
+"schedule.finish.at" = "完成時刻：%@";
+"schedule.alert.button" = "アラームを設定";
+"schedule.start.label" = "開始：%@";
+"schedule.start.today" = "今日 %@";
+"schedule.start.tomorrow" = "明日 %@";
+
+// MARK: - Notifications
+"notification.ready.step" = "ステップ %d の準備ができました！🍞";
+"notification.next" = "次：%@";
+"notification.bread.ready" = "パンができました！🥖";
+"notification.complete.enjoy" = "%@ 完了 - お楽しみください！";
+"notification.start.title" = "パン作りを始める時間です！";
+"notification.start.body" = "%@ を作り始める時間です。完成予定時刻：%@";
+
+// MARK: - Alerts & Confirmations
+"alert.skip.title" = "ステップをスキップしますか？";
+"alert.skip.message.step" = "ステップ %d にスキップしてもよろしいですか？\n\n%@";
+"alert.skip.message.generic" = "このステップにスキップしてもよろしいですか？";
+"alert.skip.cancel" = "キャンセル";
+"alert.skip.confirm" = "スキップ";
+
+"alert.reset.title" = "レシピをリセットしますか？";
+"alert.reset.message" = "すべてのタイマーを停止し、ステップ1にリセットします。よろしいですか？";
+"alert.reset.cancel" = "キャンセル";
+"alert.reset.confirm" = "リセット";
+
+// MARK: - Time Formatting
+"time.today" = "今日";
+"time.tomorrow" = "明日";
+"time.day" = "%d日";
+"time.days" = "%d日";
+"time.week" = "%d週間";
+"time.weeks" = "%d週間";
+"time.hour" = "%d時間";
+"time.hours" = "%d時間";
+"time.minute" = "%d分";
+"time.minutes" = "%d分";
+"time.day.hour" = "%d日 %d時間";
+
+// MARK: - Recipe Names
+"recipe.french.baguette.name" = "フランスパン";
+"recipe.refresh.starter.name" = "種を更新";
+"recipe.sourdough.bread.ball.name" = "サワードウブレッドボール";
+"recipe.brioche.name" = "ブリオッシュ";
+"recipe.croissants.name" = "クロワッサン";
+"recipe.pain.au.chocolat.name" = "パン・オ・ショコラ";
+"recipe.bagels.name" = "ベーグル";
+"recipe.english.muffins.name" = "イングリッシュマフィン";
+
+// MARK: - French Baguette
+"recipe.french.baguette.step.1.instruction" = "種を起こす";
+"recipe.french.baguette.step.1.notes" = "フランスパン2本分：水50g、小麦粉50g";
+"recipe.french.baguette.step.2.instruction" = "生地を作る";
+"recipe.french.baguette.step.2.notes" = "水325g\n塩10g\n種100g\n強力粉450g\n布をかぶせて休ませる";
+"recipe.french.baguette.step.3.instruction" = "生地を伸ばす";
+"recipe.french.baguette.step.3.notes" = "4方向に伸ばして折る\n布をかぶせて休ませる";
+"recipe.french.baguette.step.4.instruction" = "生地を伸ばす";
+"recipe.french.baguette.step.4.notes" = "4方向に伸ばして折る\n布をかぶせて休ませる";
+"recipe.french.baguette.step.5.instruction" = "生地を伸ばす";
+"recipe.french.baguette.step.5.notes" = "4方向に伸ばして折る\n布をかぶせて休ませる";
+"recipe.french.baguette.step.6.instruction" = "焼成準備";
+"recipe.french.baguette.step.6.notes" = "ボウルから半分を取り出す（残り半分は翌日用に保存）\n2つのボールに分けて休ませる";
+"recipe.french.baguette.step.7.instruction" = "フランスパンを成形";
+"recipe.french.baguette.step.7.notes" = "2つのボールをフランスパンに成形\n表面に粉を振る\nクッキングシートを敷いた天板に置く\n布をかぶせる";
+"recipe.french.baguette.step.8.instruction" = "オーブンに入れる";
+"recipe.french.baguette.step.8.notes" = "パンに切れ目を入れる（3本）\n蒸気用に水1カップを入れる\n天板をオーブンに入れる\nオーブンを260°Cに予熱";
+"recipe.french.baguette.step.9.instruction" = "天板を回す";
+"recipe.french.baguette.step.9.notes" = "オーブン内で天板を回し、必要に応じてフランスパンを裏返す";
+"recipe.french.baguette.step.10.instruction" = "オーブンから取り出す";
+"recipe.french.baguette.step.10.notes" = "布で覆う";
+
+// MARK: - Refresh your starter
+"recipe.refresh.starter.step.1.instruction" = "種を起こす";
+"recipe.refresh.starter.step.1.notes" = "冷蔵庫から種を取り出し、種を大さじ2杯捨てる。\n\n新鮮な小麦粉を大さじ2杯と、ろ過した水または天然水を大さじ2杯加える。\n\nよく混ぜ、通気性のある布と輪ゴムで覆う。\n\n室温で12時間休ませる。";
+"recipe.refresh.starter.step.2.instruction" = "冷蔵庫に戻す";
+"recipe.refresh.starter.step.2.notes" = "蓋をして冷蔵庫に戻す。\n\n1週間後に再度種を更新するリマインダーを設定しました。";
+
+// MARK: - Sourdough Bread Ball
+"recipe.sourdough.bread.ball.step.1.instruction" = "生地を作る";
+"recipe.sourdough.bread.ball.step.1.notes" = "• 水325g\n• 塩10g\n• 種100g\n• 強力粉450g\n• 混ぜ合わせる\n• 布で覆う";
+"recipe.sourdough.bread.ball.step.2.instruction" = "伸ばし&折り #1";
+"recipe.sourdough.bread.ball.step.2.notes" = "• 手を濡らす\n• 生地の一辺を持ち上げて折る\n• ボウルを1/4回転させ、3–4回繰り返す\n• 布で覆う";
+"recipe.sourdough.bread.ball.step.3.instruction" = "伸ばし&折り #2";
+"recipe.sourdough.bread.ball.step.3.notes" = "• 伸ばしと折りのプロセスを繰り返す\n• 生地を覆ったままにする";
+"recipe.sourdough.bread.ball.step.4.instruction" = "伸ばし&折り #3";
+"recipe.sourdough.bread.ball.step.4.notes" = "• 伸ばしと折りのプロセスを繰り返す\n• 生地を覆ったままにする";
+"recipe.sourdough.bread.ball.step.5.instruction" = "伸ばし&折り #4";
+"recipe.sourdough.bread.ball.step.5.notes" = "• 最後の伸ばしと折り\n• 生地はより固く、滑らかになるはず\n• 布で覆う";
+"recipe.sourdough.bread.ball.step.6.instruction" = "パンボールを成形";
+"recipe.sourdough.bread.ball.step.6.notes" = "• 作業台に軽く粉を振る\n• しっかりとした丸いボール（ブール）に成形\n• 縫い目を上にして粉を振ったボウル/バネットンに入れる\n• 布で覆う";
+"recipe.sourdough.bread.ball.step.7.instruction" = "最終発酵（低温発酵）";
+"recipe.sourdough.bread.ball.step.7.notes" = "• 生地を冷蔵庫に入れる\n• 一晩発酵させる（12–16時間）\n• 生地はゆっくりと膨らみ、風味が発達する";
+"recipe.sourdough.bread.ball.step.8.instruction" = "オーブンを予熱";
+"recipe.sourdough.bread.ball.step.8.notes" = "• オーブンを245°Cに予熱\n• ダッチオーブンを中に入れて加熱\n• 少なくとも30分予熱する";
+"recipe.sourdough.bread.ball.step.9.instruction" = "切れ目を入れて焼く";
+"recipe.sourdough.bread.ball.step.9.notes" = "• 冷蔵庫から生地を取り出す\n• クッキングシートの上に裏返す\n• 表面に切れ目を入れる\n• ダッチオーブンで焼く：\n• 蓋をして20分\n• 蓋を外して20–25分\n• スライスする前に1時間冷ます";
+"recipe.sourdough.bread.ball.step.10.instruction" = "パンができました！";
+"recipe.sourdough.bread.ball.step.10.notes" = "• スライスして楽しむ\n\nレシピ終了";
+
+// MARK: - Brioche
+"recipe.brioche.step.1.instruction" = "生地を作る（混ぜ #1）";
+"recipe.brioche.step.1.notes" = "• 牛乳250g（ぬるま湯）\n• ドライイースト10g\n• 砂糖60g\n• 卵3個\n• 混ぜ合わせる";
+"recipe.brioche.step.2.instruction" = "小麦粉と塩を加える（混ぜ #2）";
+"recipe.brioche.step.2.notes" = "• 小麦粉500gを加える\n• 塩10gを加える\n• 生地が形成され始めるまで混ぜる";
+"recipe.brioche.step.3.instruction" = "バターでこねる（混ぜ #3）";
+"recipe.brioche.step.3.notes" = "• 柔らかくしたバター150gを少しずつ加える\n• 生地が滑らかで弾力があり、光沢が出るまでこねる\n• 生地は粘着性がある — これは正常です";
+"recipe.brioche.step.4.instruction" = "一次発酵（一括発酵）";
+"recipe.brioche.step.4.notes" = "• ボウルを覆う\n• 暖かい部屋に置く\n• 生地は2倍の大きさになるはず";
+"recipe.brioche.step.5.instruction" = "ガス抜き";
+"recipe.brioche.step.5.notes" = "• 余分な空気を除去するために軽く押す\n• 過度にこねない\n• 成形の準備をする";
+"recipe.brioche.step.6.instruction" = "ブリオッシュを成形";
+"recipe.brioche.step.6.notes" = "いずれかを選択：\n• ブリオッシュローフ → 3–4個のボールに分け、ローフパンに入れる\n• ブリオッシュボール → しっかりとした丸いボールに成形し、型に入れる\n• 布で覆う";
+"recipe.brioche.step.7.instruction" = "二次発酵（最終発酵）";
+"recipe.brioche.step.7.notes" = "• 生地はほぼ2倍になるまで発酵させる\n• 柔らかさにとって非常に重要";
+"recipe.brioche.step.8.instruction" = "卵液を塗る";
+"recipe.brioche.step.8.notes" = "• 卵1個 + 牛乳少々を混ぜる\n• 表面に優しく塗る";
+"recipe.brioche.step.9.instruction" = "焼く";
+"recipe.brioche.step.9.notes" = "• オーブンを175°Cに予熱\n• 25–30分焼く（ローフ）\n• または18–22分（個別のボール）\n• 表面が黄金色になる";
+
+// MARK: - Croissants
+"recipe.croissants.step.1.instruction" = "生地を作る（デトレンプ）";
+"recipe.croissants.step.1.notes" = "• 小麦粉500g\n• 塩10g\n• 砂糖60g\n• ドライイースト10g\n• 冷たい牛乳300g\n• 生地が形成されるまで混ぜる（まだバターは加えない）\n• ボウルを覆う";
+"recipe.croissants.step.2.instruction" = "軽くこねる";
+"recipe.croissants.step.2.notes" = "• 滑らかになるまで優しくこねる（2–3分）\n• 過度に作業しない\n• 長方形に成形\n• 包んで冷蔵";
+"recipe.croissants.step.3.instruction" = "バターブロックを準備";
+"recipe.croissants.step.3.notes" = "• 冷たいバター250g\n• 平らな正方形に成形（約15×15cm）\n• 包んで冷蔵\n\n（生地と同じ時間；同じくらい冷たくする必要がある）";
+"recipe.croissants.step.4.instruction" = "バターを包む";
+"recipe.croissants.step.4.notes" = "• バターブロックを生地の中央に置く\n• 生地をバターの上に折る（封筒の形）\n• 端をしっかりと密封\n• グルテンを緩めるために冷蔵";
+"recipe.croissants.step.5.instruction" = "折り込み — 伸ばし + 最初の折り（シングル折り）";
+"recipe.croissants.step.5.notes" = "• 生地を長い長方形に伸ばす\n• 3つ折りにする（手紙のように）\n• 包んで冷やす";
+"recipe.croissants.step.6.instruction" = "折り込み — 2回目の折り（シングル折り）";
+"recipe.croissants.step.6.notes" = "• 再び長い長方形に伸ばす\n• 再び3つ折りにする\n• 包んで冷やす";
+"recipe.croissants.step.7.instruction" = "折り込み — 3回目の折り（最終折り）";
+"recipe.croissants.step.7.notes" = "• 最後にもう一度伸ばして3つ折りにする\n• これで3回の折りが完了\n• 包んで冷やす";
+"recipe.croissants.step.8.instruction" = "最終シートを伸ばす";
+"recipe.croissants.step.8.notes" = "• 生地を約4mmの厚さに伸ばす\n• 端を均一に保つ\n• 必要に応じて軽く粉を振る";
+"recipe.croissants.step.9.instruction" = "三角形に切る";
+"recipe.croissants.step.9.notes" = "• 長い二等辺三角形を切る（底辺約8–10cm）\n• 底辺に小さな切れ目を入れる\n• 優しく伸ばす";
+"recipe.croissants.step.10.instruction" = "クロワッサンを成形";
+"recipe.croissants.step.10.notes" = "• 底から先端まで巻く\n• 強く押しすぎない\n• 先端を下にして天板に置く";
+"recipe.croissants.step.11.instruction" = "最終発酵（最後の発酵）";
+"recipe.croissants.step.11.notes" = "• クロワッサンを25–27°Cで発酵させる\n• ふわふわで、少し揺れるようになるはず\n• バターを溶かさない";
+"recipe.croissants.step.12.instruction" = "卵液を塗る";
+"recipe.croissants.step.12.notes" = "• 卵1個 + 牛乳少々を混ぜる\n• 表面に優しく塗る";
+"recipe.croissants.step.13.instruction" = "焼く";
+"recipe.croissants.step.13.notes" = "• オーブンを200°Cに予熱\n• 12分焼き、その後190°Cに下げる\n• さらに8–10分焼く\n• 黄金色で、層状で、サクサクの層";
+
+// MARK: - Pain au Chocolat
+"recipe.pain.au.chocolat.step.1.instruction" = "生地を作る（デトレンプ）";
+"recipe.pain.au.chocolat.step.1.notes" = "• 小麦粉500g\n• 塩10g\n• 砂糖60g\n• ドライイースト10g\n• 冷たい牛乳300g\n• 生地が形成されるまで混ぜる（まだバターは加えない）\n• ボウルを覆う";
+"recipe.pain.au.chocolat.step.2.instruction" = "軽くこねる";
+"recipe.pain.au.chocolat.step.2.notes" = "• 優しく2–3分こねる\n• 長方形に成形\n• 包んで冷蔵";
+"recipe.pain.au.chocolat.step.3.instruction" = "バターブロックを準備";
+"recipe.pain.au.chocolat.step.3.notes" = "• 冷たいバター250g\n• 15×15cmの平らな正方形に成形\n• 包んで冷蔵";
+"recipe.pain.au.chocolat.step.4.instruction" = "バターを包む";
+"recipe.pain.au.chocolat.step.4.notes" = "• バターブロックを生地の中央に置く\n• 生地をバターの上に折る（封筒）\n• 端を密封\n• 冷蔵";
+"recipe.pain.au.chocolat.step.5.instruction" = "折り込み — 最初の折り（シングル折り）";
+"recipe.pain.au.chocolat.step.5.notes" = "• 生地を長い長方形に伸ばす\n• 3つ折りにする（手紙のように）\n• 包んで冷やす";
+"recipe.pain.au.chocolat.step.6.instruction" = "折り込み — 2回目の折り（シングル折り）";
+"recipe.pain.au.chocolat.step.6.notes" = "• 再び伸ばす\n• 3つ折りにする\n• 包んで冷やす";
+"recipe.pain.au.chocolat.step.7.instruction" = "折り込み — 3回目の折り（最終折り）";
+"recipe.pain.au.chocolat.step.7.notes" = "• 最後にもう一度伸ばして3つ折りにする\n• 包んで冷やす";
+"recipe.pain.au.chocolat.step.8.instruction" = "最終シートを伸ばす";
+"recipe.pain.au.chocolat.step.8.notes" = "• 生地を約4mmの厚さに伸ばす\n• 端をまっすぐに保つ";
+"recipe.pain.au.chocolat.step.9.instruction" = "長方形に切る";
+"recipe.pain.au.chocolat.step.9.notes" = "• 約8×12cmの長方形に切る\n• バターが溶けないように生地を冷たく保つ";
+"recipe.pain.au.chocolat.step.10.instruction" = "チョコレートバトンを加える";
+"recipe.pain.au.chocolat.step.10.notes" = "• 短い端の近くにチョコレートバトンを1本置く\n• 1回巻く\n• 2本目のバトンを加える\n• 巻き終える、縫い目を下に";
+"recipe.pain.au.chocolat.step.11.instruction" = "最終発酵（最後の発酵）";
+"recipe.pain.au.chocolat.step.11.notes" = "• 25–27°Cで発酵させる\n• ふわふわで空気を含むようになるはず\n• バターは溶かしてはいけない";
+"recipe.pain.au.chocolat.step.12.instruction" = "卵液を塗る";
+"recipe.pain.au.chocolat.step.12.notes" = "• 卵1個 + 牛乳少々を混ぜる\n• 表面に軽く塗る";
+"recipe.pain.au.chocolat.step.13.instruction" = "焼く";
+"recipe.pain.au.chocolat.step.13.notes" = "• オーブンを200°Cに予熱\n• 12分焼く\n• 190°Cに下げてさらに8–10分焼く\n• 黄金色で層状になるはず";
+
+// MARK: - Bagels
+"recipe.bagels.step.1.instruction" = "生地を作る";
+"recipe.bagels.step.1.notes" = "• 強力粉500g\n• 塩10g\n• 砂糖10g\n• ドライイースト7g\n• 温かい水300g\n• 生地が形成されるまで混ぜる\n• ボウルを覆う";
+"recipe.bagels.step.2.instruction" = "生地をこねる";
+"recipe.bagels.step.2.notes" = "• 滑らかで固くなるまで8–10分こねる\n• 生地はパン生地よりも固くする必要がある\n• ボールに成形";
+"recipe.bagels.step.3.instruction" = "一次発酵（一括発酵）";
+"recipe.bagels.step.3.notes" = "• 生地を軽く油を塗ったボウルに入れる\n• 覆う\n• 2倍になるまで発酵させる";
+"recipe.bagels.step.4.instruction" = "生地を分割";
+"recipe.bagels.step.4.notes" = "• 生地を8等分に切る\n• それぞれをしっかりとしたボールに丸める";
+"recipe.bagels.step.5.instruction" = "ベーグルを成形";
+"recipe.bagels.step.5.notes" = "2つの方法のいずれかを使用：\n• 方法A：中心に穴を開け、3–4cmに伸ばす\n• 方法B：ロープ状に巻いて端を一緒に密封\n• 天板に置く";
+"recipe.bagels.step.6.instruction" = "二次発酵";
+"recipe.bagels.step.6.notes" = "• 成形したベーグルを布で覆う\n• 茹でる前に休ませる";
+"recipe.bagels.step.7.instruction" = "ベーグルを茹でる";
+"recipe.bagels.step.7.notes" = "• 水を沸騰させる\n• 砂糖または蜂蜜を大さじ1加える（オプション）\n• ベーグルを各面30–45秒茹でる\n• 取り出して水を切る";
+"recipe.bagels.step.8.instruction" = "トッピングを加える";
+"recipe.bagels.step.8.notes" = "トッピングを選択：\n• ゴマ\n• ケシの実\n• エブリシングミックス\n• オニオンフレーク\n• またはそのまま\n\n湿った生地に優しく押し付ける";
+"recipe.bagels.step.9.instruction" = "焼く";
+"recipe.bagels.step.9.notes" = "• オーブンを220°Cに予熱\n• 18–22分焼く\n• 黄金色で光沢があるはず";
+
+// MARK: - English Muffins
+"recipe.english.muffins.step.1.instruction" = "生地を作る";
+"recipe.english.muffins.step.1.notes" = "• 牛乳350g（温かい）\n• バター30g（溶かした）\n• 砂糖20g\n• ドライイースト7g\n• 混ぜて溶かす";
+"recipe.english.muffins.step.2.instruction" = "乾燥材料を加える";
+"recipe.english.muffins.step.2.notes" = "• 小麦粉500gを加える\n• 塩10gを加える\n• 生地が形成されるまで混ぜる\n• 生地は柔らかく、少し粘着性があるはず";
+"recipe.english.muffins.step.3.instruction" = "生地をこねる";
+"recipe.english.muffins.step.3.notes" = "• 滑らかになるまで5–7分こねる\n• 過度に粉を加えないようにする";
+"recipe.english.muffins.step.4.instruction" = "一次発酵（一括発酵）";
+"recipe.english.muffins.step.4.notes" = "• 生地を軽く油を塗ったボウルに入れる\n• 布で覆う\n• 2倍の大きさになるまで発酵させる";
+"recipe.english.muffins.step.5.instruction" = "生地を伸ばす";
+"recipe.english.muffins.step.5.notes" = "• 生地を粉を振った作業台に裏返す\n• 約2cmの厚さに伸ばす\n• 作業台に小麦粉またはセモリナを振る";
+"recipe.english.muffins.step.6.instruction" = "マフィンの円形を切る";
+"recipe.english.muffins.step.6.notes" = "• 7–8cmのカッターを使用\n• 円形をセモリナを振った天板に移す\n• 表面にもセモリナを振る";
+"recipe.english.muffins.step.7.instruction" = "二次発酵";
+"recipe.english.muffins.step.7.notes" = "• マフィンを軽く覆う\n• 少し膨らませる\n• 過度に発酵させない";
+"recipe.english.muffins.step.8.instruction" = "フライパンで焼く（最初の面）";
+"recipe.english.muffins.step.8.notes" = "• フライパンを中弱火で予熱\n• 油やバターは使わない\n• マフィンを最初の面で6–7分焼く\n• 優しく茶色になるはず";
+"recipe.english.muffins.step.9.instruction" = "フライパンで焼く（2番目の面）";
+"recipe.english.muffins.step.9.notes" = "• マフィンを裏返す\n• さらに6–7分焼く\n• 膨らんで固くなるはず";
+"recipe.english.muffins.step.10.instruction" = "オーブンで仕上げる（オプションだが推奨）";
+"recipe.english.muffins.step.10.notes" = "• オーブンを175°Cに予熱\n• 内部のクラムを仕上げるために5–7分焼く\n• 特徴的な「nooks & crannies」を形成するのに役立つ";
+

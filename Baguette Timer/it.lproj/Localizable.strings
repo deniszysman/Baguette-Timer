@@ -1,0 +1,245 @@
+/* 
+  Localizable.strings
+  Baguette Timer
+  
+  Italian localization strings
+*/
+
+// MARK: - App Title & Navigation
+"app.title" = "BreadOClock";
+"app.subtitle" = "Seleziona la tua ricetta del pane";
+"app.loading" = "Caricamento...";
+
+// MARK: - Steps & Progress
+"step.current" = "Passo %d di %d";
+"step.number" = "Passo %d";
+"step.steps" = "%d passi";
+"step.done" = "Fatto";
+"step.timer.running" = "Timer in corso";
+"step.timer.duration" = "Timer: %@";
+"step.notes" = "Note";
+"step.timer" = "Timer";
+"step.timer.duration.label" = "Durata: %@";
+
+// MARK: - Scheduling
+"schedule.title" = "Pianifica la preparazione del pane";
+"schedule.question" = "Quando vuoi che il pane sia pronto?";
+"schedule.start.time" = "Ora di inizio";
+"schedule.start.at" = "Inizia alle:";
+"schedule.finish.at" = "Per finire alle: %@";
+"schedule.alert.button" = "Imposta promemoria";
+"schedule.start.label" = "Inizio: %@";
+"schedule.start.today" = "Oggi %@";
+"schedule.start.tomorrow" = "Domani %@";
+
+// MARK: - Notifications
+"notification.ready.step" = "Pronto per il passo %d! 🍞";
+"notification.next" = "Prossimo: %@";
+"notification.bread.ready" = "Il tuo pane è pronto! 🥖";
+"notification.complete.enjoy" = "%@ completato - Buon appetito!";
+"notification.start.title" = "È ora di iniziare a fare il pane!";
+"notification.start.body" = "È ora di iniziare a fare %@. Completamento previsto: %@";
+
+// MARK: - Alerts & Confirmations
+"alert.skip.title" = "Saltare al passo?";
+"alert.skip.message.step" = "Sei sicuro di voler saltare al passo %d?\n\n%@";
+"alert.skip.message.generic" = "Sei sicuro di voler saltare a questo passo?";
+"alert.skip.cancel" = "Annulla";
+"alert.skip.confirm" = "Salta";
+
+"alert.reset.title" = "Reimpostare la ricetta?";
+"alert.reset.message" = "Questo fermerà tutti i timer e reimposterà al passo 1. Sei sicuro?";
+"alert.reset.cancel" = "Annulla";
+"alert.reset.confirm" = "Reimposta";
+
+// MARK: - Time Formatting
+"time.today" = "Oggi";
+"time.tomorrow" = "Domani";
+"time.day" = "%d giorno";
+"time.days" = "%d giorni";
+"time.week" = "%d settimana";
+"time.weeks" = "%d settimane";
+"time.hour" = "%d ore";
+"time.hours" = "%d ore";
+"time.minute" = "%d min";
+"time.minutes" = "%d min";
+"time.day.hour" = "%d g %d ore";
+
+// MARK: - Recipe Names
+"recipe.french.baguette.name" = "Baguette francese";
+"recipe.refresh.starter.name" = "Rinfresca il tuo lievito madre";
+"recipe.sourdough.bread.ball.name" = "Palla di pane con lievito madre";
+"recipe.brioche.name" = "Brioche";
+"recipe.croissants.name" = "Croissant";
+"recipe.pain.au.chocolat.name" = "Pain au chocolat";
+"recipe.bagels.name" = "Bagel";
+"recipe.english.muffins.name" = "English Muffins";
+
+// MARK: - French Baguette
+"recipe.french.baguette.step.1.instruction" = "Nutrire il lievito madre";
+"recipe.french.baguette.step.1.notes" = "50 g di acqua e 50 g di farina per 2 baguette";
+"recipe.french.baguette.step.2.instruction" = "Preparare l'impasto";
+"recipe.french.baguette.step.2.notes" = "325 g di acqua\n10 g di sale\n100 g di lievito madre\n450 g di farina per pane\nRiposare con canovaccio sopra";
+"recipe.french.baguette.step.3.instruction" = "Stirare l'impasto";
+"recipe.french.baguette.step.3.notes" = "Stirare e piegare 4 lati\nRiposare con canovaccio sopra";
+"recipe.french.baguette.step.4.instruction" = "Stirare l'impasto";
+"recipe.french.baguette.step.4.notes" = "Stirare e piegare 4 lati\nRiposare con canovaccio sopra";
+"recipe.french.baguette.step.5.instruction" = "Stirare l'impasto";
+"recipe.french.baguette.step.5.notes" = "Stirare e piegare 4 lati\nRiposare con canovaccio sopra";
+"recipe.french.baguette.step.6.instruction" = "Preparare per la cottura";
+"recipe.french.baguette.step.6.notes" = "Togliere metà dalla ciotola (tenere l'altra metà per il giorno dopo)\nDividere in 2 palline e lasciare riposare";
+"recipe.french.baguette.step.7.instruction" = "Formare le baguette";
+"recipe.french.baguette.step.7.notes" = "Formare le 2 palline in baguette\nFarina sopra\nPosizionare su carta da forno sulla teglia\nCoprire con canovaccio";
+"recipe.french.baguette.step.8.instruction" = "Mettere in forno";
+"recipe.french.baguette.step.8.notes" = "Incidere il pane (3 tagli)\nAggiungere 1 tazza d'acqua per il vapore\nPosizionare la teglia nel forno\nPreriscaldare il forno a 260°C";
+"recipe.french.baguette.step.9.instruction" = "Girare la teglia";
+"recipe.french.baguette.step.9.notes" = "Girare la teglia nel forno e se necessario capovolgere le baguette";
+"recipe.french.baguette.step.10.instruction" = "Togliere dal forno";
+"recipe.french.baguette.step.10.notes" = "Coprire con un canovaccio";
+
+// MARK: - Refresh your starter
+"recipe.refresh.starter.step.1.instruction" = "Nutrire il lievito madre";
+"recipe.refresh.starter.step.1.notes" = "Togliere il lievito madre dal frigorifero e scartare 2 cucchiai di lievito madre.\n\nAggiungere 2 cucchiai di farina fresca e 2 cucchiai di acqua filtrata o di sorgente.\n\nMescolare bene, coprire con un panno traspirante e un elastico.\n\nLasciare riposare a temperatura ambiente per 12 ore.";
+"recipe.refresh.starter.step.2.instruction" = "Rimettere in frigorifero";
+"recipe.refresh.starter.step.2.notes" = "Coprire con un coperchio chiuso e rimettere in frigorifero.\n\nPromemoria impostato per 1 settimana per rinfrescare di nuovo il lievito madre.";
+
+// MARK: - Sourdough Bread Ball
+"recipe.sourdough.bread.ball.step.1.instruction" = "Preparare l'impasto";
+"recipe.sourdough.bread.ball.step.1.notes" = "• 325 g di acqua\n• 10 g di sale\n• 100 g di lievito madre\n• 450 g di farina per pane\n• Mescolare fino a combinare\n• Coprire con canovaccio";
+"recipe.sourdough.bread.ball.step.2.instruction" = "Stirare & Piegare #1";
+"recipe.sourdough.bread.ball.step.2.notes" = "• Bagnare le mani\n• Sollevare un lato dell'impasto e piegare\n• Ruotare la ciotola di ¼ di giro e ripetere 3–4 volte\n• Coprire con canovaccio";
+"recipe.sourdough.bread.ball.step.3.instruction" = "Stirare & Piegare #2";
+"recipe.sourdough.bread.ball.step.3.notes" = "• Ripetere il processo di stirare e piegare\n• Mantenere l'impasto coperto";
+"recipe.sourdough.bread.ball.step.4.instruction" = "Stirare & Piegare #3";
+"recipe.sourdough.bread.ball.step.4.notes" = "• Ripetere il processo di stirare e piegare\n• Mantenere l'impasto coperto";
+"recipe.sourdough.bread.ball.step.5.instruction" = "Stirare & Piegare #4";
+"recipe.sourdough.bread.ball.step.5.notes" = "• Ultimo stirare e piegare\n• L'impasto dovrebbe sentirsi più compatto e liscio\n• Coprire con canovaccio";
+"recipe.sourdough.bread.ball.step.6.instruction" = "Formare la palla di impasto";
+"recipe.sourdough.bread.ball.step.6.notes" = "• Infarinare leggermente il piano di lavoro\n• Formare una palla rotonda compatta (boule)\n• Posizionare con la cucitura verso l'alto in una ciotola/banneton infarinata\n• Coprire con canovaccio";
+"recipe.sourdough.bread.ball.step.7.instruction" = "Lievitazione finale (Fermentazione a freddo)";
+"recipe.sourdough.bread.ball.step.7.notes" = "• Posizionare l'impasto in frigorifero\n• Lievitare durante la notte (12–16 ore)\n• L'impasto lieviterà lentamente e svilupperà sapore";
+"recipe.sourdough.bread.ball.step.8.instruction" = "Preriscaldare il forno";
+"recipe.sourdough.bread.ball.step.8.notes" = "• Preriscaldare il forno a 245°C\n• Mettere la pentola olandese dentro per riscaldare\n• Permettere almeno 30 minuti di preriscaldamento";
+"recipe.sourdough.bread.ball.step.9.instruction" = "Incidere & Cuocere";
+"recipe.sourdough.bread.ball.step.9.notes" = "• Togliere l'impasto dal frigorifero\n• Capovolgere su carta da forno\n• Incidere la parte superiore\n• Cuocere nella pentola olandese:\n• 20 min coperchio CHIUSO\n• 20–25 min coperchio APERTO\n• Raffreddare 1 ora prima di tagliare";
+"recipe.sourdough.bread.ball.step.10.instruction" = "Il tuo pane è pronto!";
+"recipe.sourdough.bread.ball.step.10.notes" = "• Tagliare e gustare\n\nFine della ricetta";
+
+// MARK: - Brioche
+"recipe.brioche.step.1.instruction" = "Preparare l'impasto (Mescolare #1)";
+"recipe.brioche.step.1.notes" = "• 250 g di latte (tiepido)\n• 10 g di lievito secco\n• 60 g di zucchero\n• 3 uova\n• Mescolare fino a combinare";
+"recipe.brioche.step.2.instruction" = "Aggiungere farina e sale (Mescolare #2)";
+"recipe.brioche.step.2.notes" = "• Aggiungere 500 g di farina\n• Aggiungere 10 g di sale\n• Mescolare fino a quando l'impasto inizia a formarsi";
+"recipe.brioche.step.3.instruction" = "Impastare con burro (Mescolare #3)";
+"recipe.brioche.step.3.notes" = "• Aggiungere 150 g di burro ammorbidito, pezzo per pezzo\n• Impastare fino a quando l'impasto è liscio, elastico e lucido\n• L'impasto sarà appiccicoso — è normale";
+"recipe.brioche.step.4.instruction" = "Prima lievitazione (Fermentazione in massa)";
+"recipe.brioche.step.4.notes" = "• Coprire la ciotola\n• Lasciare in una stanza calda\n• L'impasto dovrebbe raddoppiare";
+"recipe.brioche.step.5.instruction" = "Sgonfiare l'impasto";
+"recipe.brioche.step.5.notes" = "• Premere delicatamente per rimuovere l'aria in eccesso\n• Non impastare troppo\n• Preparare per la formatura";
+"recipe.brioche.step.6.instruction" = "Formare la brioche";
+"recipe.brioche.step.6.notes" = "Scegliere una opzione:\n• Pagnotta di brioche → dividere in 3–4 palline, posizionare nella teglia\n• Palline di brioche → formare palline rotonde compatte, posizionare nello stampo\n• Coprire con canovaccio";
+"recipe.brioche.step.7.instruction" = "Seconda lievitazione (Lievitazione finale)";
+"recipe.brioche.step.7.notes" = "• L'impasto dovrebbe lievitare fino a quasi raddoppiare\n• Molto importante per la morbidezza";
+"recipe.brioche.step.8.instruction" = "Spennellare con uovo";
+"recipe.brioche.step.8.notes" = "• Mescolare 1 uovo + un po' di latte\n• Spennellare delicatamente sopra";
+"recipe.brioche.step.9.instruction" = "Cuocere";
+"recipe.brioche.step.9.notes" = "• Preriscaldare il forno a 175°C\n• Cuocere 25–30 minuti (pagnotta)\n• Oppure 18–22 minuti (palline singole)\n• Dorato sopra";
+
+// MARK: - Croissants
+"recipe.croissants.step.1.instruction" = "Preparare l'impasto (Détrempe)";
+"recipe.croissants.step.1.notes" = "• 500 g di farina\n• 10 g di sale\n• 60 g di zucchero\n• 10 g di lievito secco\n• 300 g di latte freddo\n• Mescolare fino a formare l'impasto (ancora senza burro)\n• Coprire la ciotola";
+"recipe.croissants.step.2.instruction" = "Impasto leggero";
+"recipe.croissants.step.2.notes" = "• Impastare delicatamente fino a liscio (2–3 minuti)\n• Non lavorare troppo\n• Formare un rettangolo\n• Avvolgere e refrigerare";
+"recipe.croissants.step.3.instruction" = "Preparare il blocco di burro";
+"recipe.croissants.step.3.notes" = "• 250 g di burro freddo\n• Formare un quadrato piatto (circa 15×15 cm)\n• Avvolgere e refrigerare\n\n(Stessa durata dell'impasto; dovrebbero essere ugualmente freddi)";
+"recipe.croissants.step.4.instruction" = "Avvolgere il burro";
+"recipe.croissants.step.4.notes" = "• Posizionare il blocco di burro al centro dell'impasto\n• Piegare l'impasto sul burro (forma busta)\n• Sigillare i bordi saldamente\n• Refrigerare per rilassare il glutine";
+"recipe.croissants.step.5.instruction" = "Laminazione — Stendere + Prima piega (Piega singola)";
+"recipe.croissants.step.5.notes" = "• Stendere l'impasto in un rettangolo lungo\n• Piegare in tre (come una lettera)\n• Avvolgere e raffreddare";
+"recipe.croissants.step.6.instruction" = "Laminazione — Seconda piega (Piega singola)";
+"recipe.croissants.step.6.notes" = "• Stendere di nuovo in rettangolo lungo\n• Piegare in tre di nuovo\n• Avvolgere e raffreddare";
+"recipe.croissants.step.7.instruction" = "Laminazione — Terza piega (Piega finale)";
+"recipe.croissants.step.7.notes" = "• Stendere e piegare in tre un'ultima volta\n• Questo completa 3 pieghe\n• Avvolgere e raffreddare";
+"recipe.croissants.step.8.instruction" = "Stendere il foglio finale";
+"recipe.croissants.step.8.notes" = "• Stendere l'impasto a ~4 mm di spessore\n• Mantenere i bordi uniformi\n• Infarinare leggermente se necessario";
+"recipe.croissants.step.9.instruction" = "Tagliare triangoli";
+"recipe.croissants.step.9.notes" = "• Tagliare triangoli isosceli lunghi (base ~8–10 cm)\n• Fare un piccolo taglio alla base\n• Stirare delicatamente";
+"recipe.croissants.step.10.instruction" = "Formare i croissant";
+"recipe.croissants.step.10.notes" = "• Arrotolare dalla base alla punta\n• Non premere troppo forte\n• Posizionare la punta sotto sulla teglia";
+"recipe.croissants.step.11.instruction" = "Lievitazione (Lievitazione finale)";
+"recipe.croissants.step.11.notes" = "• Lasciare lievitare i croissant a 25–27°C\n• Dovrebbero diventare soffici, leggermente traballanti\n• NON lasciare sciogliere il burro";
+"recipe.croissants.step.12.instruction" = "Spennellare con uovo";
+"recipe.croissants.step.12.notes" = "• Mescolare 1 uovo + un po' di latte\n• Spennellare delicatamente sopra";
+"recipe.croissants.step.13.instruction" = "Cuocere";
+"recipe.croissants.step.13.notes" = "• Preriscaldare il forno a 200°C\n• Cuocere 12 min, poi abbassare a 190°C\n• Cuocere altri 8–10 minuti\n• Strati dorati, sfogliati, croccanti";
+
+// MARK: - Pain au Chocolat
+"recipe.pain.au.chocolat.step.1.instruction" = "Preparare l'impasto (Détrempe)";
+"recipe.pain.au.chocolat.step.1.notes" = "• 500 g di farina\n• 10 g di sale\n• 60 g di zucchero\n• 10 g di lievito secco\n• 300 g di latte freddo\n• Mescolare fino a formare l'impasto (ancora senza burro)\n• Coprire la ciotola";
+"recipe.pain.au.chocolat.step.2.instruction" = "Impasto leggero";
+"recipe.pain.au.chocolat.step.2.notes" = "• Impastare delicatamente 2–3 minuti\n• Formare un rettangolo\n• Avvolgere e refrigerare";
+"recipe.pain.au.chocolat.step.3.instruction" = "Preparare il blocco di burro";
+"recipe.pain.au.chocolat.step.3.notes" = "• 250 g di burro freddo\n• Formare un quadrato piatto di 15×15 cm\n• Avvolgere e refrigerare";
+"recipe.pain.au.chocolat.step.4.instruction" = "Avvolgere il burro";
+"recipe.pain.au.chocolat.step.4.notes" = "• Posizionare il blocco di burro al centro dell'impasto\n• Piegare l'impasto sul burro (busta)\n• Sigillare i bordi\n• Refrigerare";
+"recipe.pain.au.chocolat.step.5.instruction" = "Laminazione — Prima piega (Piega singola)";
+"recipe.pain.au.chocolat.step.5.notes" = "• Stendere l'impasto in rettangolo lungo\n• Piegare in tre (come una lettera)\n• Avvolgere e raffreddare";
+"recipe.pain.au.chocolat.step.6.instruction" = "Laminazione — Seconda piega (Piega singola)";
+"recipe.pain.au.chocolat.step.6.notes" = "• Stendere di nuovo\n• Piegare in tre\n• Avvolgere e raffreddare";
+"recipe.pain.au.chocolat.step.7.instruction" = "Laminazione — Terza piega (Piega finale)";
+"recipe.pain.au.chocolat.step.7.notes" = "• Stendere e piegare in tre un'ultima volta\n• Avvolgere e raffreddare";
+"recipe.pain.au.chocolat.step.8.instruction" = "Stendere il foglio finale";
+"recipe.pain.au.chocolat.step.8.notes" = "• Stendere l'impasto a ~4 mm di spessore\n• Mantenere i bordi dritti";
+"recipe.pain.au.chocolat.step.9.instruction" = "Tagliare rettangoli";
+"recipe.pain.au.chocolat.step.9.notes" = "• Tagliare rettangoli di circa 8×12 cm\n• Mantenere l'impasto freddo per evitare che il burro si sciolga";
+"recipe.pain.au.chocolat.step.10.instruction" = "Aggiungere i bastoncini di cioccolato";
+"recipe.pain.au.chocolat.step.10.notes" = "• Posizionare un bastoncino di cioccolato vicino al bordo corto\n• Arrotolare una volta\n• Aggiungere il secondo bastoncino\n• Finire di arrotolare, cucitura sotto";
+"recipe.pain.au.chocolat.step.11.instruction" = "Lievitazione (Lievitazione finale)";
+"recipe.pain.au.chocolat.step.11.notes" = "• Lasciare lievitare a 25–27°C\n• Dovrebbero diventare soffici e ariosi\n• Il burro non deve sciogliersi";
+"recipe.pain.au.chocolat.step.12.instruction" = "Spennellare con uovo";
+"recipe.pain.au.chocolat.step.12.notes" = "• Mescolare 1 uovo + un po' di latte\n• Spennellare leggermente sopra";
+"recipe.pain.au.chocolat.step.13.instruction" = "Cuocere";
+"recipe.pain.au.chocolat.step.13.notes" = "• Preriscaldare il forno a 200°C\n• Cuocere 12 minuti\n• Abbassare a 190°C e cuocere altri 8–10 minuti\n• Dovrebbe essere dorato e sfogliato";
+
+// MARK: - Bagels
+"recipe.bagels.step.1.instruction" = "Preparare l'impasto";
+"recipe.bagels.step.1.notes" = "• 500 g di farina per pane\n• 10 g di sale\n• 10 g di zucchero\n• 7 g di lievito secco\n• 300 g di acqua tiepida\n• Mescolare fino a formare l'impasto\n• Coprire la ciotola";
+"recipe.bagels.step.2.instruction" = "Impastare l'impasto";
+"recipe.bagels.step.2.notes" = "• Impastare 8–10 minuti fino a liscio e compatto\n• L'impasto dovrebbe essere più compatto dell'impasto per pane\n• Formare una palla";
+"recipe.bagels.step.3.instruction" = "Prima lievitazione (Fermentazione in massa)";
+"recipe.bagels.step.3.notes" = "• Posizionare l'impasto in una ciotola leggermente oliata\n• Coprire\n• Lasciare lievitare fino a raddoppiare";
+"recipe.bagels.step.4.instruction" = "Dividere l'impasto";
+"recipe.bagels.step.4.notes" = "• Tagliare l'impasto in 8 pezzi uguali\n• Arrotolare ciascuno in una palla compatta";
+"recipe.bagels.step.5.instruction" = "Formare i bagel";
+"recipe.bagels.step.5.notes" = "Usare uno dei due metodi:\n• Metodo A: Fare un buco al centro, stirare a 3–4 cm\n• Metodo B: Arrotolare a corda e sigillare le estremità insieme\n• Posizionare sulla teglia";
+"recipe.bagels.step.6.instruction" = "Seconda lievitazione";
+"recipe.bagels.step.6.notes" = "• Coprire i bagel formati con canovaccio\n• Lasciare riposare prima di bollire";
+"recipe.bagels.step.7.instruction" = "Bollire i bagel";
+"recipe.bagels.step.7.notes" = "• Portare l'acqua a ebollizione\n• Aggiungere 1 cucchiaio di zucchero o miele (opzionale)\n• Bollire i bagel 30–45 sec per lato\n• Rimuovere e scolare";
+"recipe.bagels.step.8.instruction" = "Aggiungere condimenti";
+"recipe.bagels.step.8.notes" = "Scegliere condimenti:\n• Sesamo\n• Papavero\n• Mix tutto\n• Fiocchi di cipolla\n• Oppure lasciare naturale\n\nPremere delicatamente sull'impasto bagnato";
+"recipe.bagels.step.9.instruction" = "Cuocere";
+"recipe.bagels.step.9.notes" = "• Preriscaldare il forno a 220°C\n• Cuocere 18–22 minuti\n• Dovrebbe essere dorato e lucido";
+
+// MARK: - English Muffins
+"recipe.english.muffins.step.1.instruction" = "Preparare l'impasto";
+"recipe.english.muffins.step.1.notes" = "• 350 g di latte (tiepido)\n• 30 g di burro (sciolto)\n• 20 g di zucchero\n• 7 g di lievito secco\n• Mescolare fino a sciogliere";
+"recipe.english.muffins.step.2.instruction" = "Aggiungere ingredienti secchi";
+"recipe.english.muffins.step.2.notes" = "• Aggiungere 500 g di farina\n• Aggiungere 10 g di sale\n• Mescolare fino a formare l'impasto\n• L'impasto dovrebbe essere morbido e leggermente appiccicoso";
+"recipe.english.muffins.step.3.instruction" = "Impastare l'impasto";
+"recipe.english.muffins.step.3.notes" = "• Impastare 5–7 minuti fino a liscio\n• Evitare di aggiungere troppa farina";
+"recipe.english.muffins.step.4.instruction" = "Prima lievitazione (Fermentazione in massa)";
+"recipe.english.muffins.step.4.notes" = "• Posizionare l'impasto in una ciotola leggermente oliata\n• Coprire con canovaccio\n• Permettere di raddoppiare";
+"recipe.english.muffins.step.5.instruction" = "Stendere l'impasto";
+"recipe.english.muffins.step.5.notes" = "• Capovolgere l'impasto su superficie infarinata\n• Stendere a ~2 cm di spessore\n• Spolverare la superficie con farina o semolino";
+"recipe.english.muffins.step.6.instruction" = "Tagliare cerchi di muffin";
+"recipe.english.muffins.step.6.notes" = "• Usare un tagliabiscotti di 7–8 cm\n• Trasferire i cerchi su teglia coperta di semolino\n• Spolverare anche le cime con semolino";
+"recipe.english.muffins.step.7.instruction" = "Seconda lievitazione";
+"recipe.english.muffins.step.7.notes" = "• Coprire i muffin leggermente\n• Lasciare gonfiare leggermente\n• Non lievitare troppo";
+"recipe.english.muffins.step.8.instruction" = "Cuocere in padella (Primo lato)";
+"recipe.english.muffins.step.8.notes" = "• Preriscaldare la padella a fuoco medio-basso\n• Senza olio o burro\n• Cuocere i muffin 6–7 minuti sul primo lato\n• Dovrebbe dorare delicatamente";
+"recipe.english.muffins.step.9.instruction" = "Cuocere in padella (Secondo lato)";
+"recipe.english.muffins.step.9.notes" = "• Capovolgere i muffin\n• Cuocere altri 6–7 minuti\n• Dovrebbero lievitare e indurirsi";
+"recipe.english.muffins.step.10.instruction" = "Finire in forno (Opzionale ma consigliato)";
+"recipe.english.muffins.step.10.notes" = "• Preriscaldare il forno a 175°C\n• Cuocere 5–7 minuti per finire la mollica interna\n• Aiuta a formare le caratteristiche \"nooks & crannies\"";
+

@@ -40,7 +40,7 @@ struct BreadSelectionView: View {
                 VStack(spacing: 20) {
                     // Title
                     VStack(spacing: 10) {
-                        Text("BreadOClock")
+                        Text("app.title".localized)
                             .font(.system(size: 48, weight: .bold, design: .rounded))
                             .foregroundStyle(
                                 LinearGradient(
@@ -51,7 +51,7 @@ struct BreadSelectionView: View {
                             )
                             .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 5)
                         
-                        Text("Select your bread recipe")
+                        Text("app.subtitle".localized)
                             .font(.system(size: 20, weight: .medium, design: .rounded))
                             .foregroundColor(.white.opacity(0.9))
                     }
@@ -86,7 +86,7 @@ struct BreadSelectionView: View {
                     BreadMakingView(recipe: recipe)
                 } else {
                     // Fallback view if recipe is nil (shouldn't happen, but prevents blank screen)
-                    Text("Loading...")
+                    Text("app.loading".localized)
                         .foregroundColor(.white)
                 }
             }
@@ -225,18 +225,22 @@ struct BreadCard: View {
     /// Formatted scheduled start time
     private var formattedScheduledTime: String? {
         guard let startTime = scheduledStartTime else { return nil }
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_US_POSIX")
+        let timeFormatter = DateFormatter()
+        timeFormatter.locale = Locale(identifier: "en_US_POSIX")
+        timeFormatter.dateFormat = "h:mm a"
+        let timeString = timeFormatter.string(from: startTime)
         
         let calendar = Calendar.current
         if calendar.isDateInToday(startTime) {
-            formatter.dateFormat = "'Today' h:mm a"
+            return "schedule.start.today".localized(timeString)
         } else if calendar.isDateInTomorrow(startTime) {
-            formatter.dateFormat = "'Tomorrow' h:mm a"
+            return "schedule.start.tomorrow".localized(timeString)
         } else {
-            formatter.dateFormat = "MMM d, h:mm a"
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+            dateFormatter.dateFormat = "MMM d, h:mm a"
+            return dateFormatter.string(from: startTime)
         }
-        return formatter.string(from: startTime)
     }
     
     var body: some View {
@@ -380,7 +384,7 @@ struct BreadCard: View {
                     .shadow(color: .black.opacity(0.2), radius: 5, x: 0, y: 3)
                     
                     VStack(alignment: .leading, spacing: 6) {
-                        Text(recipe.name)
+                        Text(recipe.localizedName)
                             .font(.system(size: 22, weight: .bold, design: .rounded))
                             .foregroundColor(.white)
                             .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 2)
@@ -388,7 +392,7 @@ struct BreadCard: View {
                         if let step = currentStep {
                             // Show current step progress and timer on same line
                             HStack(spacing: 10) {
-                                Text("Step \(step)/\(recipe.steps.count)")
+                                Text("step.current".localized(step, recipe.steps.count))
                                     .font(.system(size: 16, weight: .bold, design: .rounded))
                                     .foregroundColor(.white)
                                 
@@ -431,7 +435,7 @@ struct BreadCard: View {
                             )
                             .shadow(color: .orange.opacity(0.4), radius: 4, x: 0, y: 2)
                         } else {
-                            Text("\(recipe.steps.count) steps")
+                            Text("step.steps".localized(recipe.steps.count))
                                 .font(.system(size: 14, weight: .medium, design: .rounded))
                                 .foregroundColor(.white.opacity(0.8))
                         }

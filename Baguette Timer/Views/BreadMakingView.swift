@@ -187,7 +187,7 @@ struct BreadMakingView: View {
                 VStack(spacing: 20) {
                     // Header
                     VStack(spacing: 8) {
-                        Text(recipe.name)
+                        Text(recipe.localizedName)
                             .font(.system(size: 34, weight: .bold, design: .rounded))
                             .foregroundStyle(
                                 LinearGradient(
@@ -199,7 +199,7 @@ struct BreadMakingView: View {
                             .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 5)
                             .multilineTextAlignment(.center)
                         
-                        Text("Step \(currentStep.stepNumber) of \(recipe.steps.count)")
+                        Text("step.current".localized(currentStep.stepNumber, recipe.steps.count))
                             .font(.system(size: 18, weight: .medium, design: .rounded))
                             .foregroundColor(.white.opacity(0.9))
                     }
@@ -221,6 +221,7 @@ struct BreadMakingView: View {
                     // Current step card
                     StepCard(
                         step: currentStep,
+                        recipeKeyPrefix: recipe.recipeKeyPrefix,
                         isCompleted: completedSteps.contains(currentStep.id),
                         isTimerActive: timerManager.isTimerActive(for: currentStep.id),
                         remainingTime: timerManager.getRemainingTime(for: currentStep.id),
@@ -238,6 +239,7 @@ struct BreadMakingView: View {
                         ForEach(Array(recipe.steps.enumerated()), id: \.element.id) { index, step in
                             StepRow(
                                 step: step,
+                                recipeKeyPrefix: recipe.recipeKeyPrefix,
                                 isCurrent: step.id == currentStep.id,
                                 isCompleted: index < currentStepIndex || completedSteps.contains(step.id),
                                 isTimerActive: timerManager.isTimerActive(for: step.id),
@@ -323,11 +325,11 @@ struct BreadMakingView: View {
         .onChange(of: completedSteps) {
             saveState()
         }
-        .alert("Skip to Step?", isPresented: $showSkipConfirmation) {
-            Button("Cancel", role: .cancel) {
+        .alert("alert.skip.title".localized, isPresented: $showSkipConfirmation) {
+            Button("alert.skip.cancel".localized, role: .cancel) {
                 stepToSkip = nil
             }
-            Button("Skip", role: .destructive) {
+            Button("alert.skip.confirm".localized, role: .destructive) {
                 if let step = stepToSkip,
                    let index = recipe.steps.firstIndex(where: { $0.id == step.id }) {
                     withAnimation {
@@ -339,13 +341,13 @@ struct BreadMakingView: View {
             }
         } message: {
             if let step = stepToSkip {
-                Text("Are you sure you want to skip to Step \(step.stepNumber)?\n\n\(step.instruction)")
+                Text("alert.skip.message.step".localized(step.stepNumber, step.localizedInstruction(recipeKeyPrefix: recipe.recipeKeyPrefix)))
             } else {
-                Text("Are you sure you want to skip to this step?")
+                Text("alert.skip.message.generic".localized)
             }
         }
         .sheet(item: $selectedStepForNotes) { step in
-            StepNotesView(step: step)
+            StepNotesView(step: step, recipeKeyPrefix: recipe.recipeKeyPrefix)
                 .presentationDetents([.medium, .large])
                 .presentationDragIndicator(.visible)
         }
@@ -359,13 +361,13 @@ struct BreadMakingView: View {
             .presentationDetents([.medium])
             .presentationDragIndicator(.visible)
         }
-        .alert("Reset Recipe?", isPresented: $showResetConfirmation) {
-            Button("Cancel", role: .cancel) { }
-            Button("Reset", role: .destructive) {
+        .alert("alert.reset.title".localized, isPresented: $showResetConfirmation) {
+            Button("alert.reset.cancel".localized, role: .cancel) { }
+            Button("alert.reset.confirm".localized, role: .destructive) {
                 resetRecipe()
             }
         } message: {
-            Text("This will stop all timers and reset to Step 1. Are you sure?")
+            Text("alert.reset.message".localized)
         }
     }
     
@@ -386,8 +388,8 @@ struct BreadMakingView: View {
         if timeUntilStart > 0 {
             NotificationManager.shared.scheduleNotification(
                 identifier: "bread-start-\(recipe.id.uuidString)",
-                title: "Time to Start Making Bread!",
-                body: "It's time to start making \(recipe.name). Target completion: \(formatTime(targetTime))",
+                title: "notification.start.title".localized,
+                body: "notification.start.body".localized(recipe.localizedName, formatTime(targetTime)),
                 timeInterval: timeUntilStart
             )
         }
@@ -423,7 +425,7 @@ struct BreadMakingView: View {
         withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
             completedSteps.insert(currentStep.id)
             saveState() // Save immediately after completing step
-            timerManager.startTimer(for: currentStep, recipeId: recipe.id, nextStep: nextStep)
+            timerManager.startTimer(for: currentStep, recipeId: recipe.id, nextStep: nextStep, recipeKeyPrefix: recipe.recipeKeyPrefix)
         }
     }
     
@@ -570,6 +572,7 @@ struct BreadMakingView: View {
 
 struct StepCard: View {
     let step: BreadStep
+    let recipeKeyPrefix: String
     let isCompleted: Bool
     let isTimerActive: Bool
     let remainingTime: TimeInterval?
@@ -655,14 +658,14 @@ struct StepCard: View {
                                 .stroke(Color.white.opacity(0.5), lineWidth: 2)
                         )
                     
-                    Text("Step \(step.stepNumber)")
+                    Text("step.number".localized(step.stepNumber))
                         .font(.system(size: 22, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
                 }
                 
                 // Instruction with info button
                 HStack(spacing: 8) {
-                    Text(step.instruction)
+                    Text(step.localizedInstruction(recipeKeyPrefix: recipeKeyPrefix))
                         .font(.system(size: 22, weight: .semibold, design: .rounded))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
@@ -682,7 +685,7 @@ struct StepCard: View {
                 
                 // Notes display
                 if !step.notes.isEmpty {
-                    Text(step.notes)
+                    Text(step.localizedNotes(recipeKeyPrefix: recipeKeyPrefix))
                         .font(.system(size: 18, weight: .regular, design: .rounded))
                         .foregroundColor(.white.opacity(0.95))
                         .multilineTextAlignment(.center)
@@ -704,7 +707,7 @@ struct StepCard: View {
                 // Timer display - more prominent when running
                 if let remaining = remainingTime, isTimerActive {
                     VStack(spacing: 8) {
-                        Text("Timer Running")
+                        Text("step.timer.running".localized)
                             .font(.system(size: 16, weight: .semibold, design: .rounded))
                             .foregroundColor(.white.opacity(0.9))
                             .textCase(.uppercase)
@@ -723,11 +726,11 @@ struct StepCard: View {
                             )
                     }
                 } else if isCompleted {
-                    Text("Timer: \(step.formattedDuration)")
+                    Text("step.timer.duration".localized(step.formattedDuration))
                         .font(.system(size: 18, weight: .medium, design: .rounded))
                         .foregroundColor(.white.opacity(0.9))
                 } else {
-                    Text("Timer: \(step.formattedDuration)")
+                    Text("step.timer.duration".localized(step.formattedDuration))
                         .font(.system(size: 18, weight: .medium, design: .rounded))
                         .foregroundColor(.white.opacity(0.9))
                 }
@@ -759,7 +762,7 @@ struct StepCard: View {
                     onComplete()
                 }
             }) {
-                completeButtonContent(opacity: 0.6, text: "Done")
+                completeButtonContent(opacity: 0.6, text: "step.done".localized)
             }
             .scaleEffect(isPressed ? 0.95 : 1.0)
             .animation(.spring(response: 0.3, dampingFraction: 0.6), value: isPressed)
@@ -805,6 +808,7 @@ struct StepCard: View {
 
 struct StepRow: View {
     let step: BreadStep
+    let recipeKeyPrefix: String
     let isCurrent: Bool
     let isCompleted: Bool
     let isTimerActive: Bool
@@ -874,7 +878,7 @@ struct StepRow: View {
     
     private var instructionView: some View {
         VStack(alignment: .leading, spacing: 5) {
-            Text(step.instruction)
+            Text(step.localizedInstruction(recipeKeyPrefix: recipeKeyPrefix))
                 .font(.system(size: 17, weight: .semibold, design: .rounded))
                 .foregroundColor(.white)
                 .fixedSize(horizontal: false, vertical: true)
@@ -988,6 +992,7 @@ struct TimerDisplay: View {
 
 struct StepNotesView: View {
     let step: BreadStep
+    let recipeKeyPrefix: String
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -1001,11 +1006,11 @@ struct StepNotesView: View {
                     // Step header
                     HStack {
                         VStack(alignment: .leading, spacing: 10) {
-                            Text("Step \(step.stepNumber)")
+                            Text("step.number".localized(step.stepNumber))
                                 .font(.system(size: 34, weight: .bold, design: .rounded))
                                 .foregroundColor(.primary)
                             
-                            Text(step.instruction)
+                            Text(step.localizedInstruction(recipeKeyPrefix: recipeKeyPrefix))
                                 .font(.system(size: 24, weight: .semibold, design: .rounded))
                                 .foregroundColor(.secondary)
                         }
@@ -1019,12 +1024,12 @@ struct StepNotesView: View {
                             Image(systemName: "note.text")
                                 .font(.system(size: 22))
                                 .foregroundColor(.orange)
-                            Text("Notes")
+                            Text("step.notes".localized)
                                 .font(.system(size: 24, weight: .bold, design: .rounded))
                                 .foregroundColor(.primary)
                         }
                         
-                        Text(step.notes)
+                        Text(step.localizedNotes(recipeKeyPrefix: recipeKeyPrefix))
                             .font(.system(size: 18, weight: .regular, design: .rounded))
                             .foregroundColor(.primary.opacity(0.85))
                             .lineSpacing(8)
@@ -1049,12 +1054,12 @@ struct StepNotesView: View {
                                 Image(systemName: "timer")
                                     .font(.system(size: 22))
                                     .foregroundColor(.green)
-                                Text("Timer")
+                                Text("step.timer".localized)
                                     .font(.system(size: 24, weight: .bold, design: .rounded))
                                     .foregroundColor(.primary)
                             }
                             
-                            Text("Duration: \(step.formattedDuration)")
+                            Text("step.timer.duration.label".localized(step.formattedDuration))
                                 .font(.system(size: 18, weight: .medium, design: .rounded))
                                 .foregroundColor(.secondary)
                         }
@@ -1135,7 +1140,7 @@ struct SchedulingView: View {
                             .font(.system(size: 40))
                             .foregroundColor(.orange)
                         
-                        Text("Schedule Bread Making")
+                        Text("schedule.title".localized)
                             .font(.system(size: 28, weight: .bold, design: .rounded))
                             .foregroundColor(.primary)
                     }
@@ -1143,7 +1148,7 @@ struct SchedulingView: View {
                     
                     // Target completion time
                     VStack(alignment: .leading, spacing: 12) {
-                        Text("When do you want the bread ready?")
+                        Text("schedule.question".localized)
                             .font(.system(size: 18, weight: .semibold, design: .rounded))
                             .foregroundColor(.primary)
                         
@@ -1177,7 +1182,7 @@ struct SchedulingView: View {
                     
                     // Calculated start time
                     VStack(alignment: .leading, spacing: 12) {
-                        Text("Start Time")
+                        Text("schedule.start.time".localized)
                             .font(.system(size: 18, weight: .semibold, design: .rounded))
                             .foregroundColor(.primary)
                         
@@ -1186,7 +1191,7 @@ struct SchedulingView: View {
                                 Image(systemName: "clock.badge.checkmark")
                                     .font(.system(size: 20))
                                     .foregroundColor(.green)
-                                Text("Start at:")
+                                Text("schedule.start.at".localized)
                                     .font(.system(size: 16, weight: .medium, design: .rounded))
                                     .foregroundColor(.secondary)
                             }
@@ -1195,7 +1200,7 @@ struct SchedulingView: View {
                                 .font(.system(size: 20, weight: .bold, design: .rounded))
                                 .foregroundColor(.primary)
                             
-                            Text("To finish at: \(formattedTargetTime)")
+                            Text("schedule.finish.at".localized(formattedTargetTime))
                                 .font(.system(size: 14, weight: .regular, design: .rounded))
                                 .foregroundColor(.secondary)
                         }
@@ -1220,7 +1225,7 @@ struct SchedulingView: View {
                         HStack {
                             Image(systemName: "bell.fill")
                                 .font(.system(size: 18))
-                            Text("Schedule Alert")
+                            Text("schedule.alert.button".localized)
                                 .font(.system(size: 18, weight: .bold, design: .rounded))
                         }
                         .foregroundColor(.white)

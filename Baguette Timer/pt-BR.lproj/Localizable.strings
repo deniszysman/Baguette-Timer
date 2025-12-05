@@ -1,0 +1,245 @@
+/* 
+  Localizable.strings
+  Baguette Timer
+  
+  Portuguese (Brazil) localization strings
+*/
+
+// MARK: - App Title & Navigation
+"app.title" = "BreadOClock";
+"app.subtitle" = "Selecione sua receita de pão";
+"app.loading" = "Carregando...";
+
+// MARK: - Steps & Progress
+"step.current" = "Passo %d de %d";
+"step.number" = "Passo %d";
+"step.steps" = "%d passos";
+"step.done" = "Feito";
+"step.timer.running" = "Timer em execução";
+"step.timer.duration" = "Timer: %@";
+"step.notes" = "Notas";
+"step.timer" = "Timer";
+"step.timer.duration.label" = "Duração: %@";
+
+// MARK: - Scheduling
+"schedule.title" = "Agendar preparo do pão";
+"schedule.question" = "Quando você quer que o pão fique pronto?";
+"schedule.start.time" = "Hora de início";
+"schedule.start.at" = "Iniciar às:";
+"schedule.finish.at" = "Para terminar às: %@";
+"schedule.alert.button" = "Definir lembrete";
+"schedule.start.label" = "Início: %@";
+"schedule.start.today" = "Hoje %@";
+"schedule.start.tomorrow" = "Amanhã %@";
+
+// MARK: - Notifications
+"notification.ready.step" = "Pronto para o passo %d! 🍞";
+"notification.next" = "Próximo: %@";
+"notification.bread.ready" = "Seu pão está pronto! 🥖";
+"notification.complete.enjoy" = "%@ completo - Aproveite!";
+"notification.start.title" = "É hora de começar a fazer pão!";
+"notification.start.body" = "É hora de começar a fazer %@. Conclusão prevista: %@";
+
+// MARK: - Alerts & Confirmations
+"alert.skip.title" = "Pular para o passo?";
+"alert.skip.message.step" = "Tem certeza de que deseja pular para o passo %d?\n\n%@";
+"alert.skip.message.generic" = "Tem certeza de que deseja pular para este passo?";
+"alert.skip.cancel" = "Cancelar";
+"alert.skip.confirm" = "Pular";
+
+"alert.reset.title" = "Redefinir receita?";
+"alert.reset.message" = "Isso irá parar todos os timers e redefinir para o passo 1. Tem certeza?";
+"alert.reset.cancel" = "Cancelar";
+"alert.reset.confirm" = "Redefinir";
+
+// MARK: - Time Formatting
+"time.today" = "Hoje";
+"time.tomorrow" = "Amanhã";
+"time.day" = "%d dia";
+"time.days" = "%d dias";
+"time.week" = "%d semana";
+"time.weeks" = "%d semanas";
+"time.hour" = "%d hora";
+"time.hours" = "%d horas";
+"time.minute" = "%d min";
+"time.minutes" = "%d min";
+"time.day.hour" = "%d d %d h";
+
+// MARK: - Recipe Names
+"recipe.french.baguette.name" = "Baguete francesa";
+"recipe.refresh.starter.name" = "Atualizar seu fermento";
+"recipe.sourdough.bread.ball.name" = "Bola de pão com fermento natural";
+"recipe.brioche.name" = "Brioche";
+"recipe.croissants.name" = "Croissants";
+"recipe.pain.au.chocolat.name" = "Pain au chocolat";
+"recipe.bagels.name" = "Bagels";
+"recipe.english.muffins.name" = "Muffins ingleses";
+
+// MARK: - French Baguette
+"recipe.french.baguette.step.1.instruction" = "Alimentar o fermento";
+"recipe.french.baguette.step.1.notes" = "50g de água e 50g de farinha para 2 baguetes";
+"recipe.french.baguette.step.2.instruction" = "Preparar a massa";
+"recipe.french.baguette.step.2.notes" = "325g de água\n10g de sal\n100g de fermento\n450g de farinha de trigo\nDescansar com pano por cima";
+"recipe.french.baguette.step.3.instruction" = "Esticar a massa";
+"recipe.french.baguette.step.3.notes" = "Esticar e dobrar 4 lados\nDescansar com pano por cima";
+"recipe.french.baguette.step.4.instruction" = "Esticar a massa";
+"recipe.french.baguette.step.4.notes" = "Esticar e dobrar 4 lados\nDescansar com pano por cima";
+"recipe.french.baguette.step.5.instruction" = "Esticar a massa";
+"recipe.french.baguette.step.5.notes" = "Esticar e dobrar 4 lados\nDescansar com pano por cima";
+"recipe.french.baguette.step.6.instruction" = "Preparar para assar";
+"recipe.french.baguette.step.6.notes" = "Tirar metade da tigela (guardar a outra metade para o dia seguinte)\nDividir em 2 bolinhas e descansar";
+"recipe.french.baguette.step.7.instruction" = "Formar as baguetes";
+"recipe.french.baguette.step.7.notes" = "Formar as 2 bolinhas em baguetes\nPolvilhar farinha por cima\nColocar em papel manteiga na assadeira\nCobrir com pano";
+"recipe.french.baguette.step.8.instruction" = "Colocar no forno";
+"recipe.french.baguette.step.8.notes" = "Fazer cortes no pão (3 cortes)\nAdicionar 1 xícara de água para vapor\nColocar a assadeira no forno\nPré-aquecer o forno a 260°C";
+"recipe.french.baguette.step.9.instruction" = "Girar a assadeira";
+"recipe.french.baguette.step.9.notes" = "Girar a assadeira no forno e, se necessário, virar as baguetes";
+"recipe.french.baguette.step.10.instruction" = "Retirar do forno";
+"recipe.french.baguette.step.10.notes" = "Cobrir com um pano";
+
+// MARK: - Refresh your starter
+"recipe.refresh.starter.step.1.instruction" = "Alimentar o fermento";
+"recipe.refresh.starter.step.1.notes" = "Retire o fermento da geladeira e descarte 2 colheres de sopa de fermento.\n\nAdicione 2 colheres de sopa de farinha fresca e 2 colheres de sopa de água filtrada ou de nascente.\n\nMisture bem, cubra com um pano respirável e elástico.\n\nDeixe descansar em temperatura ambiente por 12 horas.";
+"recipe.refresh.starter.step.2.instruction" = "Retornar à geladeira";
+"recipe.refresh.starter.step.2.notes" = "Cubra com uma tampa hermética e retorne à geladeira.\n\nLembrete definido para 1 semana para atualizar o fermento novamente.";
+
+// MARK: - Sourdough Bread Ball
+"recipe.sourdough.bread.ball.step.1.instruction" = "Preparar a massa";
+"recipe.sourdough.bread.ball.step.1.notes" = "• 325g de água\n• 10g de sal\n• 100g de fermento natural\n• 450g de farinha de trigo\n• Misturar até combinar\n• Cobrir com pano";
+"recipe.sourdough.bread.ball.step.2.instruction" = "Esticar & Dobrar #1";
+"recipe.sourdough.bread.ball.step.2.notes" = "• Molhar as mãos\n• Levantar um lado da massa e dobrar\n• Girar a tigela ¼ de volta e repetir 3–4 vezes\n• Cobrir com pano";
+"recipe.sourdough.bread.ball.step.3.instruction" = "Esticar & Dobrar #2";
+"recipe.sourdough.bread.ball.step.3.notes" = "• Repetir o processo de esticar e dobrar\n• Manter a massa coberta";
+"recipe.sourdough.bread.ball.step.4.instruction" = "Esticar & Dobrar #3";
+"recipe.sourdough.bread.ball.step.4.notes" = "• Repetir o processo de esticar e dobrar\n• Manter a massa coberta";
+"recipe.sourdough.bread.ball.step.5.instruction" = "Esticar & Dobrar #4";
+"recipe.sourdough.bread.ball.step.5.notes" = "• Último esticar e dobrar\n• A massa deve ficar mais firme e lisa\n• Cobrir com pano";
+"recipe.sourdough.bread.ball.step.6.instruction" = "Formar a bola de pão";
+"recipe.sourdough.bread.ball.step.6.notes" = "• Polvilhar levemente a bancada\n• Formar uma bola redonda firme (boule)\n• Colocar com a costura para cima em uma tigela/banneton polvilhada\n• Cobrir com pano";
+"recipe.sourdough.bread.ball.step.7.instruction" = "Fermentação final (Fermentação a frio)";
+"recipe.sourdough.bread.ball.step.7.notes" = "• Colocar a massa na geladeira\n• Fermentar durante a noite (12–16 horas)\n• A massa fermentará lentamente e desenvolverá sabor";
+"recipe.sourdough.bread.ball.step.8.instruction" = "Pré-aquecer o forno";
+"recipe.sourdough.bread.ball.step.8.notes" = "• Pré-aquecer o forno a 245°C\n• Colocar a panela holandesa dentro para aquecer\n• Permitir pelo menos 30 minutos de pré-aquecimento";
+"recipe.sourdough.bread.ball.step.9.instruction" = "Fazer cortes & Assar";
+"recipe.sourdough.bread.ball.step.9.notes" = "• Retirar a massa da geladeira\n• Virar sobre papel manteiga\n• Fazer cortes no topo\n• Assar na panela holandesa:\n• 20 min com tampa FECHADA\n• 20–25 min com tampa ABERTA\n• Deixar esfriar 1 hora antes de cortar";
+"recipe.sourdough.bread.ball.step.10.instruction" = "Seu pão está pronto!";
+"recipe.sourdough.bread.ball.step.10.notes" = "• Cortar e saborear\n\nFim da receita";
+
+// MARK: - Brioche
+"recipe.brioche.step.1.instruction" = "Preparar a massa (Misturar #1)";
+"recipe.brioche.step.1.notes" = "• 250g de leite (morno)\n• 10g de fermento seco\n• 60g de açúcar\n• 3 ovos\n• Misturar até combinar";
+"recipe.brioche.step.2.instruction" = "Adicionar farinha e sal (Misturar #2)";
+"recipe.brioche.step.2.notes" = "• Adicionar 500g de farinha\n• Adicionar 10g de sal\n• Misturar até a massa começar a se formar";
+"recipe.brioche.step.3.instruction" = "Sovar com manteiga (Misturar #3)";
+"recipe.brioche.step.3.notes" = "• Adicionar 150g de manteiga amolecida, pouco a pouco\n• Sovar até a massa ficar lisa, elástica e brilhante\n• A massa ficará pegajosa — é normal";
+"recipe.brioche.step.4.instruction" = "Primeira fermentação (Fermentação em massa)";
+"recipe.brioche.step.4.notes" = "• Cobrir a tigela\n• Deixar em local aquecido\n• A massa deve dobrar de tamanho";
+"recipe.brioche.step.5.instruction" = "Desinflar a massa";
+"recipe.brioche.step.5.notes" = "• Pressionar suavemente para remover o excesso de ar\n• Não sovar demais\n• Preparar para formatar";
+"recipe.brioche.step.6.instruction" = "Formatar a brioche";
+"recipe.brioche.step.6.notes" = "Escolha uma opção:\n• Pão de brioche → dividir em 3–4 bolinhas, colocar na forma\n• Bolinhas de brioche → formar bolinhas redondas firmes, colocar na forma\n• Cobrir com pano";
+"recipe.brioche.step.7.instruction" = "Segunda fermentação (Fermentação final)";
+"recipe.brioche.step.7.notes" = "• A massa deve fermentar até quase dobrar\n• Muito importante para a maciez";
+"recipe.brioche.step.8.instruction" = "Pincelar com ovo";
+"recipe.brioche.step.8.notes" = "• Misturar 1 ovo + um pouco de leite\n• Pincelar suavemente por cima";
+"recipe.brioche.step.9.instruction" = "Assar";
+"recipe.brioche.step.9.notes" = "• Pré-aquecer o forno a 175°C\n• Assar 25–30 minutos (pão)\n• Ou 18–22 minutos (bolinhas individuais)\n• Dourado por cima";
+
+// MARK: - Croissants
+"recipe.croissants.step.1.instruction" = "Preparar a massa (Détrempe)";
+"recipe.croissants.step.1.notes" = "• 500g de farinha\n• 10g de sal\n• 60g de açúcar\n• 10g de fermento seco\n• 300g de leite frio\n• Misturar até formar a massa (ainda sem manteiga)\n• Cobrir a tigela";
+"recipe.croissants.step.2.instruction" = "Sovar levemente";
+"recipe.croissants.step.2.notes" = "• Sovar suavemente até ficar liso (2–3 minutos)\n• Não trabalhar demais\n• Formar um retângulo\n• Envolver e refrigerar";
+"recipe.croissants.step.3.instruction" = "Preparar o bloco de manteiga";
+"recipe.croissants.step.3.notes" = "• 250g de manteiga fria\n• Formar um quadrado plano (cerca de 15×15 cm)\n• Envolver e refrigerar\n\n(Mesma duração da massa; devem estar igualmente frios)";
+"recipe.croissants.step.4.instruction" = "Envolver a manteiga";
+"recipe.croissants.step.4.notes" = "• Colocar o bloco de manteiga no centro da massa\n• Dobrar a massa sobre a manteiga (formato envelope)\n• Selar as bordas firmemente\n• Refrigerar para relaxar o glúten";
+"recipe.croissants.step.5.instruction" = "Laminar — Esticar + Primeira dobra (Dobra simples)";
+"recipe.croissants.step.5.notes" = "• Esticar a massa em um retângulo longo\n• Dobrar em três (como uma carta)\n• Envolver e resfriar";
+"recipe.croissants.step.6.instruction" = "Laminar — Segunda dobra (Dobra simples)";
+"recipe.croissants.step.6.notes" = "• Esticar novamente em retângulo longo\n• Dobrar em três novamente\n• Envolver e resfriar";
+"recipe.croissants.step.7.instruction" = "Laminar — Terceira dobra (Dobra final)";
+"recipe.croissants.step.7.notes" = "• Esticar e dobrar em três uma última vez\n• Isso completa 3 dobras\n• Envolver e resfriar";
+"recipe.croissants.step.8.instruction" = "Esticar a folha final";
+"recipe.croissants.step.8.notes" = "• Esticar a massa a ~4 mm de espessura\n• Manter as bordas uniformes\n• Polvilhar levemente se necessário";
+"recipe.croissants.step.9.instruction" = "Cortar triângulos";
+"recipe.croissants.step.9.notes" = "• Cortar triângulos isósceles longos (base ~8–10 cm)\n• Fazer um pequeno corte na base\n• Esticar suavemente";
+"recipe.croissants.step.10.instruction" = "Formar os croissants";
+"recipe.croissants.step.10.notes" = "• Enrolar da base até a ponta\n• Não pressionar muito forte\n• Colocar com a ponta para baixo na assadeira";
+"recipe.croissants.step.11.instruction" = "Fermentação (Fermentação final)";
+"recipe.croissants.step.11.notes" = "• Deixar os croissants fermentarem a 25–27°C\n• Devem ficar fofos, levemente bambos\n• NÃO deixar a manteiga derreter";
+"recipe.croissants.step.12.instruction" = "Pincelar com ovo";
+"recipe.croissants.step.12.notes" = "• Misturar 1 ovo + um pouco de leite\n• Pincelar suavemente por cima";
+"recipe.croissants.step.13.instruction" = "Assar";
+"recipe.croissants.step.13.notes" = "• Pré-aquecer o forno a 200°C\n• Assar 12 min, depois abaixar para 190°C\n• Assar mais 8–10 minutos\n• Camadas douradas, folheadas, crocantes";
+
+// MARK: - Pain au Chocolat
+"recipe.pain.au.chocolat.step.1.instruction" = "Preparar a massa (Détrempe)";
+"recipe.pain.au.chocolat.step.1.notes" = "• 500g de farinha\n• 10g de sal\n• 60g de açúcar\n• 10g de fermento seco\n• 300g de leite frio\n• Misturar até formar a massa (ainda sem manteiga)\n• Cobrir a tigela";
+"recipe.pain.au.chocolat.step.2.instruction" = "Sovar levemente";
+"recipe.pain.au.chocolat.step.2.notes" = "• Sovar suavemente 2–3 minutos\n• Formar um retângulo\n• Envolver e refrigerar";
+"recipe.pain.au.chocolat.step.3.instruction" = "Preparar o bloco de manteiga";
+"recipe.pain.au.chocolat.step.3.notes" = "• 250g de manteiga fria\n• Formar um quadrado plano de 15×15 cm\n• Envolver e refrigerar";
+"recipe.pain.au.chocolat.step.4.instruction" = "Envolver a manteiga";
+"recipe.pain.au.chocolat.step.4.notes" = "• Colocar o bloco de manteiga no centro da massa\n• Dobrar a massa sobre a manteiga (envelope)\n• Selar as bordas\n• Refrigerar";
+"recipe.pain.au.chocolat.step.5.instruction" = "Laminar — Primeira dobra (Dobra simples)";
+"recipe.pain.au.chocolat.step.5.notes" = "• Esticar a massa em retângulo longo\n• Dobrar em três (como uma carta)\n• Envolver e resfriar";
+"recipe.pain.au.chocolat.step.6.instruction" = "Laminar — Segunda dobra (Dobra simples)";
+"recipe.pain.au.chocolat.step.6.notes" = "• Esticar novamente\n• Dobrar em três\n• Envolver e resfriar";
+"recipe.pain.au.chocolat.step.7.instruction" = "Laminar — Terceira dobra (Dobra final)";
+"recipe.pain.au.chocolat.step.7.notes" = "• Esticar e dobrar em três uma última vez\n• Envolver e resfriar";
+"recipe.pain.au.chocolat.step.8.instruction" = "Esticar a folha final";
+"recipe.pain.au.chocolat.step.8.notes" = "• Esticar a massa a ~4 mm de espessura\n• Manter as bordas retas";
+"recipe.pain.au.chocolat.step.9.instruction" = "Cortar retângulos";
+"recipe.pain.au.chocolat.step.9.notes" = "• Cortar retângulos de cerca de 8×12 cm\n• Manter a massa fria para evitar que a manteiga derreta";
+"recipe.pain.au.chocolat.step.10.instruction" = "Adicionar barras de chocolate";
+"recipe.pain.au.chocolat.step.10.notes" = "• Colocar 1 barra de chocolate perto da borda curta\n• Enrolar uma vez\n• Adicionar a segunda barra\n• Terminar de enrolar, costura para baixo";
+"recipe.pain.au.chocolat.step.11.instruction" = "Fermentação (Fermentação final)";
+"recipe.pain.au.chocolat.step.11.notes" = "• Deixar fermentar a 25–27°C\n• Devem ficar fofos e arejados\n• A manteiga não deve derreter";
+"recipe.pain.au.chocolat.step.12.instruction" = "Pincelar com ovo";
+"recipe.pain.au.chocolat.step.12.notes" = "• Misturar 1 ovo + um pouco de leite\n• Pincelar levemente por cima";
+"recipe.pain.au.chocolat.step.13.instruction" = "Assar";
+"recipe.pain.au.chocolat.step.13.notes" = "• Pré-aquecer o forno a 200°C\n• Assar 12 minutos\n• Abaixar para 190°C e assar mais 8–10 minutos\n• Deve ficar dourado e folhado";
+
+// MARK: - Bagels
+"recipe.bagels.step.1.instruction" = "Preparar a massa";
+"recipe.bagels.step.1.notes" = "• 500g de farinha de trigo\n• 10g de sal\n• 10g de açúcar\n• 7g de fermento seco\n• 300g de água morna\n• Misturar até formar a massa\n• Cobrir a tigela";
+"recipe.bagels.step.2.instruction" = "Sovar a massa";
+"recipe.bagels.step.2.notes" = "• Sovar 8–10 minutos até ficar liso e firme\n• A massa deve ser mais firme que massa de pão\n• Formar uma bola";
+"recipe.bagels.step.3.instruction" = "Primeira fermentação (Fermentação em massa)";
+"recipe.bagels.step.3.notes" = "• Colocar a massa em uma tigela levemente untada\n• Cobrir\n• Deixar fermentar até dobrar";
+"recipe.bagels.step.4.instruction" = "Dividir a massa";
+"recipe.bagels.step.4.notes" = "• Cortar a massa em 8 pedaços iguais\n• Enrolar cada um em uma bola firme";
+"recipe.bagels.step.5.instruction" = "Formar os bagels";
+"recipe.bagels.step.5.notes" = "Use um dos dois métodos:\n• Método A: Fazer um buraco no centro, esticar a 3–4 cm\n• Método B: Enrolar em corda e selar as extremidades juntas\n• Colocar na assadeira";
+"recipe.bagels.step.6.instruction" = "Segunda fermentação";
+"recipe.bagels.step.6.notes" = "• Cobrir os bagels formatados com pano\n• Deixar descansar antes de ferver";
+"recipe.bagels.step.7.instruction" = "Ferver os bagels";
+"recipe.bagels.step.7.notes" = "• Levar a água para ferver\n• Adicionar 1 colher de sopa de açúcar ou mel (opcional)\n• Ferver os bagels 30–45 segundos de cada lado\n• Retirar e escorrer";
+"recipe.bagels.step.8.instruction" = "Adicionar coberturas";
+"recipe.bagels.step.8.notes" = "Escolha coberturas:\n• Gergelim\n• Papoula\n• Mix tudo\n• Flocos de cebola\n• Ou deixar natural\n\nPressionar suavemente na massa molhada";
+"recipe.bagels.step.9.instruction" = "Assar";
+"recipe.bagels.step.9.notes" = "• Pré-aquecer o forno a 220°C\n• Assar 18–22 minutos\n• Deve ficar dourado e brilhante";
+
+// MARK: - English Muffins
+"recipe.english.muffins.step.1.instruction" = "Preparar a massa";
+"recipe.english.muffins.step.1.notes" = "• 350g de leite (morno)\n• 30g de manteiga (derretida)\n• 20g de açúcar\n• 7g de fermento seco\n• Misturar até dissolver";
+"recipe.english.muffins.step.2.instruction" = "Adicionar ingredientes secos";
+"recipe.english.muffins.step.2.notes" = "• Adicionar 500g de farinha\n• Adicionar 10g de sal\n• Misturar até formar a massa\n• A massa deve ficar macia e levemente pegajosa";
+"recipe.english.muffins.step.3.instruction" = "Sovar a massa";
+"recipe.english.muffins.step.3.notes" = "• Sovar 5–7 minutos até ficar liso\n• Evitar adicionar muita farinha";
+"recipe.english.muffins.step.4.instruction" = "Primeira fermentação (Fermentação em massa)";
+"recipe.english.muffins.step.4.notes" = "• Colocar a massa em uma tigela levemente untada\n• Cobrir com pano\n• Deixar dobrar de tamanho";
+"recipe.english.muffins.step.5.instruction" = "Esticar a massa";
+"recipe.english.muffins.step.5.notes" = "• Virar a massa sobre superfície polvilhada\n• Esticar a ~2 cm de espessura\n• Polvilhar a superfície com farinha ou sêmola";
+"recipe.english.muffins.step.6.instruction" = "Cortar círculos de muffin";
+"recipe.english.muffins.step.6.notes" = "• Usar um cortador de 7–8 cm\n• Transferir os círculos para assadeira polvilhada com sêmola\n• Polvilhar também o topo com sêmola";
+"recipe.english.muffins.step.7.instruction" = "Segunda fermentação";
+"recipe.english.muffins.step.7.notes" = "• Cobrir os muffins levemente\n• Deixar crescer levemente\n• Não fermentar demais";
+"recipe.english.muffins.step.8.instruction" = "Assar na frigideira (Primeiro lado)";
+"recipe.english.muffins.step.8.notes" = "• Pré-aquecer a frigideira em fogo médio-baixo\n• Sem óleo ou manteiga\n• Assar os muffins 6–7 minutos no primeiro lado\n• Deve dourar suavemente";
+"recipe.english.muffins.step.9.instruction" = "Assar na frigideira (Segundo lado)";
+"recipe.english.muffins.step.9.notes" = "• Virar os muffins\n• Assar mais 6–7 minutos\n• Devem crescer e endurecer";
+"recipe.english.muffins.step.10.instruction" = "Finalizar no forno (Opcional mas recomendado)";
+"recipe.english.muffins.step.10.notes" = "• Pré-aquecer o forno a 175°C\n• Assar 5–7 minutos para finalizar o miolo interno\n• Ajuda a formar as características \"nooks & crannies\"";
+
