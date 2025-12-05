@@ -339,57 +339,21 @@ extension BreadRecipe {
         steps: [
             BreadStep(
                 stepNumber: 1,
-                instruction: "Prepare the dough (Mixing #1)",
-                timerDuration: 10 * 60, // 10 minutes
-                notes: "• 250 g milk (lukewarm)\n• 10 g dry yeast\n• 60 g sugar\n• 3 eggs\n• Mix until combined"
+                instruction: "Prepare and knead the dough",
+                timerDuration: 2 * 3600, // 2 hours first rise
+                notes: "• 250 g milk (lukewarm)\n• 10 g dry yeast\n• 60 g sugar\n• 3 eggs\n• Mix until combined\n• Add 500 g flour and 10 g salt\n• Mix until dough starts forming\n• Add 150 g softened butter, piece by piece\n• Knead until dough is smooth, elastic, and shiny\n• Dough will be sticky — this is normal\n\nFirst Rise:\n• Cover the bowl\n• Leave in warm room\n• Dough should double in size"
             ),
             BreadStep(
                 stepNumber: 2,
-                instruction: "Add flour & salt (Mixing #2)",
-                timerDuration: 5 * 60, // 5 minutes
-                notes: "• Add 500 g flour\n• Add 10 g salt\n• Mix until dough starts forming"
+                instruction: "Shape the Brioche",
+                timerDuration: 1 * 3600, // 1 hour proofing
+                notes: "• Gently press down dough to remove excess air\n• Do not over-knead\n\nChoose one shape:\n• Brioche loaf → divide into 3–4 balls, place in loaf pan\n• Brioche balls → form tight round balls, place in mold\n• Cover with towel\n\nSecond Rise (Proofing):\n• Dough should rise until almost doubled\n• Very important for softness"
             ),
             BreadStep(
                 stepNumber: 3,
-                instruction: "Knead with butter (Mixing #3)",
-                timerDuration: 10 * 60, // 10 minutes
-                notes: "• Add 150 g softened butter, piece by piece\n• Knead until dough is smooth, elastic, and shiny\n• Dough will be sticky — this is normal"
-            ),
-            BreadStep(
-                stepNumber: 4,
-                instruction: "First Rise (Bulk Fermentation)",
-                timerDuration: 2 * 3600, // 2 hours
-                notes: "• Cover the bowl\n• Leave in warm room\n• Dough should double in size"
-            ),
-            BreadStep(
-                stepNumber: 5,
-                instruction: "Degas the dough",
-                timerDuration: 5 * 60, // 5 minutes
-                notes: "• Gently press down to remove excess air\n• Do not over-knead\n• Prepare for shaping"
-            ),
-            BreadStep(
-                stepNumber: 6,
-                instruction: "Shape the Brioche",
-                timerDuration: 15 * 60, // 15 minutes
-                notes: "Choose one:\n• Brioche loaf → divide into 3–4 balls, place in loaf pan\n• Brioche balls → form tight round balls, place in mold\n• Cover with towel"
-            ),
-            BreadStep(
-                stepNumber: 7,
-                instruction: "Second Rise (Proofing)",
-                timerDuration: 1 * 3600, // 1 hour
-                notes: "• Dough should rise until almost doubled\n• Very important for softness"
-            ),
-            BreadStep(
-                stepNumber: 8,
-                instruction: "Egg Wash",
-                timerDuration: 2 * 60, // 2 minutes
-                notes: "• Mix 1 egg + a splash of milk\n• Brush gently on top"
-            ),
-            BreadStep(
-                stepNumber: 9,
-                instruction: "Bake",
-                timerDuration: 0, // No timer after baking step
-                notes: "• Preheat oven to 350°F (175°C)\n• Bake 25–30 minutes (loaf)\n• Or 18–22 minutes (individual balls)\n• Golden brown on top"
+                instruction: "Egg wash and Bake",
+                timerDuration: 27 * 60, // ~27 minutes baking
+                notes: "• Preheat oven to 350°F (175°C)\n• Mix 1 egg + a splash of milk\n• Brush gently on top\n• Bake 25–30 minutes (loaf)\n• Or 18–22 minutes (individual balls)\n• Golden brown on top\n• Let cool slightly before serving"
             )
         ]
     )
@@ -400,80 +364,50 @@ extension BreadRecipe {
             BreadStep(
                 stepNumber: 1,
                 instruction: "Prepare the dough (Détrempe)",
-                timerDuration: 20 * 60, // 20 minutes
-                notes: "• 500 g flour\n• 10 g salt\n• 60 g sugar\n• 10 g dry yeast\n• 300 g cold milk\n• Mix until dough forms (no butter yet)\n• Cover bowl"
+                timerDuration: 1 * 3600, // 1 hour refrigeration
+                notes: "• 500 g flour\n• 10 g salt\n• 60 g sugar\n• 10 g dry yeast\n• 300 g cold milk\n• Mix until dough forms\n• Knead gently 2–3 minutes until smooth\n• Shape into rectangle, wrap and refrigerate\n\nDuring this time, prepare the butter block:\n• 250 g cold butter\n• Shape into 15×15 cm flat square\n• Wrap and refrigerate"
             ),
             BreadStep(
                 stepNumber: 2,
-                instruction: "Light Kneading",
-                timerDuration: 1 * 3600, // 1 hour
-                notes: "• Knead gently until smooth (2–3 minutes)\n• Do not overwork\n• Shape into a rectangle\n• Wrap and refrigerate"
+                instruction: "Encase the butter",
+                timerDuration: 30 * 60, // 30 minutes chilling
+                notes: "• Place butter block in center of dough\n• Fold dough over butter (envelope shape)\n• Seal edges tightly\n• Wrap and refrigerate"
             ),
             BreadStep(
                 stepNumber: 3,
-                instruction: "Prepare butter block",
-                timerDuration: 1 * 3600, // 1 hour
-                notes: "• 250 g cold butter\n• Shape into flat square (about 15×15 cm)\n• Wrap and refrigerate\n\n(Same duration as dough; they should be equally cold)"
-            ),
-            BreadStep(
-                stepNumber: 4,
-                instruction: "Encasing the butter",
-                timerDuration: 30 * 60, // 30 minutes
-                notes: "• Place butter block in center of dough\n• Fold dough over butter (envelope shape)\n• Seal edges tightly\n• Refrigerate to relax gluten"
-            ),
-            BreadStep(
-                stepNumber: 5,
-                instruction: "Lamination — Roll + First Fold (Single Fold)",
-                timerDuration: 30 * 60, // 30 minutes
+                instruction: "First Fold (Lamination)",
+                timerDuration: 30 * 60, // 30 minutes chilling
                 notes: "• Roll dough into a long rectangle\n• Fold in thirds (like a letter)\n• Wrap and chill"
             ),
             BreadStep(
-                stepNumber: 6,
-                instruction: "Lamination — Second Fold (Single Fold)",
-                timerDuration: 30 * 60, // 30 minutes
+                stepNumber: 4,
+                instruction: "Second Fold (Lamination)",
+                timerDuration: 30 * 60, // 30 minutes chilling
                 notes: "• Roll out again into long rectangle\n• Fold in thirds again\n• Wrap and chill"
             ),
             BreadStep(
-                stepNumber: 7,
-                instruction: "Lamination — Third Fold (Final Fold)",
-                timerDuration: 1 * 3600, // 1 hour
+                stepNumber: 5,
+                instruction: "Third Fold (Final Lamination)",
+                timerDuration: 1 * 3600, // 1 hour chilling
                 notes: "• Roll and fold in thirds one last time\n• This completes 3 folds\n• Wrap and chill"
             ),
             BreadStep(
+                stepNumber: 6,
+                instruction: "Shape the croissants",
+                timerDuration: 2 * 3600, // 2 hours proofing
+                notes: "• Roll dough to ~4 mm thickness\n• Cut long isosceles triangles (base ~8–10 cm)\n• Make small slit at base, stretch gently\n• Roll from base to tip, place tip underneath\n• Arrange on baking tray\n\nProofing:\n• Cover and let rise at 77–80°F (25–27°C)\n• Should become puffy and slightly jiggly\n• Do NOT let butter melt"
+            ),
+            BreadStep(
+                stepNumber: 7,
+                instruction: "Egg wash and Bake",
+                timerDuration: 12 * 60, // 12 minutes first bake
+                notes: "• Preheat oven to 400°F (200°C)\n• Mix 1 egg + splash of milk\n• Brush gently on top of croissants\n• Place in oven and bake at 400°F"
+            ),
+            BreadStep(
                 stepNumber: 8,
-                instruction: "Roll final sheet",
-                timerDuration: 10 * 60, // 10 minutes
-                notes: "• Roll dough to ~4 mm thickness\n• Keep edges even\n• Lightly flour as needed"
-            ),
-            BreadStep(
-                stepNumber: 9,
-                instruction: "Cut triangles",
-                timerDuration: 5 * 60, // 5 minutes
-                notes: "• Cut long isosceles triangles (base ~8–10 cm)\n• Make small slit at base\n• Stretch gently"
-            ),
-            BreadStep(
-                stepNumber: 10,
-                instruction: "Shape croissants",
-                timerDuration: 5 * 60, // 5 minutes
-                notes: "• Roll from base to tip\n• Do not press too hard\n• Place tip underneath on baking tray"
-            ),
-            BreadStep(
-                stepNumber: 11,
-                instruction: "Proofing (Final Rise)",
-                timerDuration: 2 * 3600, // 2 hours
-                notes: "• Let croissants rise at 77–80°F (25–27°C)\n• Should become puffy, slightly jiggly\n• Do NOT let butter melt"
-            ),
-            BreadStep(
-                stepNumber: 12,
-                instruction: "Egg wash",
-                timerDuration: 2 * 60, // 2 minutes
-                notes: "• Mix 1 egg + splash of milk\n• Brush gently on top"
-            ),
-            BreadStep(
-                stepNumber: 13,
-                instruction: "Bake",
-                timerDuration: 0, // No timer after baking step
-                notes: "• Preheat oven to 400°F (200°C)\n• Bake 12 min, then lower to 375°F (190°C)\n• Bake additional 8–10 minutes\n• Golden, flaky, crispy layers"
+                instruction: "Lower temperature and finish baking",
+                timerDuration: 10 * 60, // 8-10 minutes second bake
+                notes: "• Lower oven to 375°F (190°C)\n• Continue baking 8–10 more minutes\n• Should be golden with flaky, crispy layers\n• Let cool slightly before serving"
             )
         ]
     )
@@ -484,80 +418,50 @@ extension BreadRecipe {
             BreadStep(
                 stepNumber: 1,
                 instruction: "Prepare the dough (Détrempe)",
-                timerDuration: 20 * 60, // 20 minutes
-                notes: "• 500 g flour\n• 10 g salt\n• 60 g sugar\n• 10 g dry yeast\n• 300 g cold milk\n• Mix until dough forms (no butter yet)\n• Cover bowl"
+                timerDuration: 1 * 3600, // 1 hour refrigeration
+                notes: "• 500 g flour\n• 10 g salt\n• 60 g sugar\n• 10 g dry yeast\n• 300 g cold milk\n• Mix until dough forms\n• Knead gently 2–3 minutes until smooth\n• Shape into rectangle, wrap and refrigerate\n\nDuring this time, prepare the butter block:\n• 250 g cold butter\n• Shape into 15×15 cm flat square\n• Wrap and refrigerate"
             ),
             BreadStep(
                 stepNumber: 2,
-                instruction: "Light Kneading",
-                timerDuration: 1 * 3600, // 1 hour
-                notes: "• Knead gently 2–3 minutes\n• Shape into rectangle\n• Wrap and refrigerate"
+                instruction: "Encase the butter",
+                timerDuration: 30 * 60, // 30 minutes chilling
+                notes: "• Place butter block in the center of dough\n• Fold dough over butter (envelope shape)\n• Seal edges tightly\n• Wrap and refrigerate"
             ),
             BreadStep(
                 stepNumber: 3,
-                instruction: "Prepare the butter block",
-                timerDuration: 1 * 3600, // 1 hour
-                notes: "• 250 g cold butter\n• Shape into 15×15 cm flat square\n• Wrap and refrigerate"
+                instruction: "First Fold (Lamination)",
+                timerDuration: 30 * 60, // 30 minutes chilling
+                notes: "• Roll dough into a long rectangle\n• Fold in thirds (like a letter)\n• Wrap and chill"
             ),
             BreadStep(
                 stepNumber: 4,
-                instruction: "Encasing the butter",
-                timerDuration: 30 * 60, // 30 minutes
-                notes: "• Place butter block in the center of dough\n• Fold dough over butter (envelope)\n• Seal edges\n• Refrigerate"
+                instruction: "Second Fold (Lamination)",
+                timerDuration: 30 * 60, // 30 minutes chilling
+                notes: "• Roll out again into long rectangle\n• Fold in thirds again\n• Wrap and chill"
             ),
             BreadStep(
                 stepNumber: 5,
-                instruction: "Lamination — First Fold (Single Fold)",
-                timerDuration: 30 * 60, // 30 minutes
-                notes: "• Roll dough into long rectangle\n• Fold in thirds (like a letter)\n• Wrap and chill"
+                instruction: "Third Fold (Final Lamination)",
+                timerDuration: 1 * 3600, // 1 hour chilling
+                notes: "• Roll and fold in thirds one last time\n• This completes 3 folds\n• Wrap and chill"
             ),
             BreadStep(
                 stepNumber: 6,
-                instruction: "Lamination — Second Fold (Single Fold)",
-                timerDuration: 30 * 60, // 30 minutes
-                notes: "• Roll again\n• Fold in thirds\n• Wrap and chill"
+                instruction: "Shape the pain au chocolat",
+                timerDuration: 2 * 3600, // 2 hours proofing
+                notes: "• Roll dough to ~4 mm thickness\n• Cut rectangles about 8×12 cm\n• Place one chocolate baton near the short edge\n• Roll once, add second baton\n• Finish rolling, seam underneath\n• Place on baking tray\n\nProofing:\n• Cover and let rise at 77–80°F (25–27°C)\n• Should become puffy and aerated\n• Butter must not melt"
             ),
             BreadStep(
                 stepNumber: 7,
-                instruction: "Lamination — Third Fold (Final Fold)",
-                timerDuration: 1 * 3600, // 1 hour
-                notes: "• Roll and fold thirds one last time\n• Wrap and chill"
+                instruction: "Egg wash and Bake",
+                timerDuration: 12 * 60, // 12 minutes first bake
+                notes: "• Preheat oven to 400°F (200°C)\n• Mix 1 egg + splash of milk\n• Brush lightly on top\n• Place in oven and bake at 400°F"
             ),
             BreadStep(
                 stepNumber: 8,
-                instruction: "Roll final sheet",
-                timerDuration: 10 * 60, // 10 minutes
-                notes: "• Roll dough to ~4 mm thickness\n• Keep edges straight"
-            ),
-            BreadStep(
-                stepNumber: 9,
-                instruction: "Cut rectangles",
-                timerDuration: 5 * 60, // 5 minutes
-                notes: "• Cut rectangles about 8×12 cm\n• Keep dough chilled to prevent butter melting"
-            ),
-            BreadStep(
-                stepNumber: 10,
-                instruction: "Add the chocolate batons",
-                timerDuration: 5 * 60, // 5 minutes
-                notes: "• Place one chocolate baton near the short edge\n• Roll once\n• Add second baton\n• Finish rolling, seam underneath"
-            ),
-            BreadStep(
-                stepNumber: 11,
-                instruction: "Proofing (Final Rise)",
-                timerDuration: 2 * 3600, // 2 hours
-                notes: "• Let rise at 77–80°F (25–27°C)\n• Should become puffy and aerated\n• Butter must not melt"
-            ),
-            BreadStep(
-                stepNumber: 12,
-                instruction: "Egg Wash",
-                timerDuration: 2 * 60, // 2 minutes
-                notes: "• Mix 1 egg + splash of milk\n• Brush lightly on top"
-            ),
-            BreadStep(
-                stepNumber: 13,
-                instruction: "Bake",
-                timerDuration: 0, // No timer after baking step
-                notes: "• Preheat oven to 400°F (200°C)\n• Bake 12 minutes\n• Lower to 375°F (190°C) and bake 8–10 more minutes\n• Should be golden and flaky"
+                instruction: "Lower temperature and finish baking",
+                timerDuration: 10 * 60, // 8-10 minutes second bake
+                notes: "• Lower oven to 375°F (190°C)\n• Continue baking 8–10 more minutes\n• Should be golden and flaky\n• Let cool slightly before serving"
             )
         ]
     )
@@ -567,57 +471,21 @@ extension BreadRecipe {
         steps: [
             BreadStep(
                 stepNumber: 1,
-                instruction: "Prepare the dough",
-                timerDuration: 10 * 60, // 10 minutes
-                notes: "• 500 g bread flour\n• 10 g salt\n• 10 g sugar\n• 7 g dry yeast\n• 300 g warm water\n• Mix until dough comes together\n• Cover bowl"
+                instruction: "Prepare and knead the dough",
+                timerDuration: 1 * 3600, // 1 hour first rise
+                notes: "• 500 g bread flour\n• 10 g salt\n• 10 g sugar\n• 7 g dry yeast\n• 300 g warm water\n• Mix until dough comes together\n• Knead 8–10 minutes until smooth and firm\n• Dough should be stiffer than bread dough\n• Form into a ball\n\nFirst Rise:\n• Place dough in lightly oiled bowl\n• Cover\n• Let rise until doubled"
             ),
             BreadStep(
                 stepNumber: 2,
-                instruction: "Knead the dough",
-                timerDuration: 5 * 60, // 5 minutes
-                notes: "• Knead 8–10 minutes until smooth and firm\n• Dough should be stiffer than bread dough\n• Form into a ball"
+                instruction: "Shape the bagels",
+                timerDuration: 20 * 60, // 20 minutes second rise
+                notes: "• Cut dough into 8 equal pieces\n• Roll each into a tight ball\n\nUse one of two methods:\n• Method A: Poke hole in center, stretch to 3–4 cm\n• Method B: Roll rope & seal ends together\n• Place on tray\n\nSecond Rise:\n• Cover shaped bagels with towel\n• Let rest before boiling"
             ),
             BreadStep(
                 stepNumber: 3,
-                instruction: "First Rise (Bulk Fermentation)",
-                timerDuration: 1 * 3600, // 1 hour
-                notes: "• Place dough in lightly oiled bowl\n• Cover\n• Let rise until doubled"
-            ),
-            BreadStep(
-                stepNumber: 4,
-                instruction: "Divide the dough",
-                timerDuration: 5 * 60, // 5 minutes
-                notes: "• Cut dough into 8 equal pieces\n• Roll each into a tight ball"
-            ),
-            BreadStep(
-                stepNumber: 5,
-                instruction: "Shape the bagels",
-                timerDuration: 10 * 60, // 10 minutes
-                notes: "Use one of two methods:\n• Method A: Poke hole in center, stretch to 3–4 cm\n• Method B: Roll rope & seal ends together\n• Place on tray"
-            ),
-            BreadStep(
-                stepNumber: 6,
-                instruction: "Second Rise",
-                timerDuration: 20 * 60, // 20 minutes
-                notes: "• Cover shaped bagels with towel\n• Let rest before boiling"
-            ),
-            BreadStep(
-                stepNumber: 7,
-                instruction: "Boil the bagels",
-                timerDuration: 10 * 60, // 10 minutes
-                notes: "• Bring water to boil\n• Add 1 tbsp sugar or honey (optional)\n• Boil bagels 30–45 sec per side\n• Remove and drain"
-            ),
-            BreadStep(
-                stepNumber: 8,
-                instruction: "Add toppings",
-                timerDuration: 3 * 60, // 3 minutes
-                notes: "Choose toppings:\n• Sesame\n• Poppy\n• Everything mix\n• Onion flakes\n• Or leave plain\n\nPress gently onto wet dough"
-            ),
-            BreadStep(
-                stepNumber: 9,
-                instruction: "Bake",
-                timerDuration: 0, // No timer after baking step
-                notes: "• Preheat oven to 425°F (220°C)\n• Bake 18–22 minutes\n• Should be golden and shiny"
+                instruction: "Boil, add toppings, and Bake",
+                timerDuration: 20 * 60, // ~20 minutes baking
+                notes: "• Preheat oven to 425°F (220°C)\n• Bring water to boil\n• Add 1 tbsp sugar or honey (optional)\n• Boil bagels 30–45 sec per side\n• Remove and drain\n\nChoose toppings:\n• Sesame, Poppy, Everything mix, Onion flakes, or plain\n• Press gently onto wet dough\n\nBake:\n• Place on baking sheet\n• Bake 18–22 minutes\n• Should be golden and shiny"
             )
         ]
     )
@@ -627,63 +495,33 @@ extension BreadRecipe {
         steps: [
             BreadStep(
                 stepNumber: 1,
-                instruction: "Prepare the dough",
-                timerDuration: 5 * 60, // 5 minutes
-                notes: "• 350 g milk (warm)\n• 30 g butter (melted)\n• 20 g sugar\n• 7 g dry yeast\n• Mix until dissolved"
+                instruction: "Prepare and knead the dough",
+                timerDuration: 1 * 3600, // 1 hour first rise
+                notes: "• 350 g milk (warm)\n• 30 g butter (melted)\n• 20 g sugar\n• 7 g dry yeast\n• Mix until dissolved\n• Add 500 g flour and 10 g salt\n• Mix until dough forms\n• Dough should be soft and slightly sticky\n• Knead 5–7 minutes until smooth\n• Avoid adding too much flour\n\nFirst Rise:\n• Place dough in lightly oiled bowl\n• Cover with towel\n• Allow to double in size"
             ),
             BreadStep(
                 stepNumber: 2,
-                instruction: "Add dry ingredients",
-                timerDuration: 5 * 60, // 5 minutes
-                notes: "• Add 500 g flour\n• Add 10 g salt\n• Mix until dough forms\n• Dough should be soft and slightly sticky"
+                instruction: "Shape the muffins",
+                timerDuration: 20 * 60, // 20 minutes second rise
+                notes: "• Turn dough onto floured surface\n• Roll to ~2 cm thickness\n• Dust surface with flour or semolina\n• Use a 7–8 cm cutter\n• Transfer rounds onto semolina-covered tray\n• Dust tops with semolina as well\n\nSecond Rise:\n• Cover muffins lightly\n• Let puff up slightly\n• Do not overproof"
             ),
             BreadStep(
                 stepNumber: 3,
-                instruction: "Knead the dough",
-                timerDuration: 5 * 60, // 5 minutes
-                notes: "• Knead 5–7 minutes until smooth\n• Avoid adding too much flour"
-            ),
-            BreadStep(
-                stepNumber: 4,
-                instruction: "First Rise (Bulk Fermentation)",
-                timerDuration: 1 * 3600, // 1 hour
-                notes: "• Place dough in lightly oiled bowl\n• Cover with towel\n• Allow to double in size"
-            ),
-            BreadStep(
-                stepNumber: 5,
-                instruction: "Roll out the dough",
-                timerDuration: 5 * 60, // 5 minutes
-                notes: "• Turn dough onto floured surface\n• Roll to ~2 cm thickness\n• Dust surface with flour or semolina"
-            ),
-            BreadStep(
-                stepNumber: 6,
-                instruction: "Cut muffin rounds",
-                timerDuration: 10 * 60, // 10 minutes
-                notes: "• Use a 7–8 cm cutter\n• Transfer rounds onto semolina-covered tray\n• Dust tops with semolina as well"
-            ),
-            BreadStep(
-                stepNumber: 7,
-                instruction: "Second Rise",
-                timerDuration: 20 * 60, // 20 minutes
-                notes: "• Cover muffins lightly\n• Let puff up slightly\n• Do not overproof"
-            ),
-            BreadStep(
-                stepNumber: 8,
                 instruction: "Cook on skillet (First Side)",
                 timerDuration: 7 * 60, // 7 minutes
                 notes: "• Preheat skillet on low-medium heat\n• No oil or butter\n• Cook muffins 6–7 minutes on first side\n• Should brown gently"
             ),
             BreadStep(
-                stepNumber: 9,
-                instruction: "Cook on skillet (Second Side)",
+                stepNumber: 4,
+                instruction: "Flip and cook (Second Side)",
                 timerDuration: 7 * 60, // 7 minutes
                 notes: "• Flip muffins\n• Cook another 6–7 minutes\n• They should rise and firm up"
             ),
             BreadStep(
-                stepNumber: 10,
-                instruction: "Finish in oven (Optional but recommended)",
-                timerDuration: 0, // No timer after baking step
-                notes: "• Preheat oven to 350°F (175°C)\n• Bake 5–7 minutes to finish interior crumb\n• Helps form iconic \"nooks & crannies\""
+                stepNumber: 5,
+                instruction: "Finish in oven",
+                timerDuration: 6 * 60, // 6 minutes
+                notes: "• Preheat oven to 350°F (175°C)\n• Bake 5–7 minutes to finish interior crumb\n• Helps form iconic \"nooks & crannies\"\n• Let cool before splitting with a fork"
             )
         ]
     )
