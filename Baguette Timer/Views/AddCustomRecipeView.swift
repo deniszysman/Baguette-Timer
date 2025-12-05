@@ -55,6 +55,14 @@ struct AddCustomRecipeView: View {
                 )
             })
         }
+        
+        // Configure navigation bar appearance for proper contrast in light/dark mode
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithDefaultBackground()
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.label]
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.label]
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
     
     var isFormValid: Bool {
