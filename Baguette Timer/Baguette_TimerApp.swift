@@ -45,6 +45,28 @@ struct Baguette_TimerApp: App {
                         }
                     }
                 }
+                .onOpenURL { url in
+                    // Handle deep link
+                    if let (recipeId, stepId) = ShareManager.shared.handleURL(url) {
+                        DispatchQueue.main.async {
+                            // If no stepId provided, use the first step of the recipe
+                            let finalStepId: UUID
+                            if let stepId = stepId {
+                                finalStepId = stepId
+                            } else {
+                                // Find the recipe and use its first step
+                                let allRecipes = BreadRecipe.availableRecipes + CustomRecipeManager.shared.customRecipes
+                                if let recipe = allRecipes.first(where: { $0.id == recipeId }),
+                                   let firstStep = recipe.steps.first {
+                                    finalStepId = firstStep.id
+                                } else {
+                                    return // Recipe not found
+                                }
+                            }
+                            navigationManager.navigateToRecipe(recipeId: recipeId, stepId: finalStepId)
+                        }
+                    }
+                }
         }
         .onChange(of: scenePhase) { oldPhase, newPhase in
             switch newPhase {

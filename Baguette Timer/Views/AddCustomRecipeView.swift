@@ -19,9 +19,17 @@ struct AddCustomRecipeView: View {
     @State private var steps: [CustomStepData] = [CustomStepData()]
     @State private var showIconPicker = false
     @State private var showDeleteConfirmation = false
+    @State private var showDiscardDraftConfirmation = false
+    @State private var hasLoadedDraft = false
+    @State private var autoSaveTimer: Timer?
     
     // For editing existing recipe
     let existingRecipe: BreadRecipe?
+    
+    /// Whether this is a new recipe (not editing existing)
+    private var isNewRecipe: Bool {
+        existingRecipe == nil
+    }
     
     private let availableIcons = [
         "birthday.cake.fill", "leaf.fill", "star.fill", "moon.fill",
@@ -90,7 +98,7 @@ struct AddCustomRecipeView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("custom.recipe.cancel".localized) {
-                        dismiss()
+                        handleCancel()
                     }
                     .foregroundColor(.orange)
                 }
@@ -98,9 +106,21 @@ struct AddCustomRecipeView: View {
             .sheet(isPresented: $showIconPicker) {
                 iconPickerSheet
             }
+            .onAppear {
+                loadDraftIfNeeded()
+                startAutoSave()
+            }
+            .onDisappear {
+                stopAutoSave()
+                // Save one final time when leaving
+                saveDraft()
+            }
             .onChange(of: photoPickerItem) {
                 loadSelectedPhoto()
             }
+            .onChange(of: recipeName) { _, _ in scheduleDraftSave() }
+            .onChange(of: selectedIcon) { _, _ in scheduleDraftSave() }
+            .onChange(of: selectedImage) { _, _ in saveDraftWithImage() }
             .alert("custom.recipe.delete.title".localized, isPresented: $showDeleteConfirmation) {
                 Button("custom.recipe.cancel".localized, role: .cancel) { }
                 Button("custom.recipe.delete".localized, role: .destructive) {
@@ -112,7 +132,79 @@ struct AddCustomRecipeView: View {
             } message: {
                 Text("custom.recipe.delete.message".localized)
             }
+            .alert("custom.recipe.discard.draft.title".localized, isPresented: $showDiscardDraftConfirmation) {
+                Button("custom.recipe.keep.editing".localized, role: .cancel) { }
+                Button("custom.recipe.discard".localized, role: .destructive) {
+                    customRecipeManager.clearDraft()
+                    dismiss()
+                }
+            } message: {
+                Text("custom.recipe.discard.draft.message".localized)
+            }
         }
+    }
+    
+    // MARK: - Draft Management
+    
+    private func loadDraftIfNeeded() {
+        // Only load draft for new recipes, not when editing
+        guard isNewRecipe && !hasLoadedDraft else { return }
+        hasLoadedDraft = true
+        
+        if let draft = customRecipeManager.loadDraft() {
+            recipeName = draft.name
+            selectedIcon = draft.icon
+            steps = draft.steps.isEmpty ? [CustomStepData()] : draft.steps
+            selectedImage = draft.image
+        }
+    }
+    
+    private func startAutoSave() {
+        guard isNewRecipe else { return }
+        // Auto-save every 2 seconds to catch step content changes
+        autoSaveTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { _ in
+            saveDraft()
+        }
+    }
+    
+    private func stopAutoSave() {
+        autoSaveTimer?.invalidate()
+        autoSaveTimer = nil
+    }
+    
+    private func scheduleDraftSave() {
+        // Immediate save for main fields
+        saveDraft()
+    }
+    
+    private func saveDraft() {
+        // Only save draft for new recipes
+        guard isNewRecipe else { return }
+        customRecipeManager.saveDraft(name: recipeName, icon: selectedIcon, steps: steps)
+    }
+    
+    private func saveDraftWithImage() {
+        // Only save draft for new recipes
+        guard isNewRecipe else { return }
+        customRecipeManager.saveDraftImage(selectedImage)
+        saveDraft()
+    }
+    
+    private func handleCancel() {
+        // For new recipes, check if there's data to save
+        if isNewRecipe && hasUnsavedData() {
+            showDiscardDraftConfirmation = true
+        } else {
+            dismiss()
+        }
+    }
+    
+    private func hasUnsavedData() -> Bool {
+        // Check if user has entered any data
+        let hasName = !recipeName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        let hasStepData = steps.contains { !$0.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+        let hasImage = selectedImage != nil
+        return hasName || hasStepData || hasImage
     }
     
     // MARK: - Recipe Header Section
@@ -396,6 +488,8 @@ struct AddCustomRecipeView: View {
             customRecipeManager.updateRecipe(recipe)
         } else {
             customRecipeManager.addRecipe(recipe)
+            // Clear draft after successful save
+            customRecipeManager.clearDraft()
         }
         
         dismiss()

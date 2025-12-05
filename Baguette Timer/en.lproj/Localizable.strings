@@ -67,7 +67,7 @@
 
 // MARK: - Recipe Names
 "recipe.french.baguette.name" = "French Baguette";
-"recipe.refresh.starter.name" = "Refresh your starter";
+"recipe.refresh.starter.name" = "Starter refresh";
 "recipe.sourdough.bread.ball.name" = "Sourdough Bread Ball";
 "recipe.brioche.name" = "Brioche";
 "recipe.croissants.name" = "Croissants";
@@ -97,7 +97,7 @@
 "recipe.french.baguette.step.10.instruction" = "Take out of the oven";
 "recipe.french.baguette.step.10.notes" = "Cover with a cloth";
 
-// MARK: - Refresh your starter
+// MARK: - Starter refresh
 "recipe.refresh.starter.step.1.instruction" = "Feed the starter";
 "recipe.refresh.starter.step.1.notes" = "Remove the starter from the fridge and discard 2 tablespoons of starter.\n\nAdd 2 tablespoons of fresh flour and 2 tablespoons of filtered or spring water.\n\nMix well, cover with a breathable cloth & rubber band.\n\nLet rest at room temperature for 12 hours.";
 "recipe.refresh.starter.step.2.instruction" = "Return to fridge";
@@ -271,4 +271,8 @@
 "custom.recipe.days" = "Days";
 "custom.recipe.hours" = "Hours";
 "custom.recipe.minutes" = "Minutes";
+"custom.recipe.discard.draft.title" = "Discard Draft?";
+"custom.recipe.discard.draft.message" = "You have unsaved changes. Your draft will be saved automatically.";
+"custom.recipe.keep.editing" = "Keep Editing";
+"custom.recipe.discard" = "Discard";
 

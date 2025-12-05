@@ -67,7 +67,7 @@
 
 // MARK: - Recipe Names
 "recipe.french.baguette.name" = "Baguette francesa";
-"recipe.refresh.starter.name" = "Refrescar tu masa madre";
+"recipe.refresh.starter.name" = "Refresco del iniciador";
 "recipe.sourdough.bread.ball.name" = "Bola de pan de masa madre";
 "recipe.brioche.name" = "Brioche";
 "recipe.croissants.name" = "Croissants";
@@ -97,7 +97,7 @@
 "recipe.french.baguette.step.10.instruction" = "Sacar del horno";
 "recipe.french.baguette.step.10.notes" = "Cubrir con un paño";
 
-// MARK: - Refresh your starter
+// MARK: - Starter refresh
 "recipe.refresh.starter.step.1.instruction" = "Alimentar la masa madre";
 "recipe.refresh.starter.step.1.notes" = "Sacar la masa madre del refrigerador y desechar 2 cucharadas de masa madre.\n\nAñadir 2 cucharadas de harina fresca y 2 cucharadas de agua filtrada o de manantial.\n\nMezclar bien, cubrir con un paño transpirable y una goma elástica.\n\nDejar reposar a temperatura ambiente durante 12 horas.";
 "recipe.refresh.starter.step.2.instruction" = "Volver al refrigerador";
@@ -271,4 +271,8 @@
 "custom.recipe.days" = "Días";
 "custom.recipe.hours" = "Horas";
 "custom.recipe.minutes" = "Minutos";
+"custom.recipe.discard.draft.title" = "¿Descartar borrador?";
+"custom.recipe.discard.draft.message" = "Tienes cambios sin guardar. Tu borrador se guardará automáticamente.";
+"custom.recipe.keep.editing" = "Seguir editando";
+"custom.recipe.discard" = "Descartar";
 

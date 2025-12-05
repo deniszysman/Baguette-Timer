@@ -67,7 +67,7 @@
 
 // MARK: - Recipe Names
 "recipe.french.baguette.name" = "法式长棍面包";
-"recipe.refresh.starter.name" = "刷新你的酵种";
+"recipe.refresh.starter.name" = "酵种刷新";
 "recipe.sourdough.bread.ball.name" = "酸面团圆面包";
 "recipe.brioche.name" = "布里欧修";
 "recipe.croissants.name" = "牛角包";
@@ -97,7 +97,7 @@
 "recipe.french.baguette.step.10.instruction" = "从烤箱取出";
 "recipe.french.baguette.step.10.notes" = "用布覆盖";
 
-// MARK: - Refresh your starter
+// MARK: - Starter refresh
 "recipe.refresh.starter.step.1.instruction" = "喂养酵种";
 "recipe.refresh.starter.step.1.notes" = "从冰箱中取出酵种，丢弃 2 汤匙酵种。\n\n加入 2 汤匙新鲜面粉和 2 汤匙过滤水或泉水。\n\n充分混合，用透气布和橡皮筋覆盖。\n\n在室温下静置 12 小时。";
 "recipe.refresh.starter.step.2.instruction" = "放回冰箱";
@@ -271,4 +271,8 @@
 "custom.recipe.days" = "天";
 "custom.recipe.hours" = "小时";
 "custom.recipe.minutes" = "分钟";
+"custom.recipe.discard.draft.title" = "放弃草稿？";
+"custom.recipe.discard.draft.message" = "您有未保存的更改。您的草稿将自动保存。";
+"custom.recipe.keep.editing" = "继续编辑";
+"custom.recipe.discard" = "放弃";
 

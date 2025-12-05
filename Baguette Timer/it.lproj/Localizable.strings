@@ -67,7 +67,7 @@
 
 // MARK: - Recipe Names
 "recipe.french.baguette.name" = "Baguette francese";
-"recipe.refresh.starter.name" = "Rinfresca il tuo lievito madre";
+"recipe.refresh.starter.name" = "Rinfresco del lievito madre";
 "recipe.sourdough.bread.ball.name" = "Palla di pane con lievito madre";
 "recipe.brioche.name" = "Brioche";
 "recipe.croissants.name" = "Croissant";
@@ -97,7 +97,7 @@
 "recipe.french.baguette.step.10.instruction" = "Togliere dal forno";
 "recipe.french.baguette.step.10.notes" = "Coprire con un canovaccio";
 
-// MARK: - Refresh your starter
+// MARK: - Starter refresh
 "recipe.refresh.starter.step.1.instruction" = "Nutrire il lievito madre";
 "recipe.refresh.starter.step.1.notes" = "Togliere il lievito madre dal frigorifero e scartare 2 cucchiai di lievito madre.\n\nAggiungere 2 cucchiai di farina fresca e 2 cucchiai di acqua filtrata o di sorgente.\n\nMescolare bene, coprire con un panno traspirante e un elastico.\n\nLasciare riposare a temperatura ambiente per 12 ore.";
 "recipe.refresh.starter.step.2.instruction" = "Rimettere in frigorifero";
@@ -271,4 +271,8 @@
 "custom.recipe.days" = "Giorni";
 "custom.recipe.hours" = "Ore";
 "custom.recipe.minutes" = "Minuti";
+"custom.recipe.discard.draft.title" = "Eliminare la bozza?";
+"custom.recipe.discard.draft.message" = "Hai modifiche non salvate. La tua bozza verrà salvata automaticamente.";
+"custom.recipe.keep.editing" = "Continua a modificare";
+"custom.recipe.discard" = "Elimina";
 

@@ -67,7 +67,7 @@
 
 // MARK: - Recipe Names
 "recipe.french.baguette.name" = "Baguette française";
-"recipe.refresh.starter.name" = "Rafraîchir votre levain";
+"recipe.refresh.starter.name" = "Rafraîchissement du levain";
 "recipe.sourdough.bread.ball.name" = "Boule de pain au levain";
 "recipe.brioche.name" = "Brioche";
 "recipe.croissants.name" = "Croissants";
@@ -97,7 +97,7 @@
 "recipe.french.baguette.step.10.instruction" = "Sortir du four";
 "recipe.french.baguette.step.10.notes" = "Couvrir avec un torchon";
 
-// MARK: - Refresh your starter
+// MARK: - Starter refresh
 "recipe.refresh.starter.step.1.instruction" = "Nourrir le levain";
 "recipe.refresh.starter.step.1.notes" = "Sortir le levain du réfrigérateur et jeter 2 cuillères à soupe de levain.\n\nAjouter 2 cuillères à soupe de farine fraîche et 2 cuillères à soupe d'eau filtrée ou de source.\n\nBien mélanger, couvrir avec un torchon respirant et un élastique.\n\nLaisser reposer à température ambiante pendant 12 heures.";
 "recipe.refresh.starter.step.2.instruction" = "Remettre au réfrigérateur";
@@ -271,4 +271,8 @@
 "custom.recipe.days" = "Jours";
 "custom.recipe.hours" = "Heures";
 "custom.recipe.minutes" = "Minutes";
+"custom.recipe.discard.draft.title" = "Supprimer le brouillon ?";
+"custom.recipe.discard.draft.message" = "Vous avez des modifications non enregistrées. Votre brouillon sera sauvegardé automatiquement.";
+"custom.recipe.keep.editing" = "Continuer";
+"custom.recipe.discard" = "Supprimer";
 

@@ -272,6 +272,9 @@ struct BreadMakingView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 HStack(spacing: 16) {
+                    // Share button
+                    ShareButton(recipe: recipe)
+                    
                     // Reset button
                     Button(action: {
                         showResetConfirmation = true
@@ -1252,6 +1255,50 @@ struct SchedulingView: View {
                 .padding(.horizontal, 20)
             }
         }
+    }
+}
+
+// MARK: - Share Button
+
+struct ShareButton: View {
+    let recipe: BreadRecipe
+    @State private var showShareSheet = false
+    
+    var body: some View {
+        Button(action: {
+            showShareSheet = true
+        }) {
+            Image(systemName: "square.and.arrow.up")
+                .font(.system(size: 18, weight: .semibold))
+                .foregroundColor(.white)
+        }
+        .sheet(isPresented: $showShareSheet) {
+            ShareSheet(recipe: recipe)
+        }
+    }
+}
+
+// MARK: - Share Sheet
+
+struct ShareSheet: UIViewControllerRepresentable {
+    let recipe: BreadRecipe
+    
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let shareText = ShareManager.shared.generateShareMessage(for: recipe)
+        let shareLink = ShareManager.shared.generateShareLink(for: recipe)
+        
+        let items: [Any] = [shareText, shareLink]
+        
+        let activityViewController = UIActivityViewController(
+            activityItems: items,
+            applicationActivities: nil
+        )
+        
+        return activityViewController
+    }
+    
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
+        // No updates needed
     }
 }
 

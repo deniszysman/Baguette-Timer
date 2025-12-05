@@ -67,7 +67,7 @@
 
 // MARK: - Recipe Names
 "recipe.french.baguette.name" = "フランスパン";
-"recipe.refresh.starter.name" = "種を更新";
+"recipe.refresh.starter.name" = "スターターの更新";
 "recipe.sourdough.bread.ball.name" = "サワードウブレッドボール";
 "recipe.brioche.name" = "ブリオッシュ";
 "recipe.croissants.name" = "クロワッサン";
@@ -97,7 +97,7 @@
 "recipe.french.baguette.step.10.instruction" = "オーブンから取り出す";
 "recipe.french.baguette.step.10.notes" = "布で覆う";
 
-// MARK: - Refresh your starter
+// MARK: - Starter refresh
 "recipe.refresh.starter.step.1.instruction" = "種を起こす";
 "recipe.refresh.starter.step.1.notes" = "冷蔵庫から種を取り出し、種を大さじ2杯捨てる。\n\n新鮮な小麦粉を大さじ2杯と、ろ過した水または天然水を大さじ2杯加える。\n\nよく混ぜ、通気性のある布と輪ゴムで覆う。\n\n室温で12時間休ませる。";
 "recipe.refresh.starter.step.2.instruction" = "冷蔵庫に戻す";
@@ -271,4 +271,8 @@
 "custom.recipe.days" = "日";
 "custom.recipe.hours" = "時間";
 "custom.recipe.minutes" = "分";
+"custom.recipe.discard.draft.title" = "下書きを破棄しますか？";
+"custom.recipe.discard.draft.message" = "保存されていない変更があります。下書きは自動的に保存されます。";
+"custom.recipe.keep.editing" = "編集を続ける";
+"custom.recipe.discard" = "破棄";
 

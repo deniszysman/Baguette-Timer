@@ -67,7 +67,7 @@
 
 // MARK: - Recipe Names
 "recipe.french.baguette.name" = "Baguete francesa";
-"recipe.refresh.starter.name" = "Atualizar seu fermento";
+"recipe.refresh.starter.name" = "Atualização do fermento";
 "recipe.sourdough.bread.ball.name" = "Bola de pão com fermento natural";
 "recipe.brioche.name" = "Brioche";
 "recipe.croissants.name" = "Croissants";
@@ -97,7 +97,7 @@
 "recipe.french.baguette.step.10.instruction" = "Retirar do forno";
 "recipe.french.baguette.step.10.notes" = "Cobrir com um pano";
 
-// MARK: - Refresh your starter
+// MARK: - Starter refresh
 "recipe.refresh.starter.step.1.instruction" = "Alimentar o fermento";
 "recipe.refresh.starter.step.1.notes" = "Retire o fermento da geladeira e descarte 2 colheres de sopa de fermento.\n\nAdicione 2 colheres de sopa de farinha fresca e 2 colheres de sopa de água filtrada ou de nascente.\n\nMisture bem, cubra com um pano respirável e elástico.\n\nDeixe descansar em temperatura ambiente por 12 horas.";
 "recipe.refresh.starter.step.2.instruction" = "Retornar à geladeira";
@@ -271,4 +271,8 @@
 "custom.recipe.days" = "Dias";
 "custom.recipe.hours" = "Horas";
 "custom.recipe.minutes" = "Minutos";
+"custom.recipe.discard.draft.title" = "Descartar rascunho?";
+"custom.recipe.discard.draft.message" = "Você tem alterações não salvas. Seu rascunho será salvo automaticamente.";
+"custom.recipe.keep.editing" = "Continuar editando";
+"custom.recipe.discard" = "Descartar";
 

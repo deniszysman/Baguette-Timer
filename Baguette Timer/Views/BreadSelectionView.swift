@@ -12,6 +12,7 @@ struct BreadSelectionView: View {
     @EnvironmentObject var navigationManager: NavigationManager
     @ObservedObject private var timerManager = TimerManager.shared
     @ObservedObject private var customRecipeManager = CustomRecipeManager.shared
+    @ObservedObject private var sortManager = RecipeSortManager.shared
     @State private var selectedRecipe: BreadRecipe?
     @State private var showBreadMaking = false
     @State private var showAddRecipe = false
@@ -23,9 +24,12 @@ struct BreadSelectionView: View {
     
     let builtInRecipes = BreadRecipe.availableRecipes
     
-    /// Combined list of built-in and custom recipes
+    /// Combined and sorted list of built-in and custom recipes
     var recipes: [BreadRecipe] {
-        builtInRecipes + customRecipeManager.customRecipes
+        let allRecipes = builtInRecipes + customRecipeManager.customRecipes
+        // Using sortTrigger to force re-sort when needed
+        _ = sortManager.sortTrigger
+        return sortManager.sortRecipes(allRecipes, timerManager: timerManager, customRecipeManager: customRecipeManager)
     }
     
     var body: some View {
@@ -103,7 +107,7 @@ struct BreadSelectionView: View {
                     }
                     .padding(.top, 20)
                     
-                    // Bread selection cards
+                    // Bread selection cards with pull-to-refresh
                     ScrollView {
                         VStack(spacing: 16) {
                             ForEach(recipes) { recipe in
@@ -116,6 +120,8 @@ struct BreadSelectionView: View {
                                     scheduledStartTime: scheduled.startTime,
                                     timerUpdateTrigger: timerUpdateTrigger,
                                     action: {
+                                        // Mark recipe as used for sorting
+                                        RecipeSortManager.shared.markRecipeAsUsed(recipe.id)
                                         selectedRecipe = recipe
                                         showBreadMaking = true
                                     },
@@ -129,6 +135,10 @@ struct BreadSelectionView: View {
                         .padding(.horizontal, 20)
                         .padding(.top, 20)
                         .padding(.bottom, 40)
+                    }
+                    .refreshable {
+                        // Pull-to-refresh: trigger sort refresh
+                        sortManager.triggerSort()
                     }
                 }
             }
@@ -145,6 +155,9 @@ struct BreadSelectionView: View {
                 AddCustomRecipeView(existingRecipe: recipeToEdit)
             }
             .onAppear {
+                // Trigger sort refresh when view appears
+                sortManager.triggerSort()
+                
                 // Start timer updates for displaying remaining time
                 startTimerUpdates()
                 

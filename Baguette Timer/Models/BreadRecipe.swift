@@ -127,7 +127,7 @@ extension BreadRecipe {
         switch name {
         case "French Baguette":
             return "leaf.fill"
-        case "Refresh your starter":
+        case "Starter refresh":
             return "arrow.triangle.2.circlepath"
         case "Bread Ball", "Sourdough Bread Ball":
             return "circle.fill"
@@ -155,7 +155,7 @@ extension BreadRecipe {
         switch name {
         case "French Baguette":
             return "FrenchBaguetteImage"
-        case "Refresh your starter":
+        case "Starter refresh":
             return "RefreshStarterImage"
         case "Bread Ball", "Sourdough Bread Ball":
             return "SourdoughBreadBallImage"
@@ -185,7 +185,7 @@ extension BreadRecipe {
         switch name {
         case "French Baguette":
             key = "recipe.french.baguette.name"
-        case "Refresh your starter":
+        case "Starter refresh":
             key = "recipe.refresh.starter.name"
         case "Bread Ball", "Sourdough Bread Ball":
             key = "recipe.sourdough.bread.ball.name"
@@ -215,7 +215,7 @@ extension BreadRecipe {
         switch name {
         case "French Baguette":
             return "recipe.french.baguette"
-        case "Refresh your starter":
+        case "Starter refresh":
             return "recipe.refresh.starter"
         case "Bread Ball", "Sourdough Bread Ball":
             return "recipe.sourdough.bread.ball"
@@ -251,7 +251,7 @@ extension BreadRecipe {
     )
 
     static let refreshStarter = BreadRecipe(
-        name: "Refresh your starter",
+        name: "Starter refresh",
         steps: [
             BreadStep(
                 stepNumber: 1,
