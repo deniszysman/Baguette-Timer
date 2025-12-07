@@ -237,3 +237,29 @@
 "timer.complete.title" = "Timer Complete!";
 "timer.complete.body" = "%@ is done!";
 
+// MARK: - Menu
+"menu.add.recipe" = "Add Recipe";
+"menu.settings" = "Settings";
+
+// MARK: - Settings
+"settings.title" = "Settings";
+"settings.cooking.time.title" = "Cooking Time";
+"settings.cooking.time.description" = "Set the earliest and latest times you will be cooking";
+"settings.earliest.time" = "Earliest Time";
+"settings.latest.time" = "Latest Time";
+"settings.hours" = "Hours";
+"settings.minutes" = "Minutes";
+
+// MARK: - Cooking Time Conflict
+"cooking.time.conflict.title" = "Cooking Time Conflict";
+"cooking.time.conflict.message" = "This step would complete at %@, which is outside your cooking time window.";
+"cooking.time.conflict.recipe.message" = "This recipe would complete at %@, which is outside your cooking time window.";
+"cooking.time.conflict.description" = "Choose how you'd like to proceed:";
+"cooking.time.option.start.anyway" = "Start Anyway";
+"cooking.time.option.start.anyway.subtitle" = "Proceed with the step even though it will complete outside your cooking time";
+"cooking.time.option.start.later" = "Start Later";
+"cooking.time.option.start.later.subtitle" = "Start at %@ to complete within your cooking time window";
+"cooking.time.option.start.later.recipe.subtitle" = "Start recipe at %@ to complete within your cooking time window";
+"cooking.time.option.delay.step" = "Delay Step";
+"cooking.time.option.delay.step.subtitle" = "Wait until %@ (next cooking start time) to begin this step";
+

@@ -2,24 +2,22 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleDisplayName</key>
-	<string>BreadOClock</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>remote-notification</string>
-	</array>
-	<key>NSUserNotificationsUsageDescription</key>
-	<string>We need to send you notifications when your bread making timers are complete.</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.breadoclock.recipe</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>breadoclock</string>
 			</array>
-			<key>CFBundleURLName</key>
-			<string>com.breadoclock.recipe</string>
 		</dict>
+	</array>
+	<key>NSUserNotificationsUsageDescription</key>
+	<string>We need to send you notifications when your bread making timers are complete.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
 	</array>
 </dict>
 </plist>
