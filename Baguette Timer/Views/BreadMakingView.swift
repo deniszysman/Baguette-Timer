@@ -31,11 +31,9 @@ struct BreadMakingView: View {
     @State private var scheduledStartTime: Date?
     @State private var showResetConfirmation = false
     @State private var isResetting = false
-    @State private var showCookingTimeConflict = false
-    @State private var pendingStepCompletion: (step: BreadStep, nextStep: BreadStep?)?
-    @State private var conflictStepIndex: Int? // Track which step index has the conflict
     @ObservedObject private var settingsManager = SettingsManager.shared
     @State private var delayedSteps: [UUID: Date] = [:] // Track steps that are delayed with their scheduled start times
+    @State private var selectedDelayedStepIndex: Int? // Track which delayed step's clock icon was tapped
     
     init(recipe: BreadRecipe) {
         self.recipe = recipe
@@ -330,19 +328,28 @@ struct BreadMakingView: View {
                     
                     // Steps list
                     VStack(spacing: 12) {
-                        ForEach(Array(recipe.steps.enumerated()), id: \.element.id) { index, step in
+                        // Filter to show only current and future steps (hide completed)
+                        ForEach(Array(recipe.steps.enumerated()).filter { index, step in
+                            // Show step if it's the current step or a future step that's not completed
+                            index >= currentStepIndex && !completedSteps.contains(step.id)
+                        }, id: \.element.id) { index, step in
                             let _ = delayUpdateTrigger  // Force view update when delays change
+                            let stepIsDelayed = delayedSteps[step.id] != nil
                             StepRow(
                                 step: step,
                                 recipeKeyPrefix: recipe.recipeKeyPrefix,
                                 isCurrent: step.id == currentStep.id,
-                                isCompleted: index < currentStepIndex || completedSteps.contains(step.id),
+                                isCompleted: false, // Never show as completed since we filter those out
                                 isTimerActive: timerManager.isTimerActive(for: step.id),
                                 remainingTime: timerManager.getRemainingTime(for: step.id),
                                 completionTime: getStepCompletionTime(for: index),
+                                isDelayed: stepIsDelayed,
                                 onInfoTap: {
                                     selectedStepForNotes = step
-                                }
+                                },
+                                onDelayTap: stepIsDelayed ? {
+                                    selectedDelayedStepIndex = index
+                                } : nil
                             )
                             .onTapGesture {
                                 if step.id == currentStep.id {
@@ -406,6 +413,8 @@ struct BreadMakingView: View {
         .onAppear {
             // First check timers and recalculate correct step (this must happen first)
             checkAllTimersAndAdvance()
+            // Calculate delays for steps outside cooking window
+            calculateProactiveDelays()
             // Then start timer updates
             startTimerUpdates()
         }
@@ -438,6 +447,8 @@ struct BreadMakingView: View {
                     withAnimation {
                         currentStepIndex = index
                     }
+                    // Clear delays for skipped steps and recalculate for remaining steps
+                    recalculateDelaysAfterSkip(toStepIndex: index)
                     saveState() // Save immediately after skipping
                 }
                 stepToSkip = nil
@@ -472,58 +483,35 @@ struct BreadMakingView: View {
         } message: {
             Text("alert.reset.message".localized)
         }
-        .sheet(isPresented: $showCookingTimeConflict) {
-            if let pending = pendingStepCompletion {
-                let completionTime = getConflictCompletionTime(for: pending.step)
+        .sheet(isPresented: Binding(
+            get: { selectedDelayedStepIndex != nil },
+            set: { if !$0 { selectedDelayedStepIndex = nil } }
+        )) {
+            if let stepIndex = selectedDelayedStepIndex,
+               stepIndex < recipe.steps.count {
+                let step = recipe.steps[stepIndex]
+                let completionTime = getStepCompletionTime(for: stepIndex) ?? Date().addingTimeInterval(step.timerDuration)
                 
                 CookingTimeConflictView(
-                    step: pending.step,
+                    step: step,
                     estimatedCompletion: completionTime,
-                    isFullRecipe: false, // Always show step-specific message since we identify the specific conflicting step
+                    isFullRecipe: false,
                     onStartAnyway: {
-                        // If conflict is for a future step, just proceed with current step
-                        // The future step will be handled when we get to it
-                        if let conflictIdx = conflictStepIndex, conflictIdx != currentStepIndex {
-                            // Conflict is for a future step, proceed with current step
-                            let nextStep: BreadStep? = (currentStepIndex + 1 < recipe.steps.count) 
-                                ? recipe.steps[currentStepIndex + 1] 
-                                : nil
-                            proceedWithStepCompletion(step: currentStep, nextStep: nextStep)
-                        } else {
-                            proceedWithStepCompletion(step: pending.step, nextStep: pending.nextStep)
-                        }
-                        pendingStepCompletion = nil
-                        conflictStepIndex = nil
+                        // Remove the delay for this step
+                        delayedSteps.removeValue(forKey: step.id)
+                        // Recalculate subsequent steps without this delay
+                        recalculateDelaysAfterRemoval(at: stepIndex)
+                        selectedDelayedStepIndex = nil
                     },
                     onStartLater: {
-                        // Delay the conflicting step to earliest time within cooking window
-                        if let conflictIdx = conflictStepIndex, conflictIdx != currentStepIndex {
-                            // Conflict is for a future step, delay that step and proceed with current
-                            handleDelayFutureStepToEarliest(at: conflictIdx)
-                            let nextStep: BreadStep? = (currentStepIndex + 1 < recipe.steps.count) 
-                                ? recipe.steps[currentStepIndex + 1] 
-                                : nil
-                            proceedWithStepCompletion(step: currentStep, nextStep: nextStep)
-                        } else {
-                            handleStartLater(step: pending.step, nextStep: pending.nextStep)
-                        }
-                        pendingStepCompletion = nil
-                        conflictStepIndex = nil
+                        // Keep the delay at earliest time
+                        handleDelayFutureStepToEarliest(at: stepIndex)
+                        selectedDelayedStepIndex = nil
                     },
                     onDelayStep: {
-                        // Delay the conflicting step to next cooking start time
-                        if let conflictIdx = conflictStepIndex, conflictIdx != currentStepIndex {
-                            // Conflict is for a future step, delay that step and proceed with current
-                            handleDelayFutureStep(at: conflictIdx)
-                            let nextStep: BreadStep? = (currentStepIndex + 1 < recipe.steps.count) 
-                                ? recipe.steps[currentStepIndex + 1] 
-                                : nil
-                            proceedWithStepCompletion(step: currentStep, nextStep: nextStep)
-                        } else {
-                            handleDelayStep(step: pending.step, nextStep: pending.nextStep)
-                        }
-                        pendingStepCompletion = nil
-                        conflictStepIndex = nil
+                        // Delay to next cooking start time
+                        handleDelayFutureStep(at: stepIndex)
+                        selectedDelayedStepIndex = nil
                     }
                 )
             }
@@ -581,17 +569,6 @@ struct BreadMakingView: View {
             ? recipe.steps[currentStepIndex + 1] 
             : nil
         
-        // Check if starting this timer would cause completion outside cooking time
-        let estimatedCompletion = Date().addingTimeInterval(currentStep.timerDuration)
-        
-        // Check if completion would be outside cooking window
-        if !settingsManager.isWithinCookingTime(estimatedCompletion) {
-            // Store pending step completion and show conflict alert
-            pendingStepCompletion = (currentStep, nextStep)
-            showCookingTimeConflict = true
-            return
-        }
-        
         // Check if any step (current or future) would complete outside cooking window
         // For the first step, we scan all steps to find the first conflict
         // For later steps, we only check remaining steps
@@ -621,20 +598,13 @@ struct BreadMakingView: View {
             }
             
             if let conflictIdx = conflictIndex {
-                // Found a future step that would complete outside window
-                let conflictStep = recipe.steps[conflictIdx]
-                let conflictNextStep: BreadStep? = (conflictIdx + 1 < recipe.steps.count) 
-                    ? recipe.steps[conflictIdx + 1] 
-                    : nil
-                pendingStepCompletion = (conflictStep, conflictNextStep)
-                conflictStepIndex = conflictIdx
-                showCookingTimeConflict = true
-                return
+                // Automatically delay the conflicting step (default behavior)
+                handleDelayFutureStep(at: conflictIdx)
             }
         } else {
             // For later steps, check if any remaining steps would be outside window
             // This check happens before completing the current step
-            var futureTime = estimatedCompletion
+            var futureTime = Date().addingTimeInterval(currentStep.timerDuration)
             var conflictIndex: Int? = nil
             
             for index in (currentStepIndex + 1)..<recipe.steps.count {
@@ -655,15 +625,8 @@ struct BreadMakingView: View {
             }
             
             if let conflictIdx = conflictIndex {
-                // Store the step that has the conflict (not the current step)
-                let conflictStep = recipe.steps[conflictIdx]
-                let conflictNextStep: BreadStep? = (conflictIdx + 1 < recipe.steps.count) 
-                    ? recipe.steps[conflictIdx + 1] 
-                    : nil
-                pendingStepCompletion = (conflictStep, conflictNextStep)
-                conflictStepIndex = conflictIdx
-                showCookingTimeConflict = true
-                return
+                // Automatically delay the conflicting step (default behavior)
+                handleDelayFutureStep(at: conflictIdx)
             }
         }
         
@@ -676,54 +639,6 @@ struct BreadMakingView: View {
             completedSteps.insert(step.id)
             saveState() // Save immediately after completing step
             timerManager.startTimer(for: step, recipeId: recipe.id, nextStep: nextStep, recipeKeyPrefix: recipe.recipeKeyPrefix)
-        }
-    }
-    
-    private func handleStartLater(step: BreadStep, nextStep: BreadStep?) {
-        // Calculate earliest start time to complete within cooking window
-        let estimatedCompletion = Date().addingTimeInterval(step.timerDuration)
-        let earliestStart = settingsManager.calculateEarliestStartTime(for: estimatedCompletion, recipeDuration: step.timerDuration)
-        
-        // Schedule the step to start at the earliest time
-        let delay = earliestStart.timeIntervalSinceNow
-        if delay > 0 {
-            // Store the delayed start time
-            delayedSteps[step.id] = earliestStart
-            
-            // After delaying this step, check and auto-delay any subsequent steps that would complete outside cooking window
-            autoDelayFutureSteps(startingFrom: currentStepIndex + 1, afterStepCompletion: earliestStart.addingTimeInterval(step.timerDuration))
-            
-            // Schedule notification to start the step later
-            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                self.delayedSteps.removeValue(forKey: step.id)
-                self.proceedWithStepCompletion(step: step, nextStep: nextStep)
-            }
-        } else {
-            // If delay is 0 or negative, start immediately
-            proceedWithStepCompletion(step: step, nextStep: nextStep)
-        }
-    }
-    
-    private func handleDelayStep(step: BreadStep, nextStep: BreadStep?) {
-        // Delay the step to the next cooking start time
-        let nextStartTime = settingsManager.getNextCookingStartTime(from: Date())
-        let delay = nextStartTime.timeIntervalSinceNow
-        
-        if delay > 0 {
-            // Store the delayed start time
-            delayedSteps[step.id] = nextStartTime
-            
-            // After delaying this step, check and auto-delay any subsequent steps that would complete outside cooking window
-            autoDelayFutureSteps(startingFrom: currentStepIndex + 1, afterStepCompletion: nextStartTime.addingTimeInterval(step.timerDuration))
-            
-            // Schedule notification to start the step at next cooking time
-            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                self.delayedSteps.removeValue(forKey: step.id)
-                self.proceedWithStepCompletion(step: step, nextStep: nextStep)
-            }
-        } else {
-            // If delay is 0 or negative, start immediately
-            proceedWithStepCompletion(step: step, nextStep: nextStep)
         }
     }
     
@@ -793,14 +708,134 @@ struct BreadMakingView: View {
         return stepStartTime
     }
     
-    /// Get the completion time for the conflicting step shown in the conflict dialog
-    private func getConflictCompletionTime(for step: BreadStep) -> Date {
-        if let conflictIdx = conflictStepIndex {
-            // Use the calculated step completion time
-            return getStepCompletionTime(for: conflictIdx) ?? Date().addingTimeInterval(step.timerDuration)
-        } else {
-            return Date().addingTimeInterval(step.timerDuration)
+    /// Proactively calculate delays for all steps that would complete outside the cooking window
+    /// This runs on view appear to show accurate completion times immediately
+    private func calculateProactiveDelays() {
+        // Start from current step
+        var currentTime = Date()
+        
+        // If current step has an active timer, use the remaining time
+        if let remaining = timerManager.getRemainingTime(for: currentStep.id),
+           timerManager.isTimerActive(for: currentStep.id) {
+            currentTime = Date().addingTimeInterval(remaining)
+        } else if !completedSteps.contains(currentStep.id) {
+            // Current step not started yet, add its duration
+            currentTime = Date().addingTimeInterval(currentStep.timerDuration)
         }
+        
+        // Check if current step would complete outside cooking window
+        if !completedSteps.contains(currentStep.id) && !timerManager.isTimerActive(for: currentStep.id) {
+            let currentStepCompletion = Date().addingTimeInterval(currentStep.timerDuration)
+            if !settingsManager.isWithinCookingTime(currentStepCompletion) {
+                // Delay current step to next cooking start time
+                let nextStartTime = settingsManager.getNextCookingStartTime(from: Date())
+                delayedSteps[currentStep.id] = nextStartTime
+                currentTime = nextStartTime.addingTimeInterval(currentStep.timerDuration)
+            }
+        }
+        
+        // Check all remaining steps
+        for index in (currentStepIndex + 1)..<recipe.steps.count {
+            let step = recipe.steps[index]
+            
+            // Skip completed steps
+            if completedSteps.contains(step.id) {
+                continue
+            }
+            
+            // Check if step is already delayed
+            if let delayedStart = delayedSteps[step.id], delayedStart > currentTime {
+                // Keep existing delay if it's later than current time
+                currentTime = delayedStart.addingTimeInterval(step.timerDuration)
+                continue
+            }
+            
+            // Calculate when this step would complete
+            let stepCompletion = currentTime.addingTimeInterval(step.timerDuration)
+            
+            // Check if completion would be outside cooking window
+            if !settingsManager.isWithinCookingTime(stepCompletion) {
+                // Delay this step to the next cooking start time
+                let nextStartTime = settingsManager.getNextCookingStartTime(from: currentTime)
+                delayedSteps[step.id] = nextStartTime
+                currentTime = nextStartTime.addingTimeInterval(step.timerDuration)
+            } else {
+                // Step is within window, proceed normally
+                // Remove any existing delay if the step now fits within the window
+                delayedSteps.removeValue(forKey: step.id)
+                currentTime = stepCompletion
+            }
+        }
+        
+        delayUpdateTrigger += 1
+    }
+    
+    /// Recalculate delays for steps after skipping to a specific step
+    private func recalculateDelaysAfterSkip(toStepIndex: Int) {
+        // Clear all existing delays first
+        delayedSteps.removeAll()
+        
+        // Start from the new current step and check all remaining steps
+        var currentTime = Date().addingTimeInterval(recipe.steps[toStepIndex].timerDuration)
+        
+        for index in (toStepIndex + 1)..<recipe.steps.count {
+            let step = recipe.steps[index]
+            
+            // Skip completed steps
+            if completedSteps.contains(step.id) {
+                continue
+            }
+            
+            let stepCompletion = currentTime.addingTimeInterval(step.timerDuration)
+            
+            if !settingsManager.isWithinCookingTime(stepCompletion) {
+                // Delay this step to the next cooking start time
+                let nextStartTime = settingsManager.getNextCookingStartTime(from: currentTime)
+                delayedSteps[step.id] = nextStartTime
+                currentTime = nextStartTime.addingTimeInterval(step.timerDuration)
+            } else {
+                currentTime = stepCompletion
+            }
+        }
+        
+        delayUpdateTrigger += 1
+    }
+    
+    /// Recalculate delays for steps after removing a delay
+    private func recalculateDelaysAfterRemoval(at removedStepIndex: Int) {
+        // After removing a delay, check if subsequent steps still need delays
+        var currentTime = calculateStepStartTime(for: removedStepIndex)
+        let step = recipe.steps[removedStepIndex]
+        currentTime = currentTime.addingTimeInterval(step.timerDuration)
+        
+        // Check subsequent steps - they may no longer need delays
+        for index in (removedStepIndex + 1)..<recipe.steps.count {
+            let futureStep = recipe.steps[index]
+            
+            // Skip completed steps
+            if completedSteps.contains(futureStep.id) {
+                continue
+            }
+            
+            let stepCompletion = currentTime.addingTimeInterval(futureStep.timerDuration)
+            
+            if settingsManager.isWithinCookingTime(stepCompletion) {
+                // This step can now complete within window, remove its delay if any
+                delayedSteps.removeValue(forKey: futureStep.id)
+                currentTime = stepCompletion
+            } else {
+                // Still outside window, keep or update delay
+                if let existingDelay = delayedSteps[futureStep.id] {
+                    currentTime = existingDelay.addingTimeInterval(futureStep.timerDuration)
+                } else {
+                    // Need to add a delay
+                    let nextStartTime = settingsManager.getNextCookingStartTime(from: currentTime)
+                    delayedSteps[futureStep.id] = nextStartTime
+                    currentTime = nextStartTime.addingTimeInterval(futureStep.timerDuration)
+                }
+            }
+        }
+        delayUpdateTrigger += 1
     }
     
     /// Automatically delay future steps that would complete outside the cooking window
@@ -829,60 +864,6 @@ struct BreadMakingView: View {
                 // Step is within window, proceed normally
                 currentTime = stepCompletion
             }
-        }
-    }
-    
-    private func handleStartRecipeLater() {
-        // Calculate earliest start time for the entire recipe to complete within cooking window
-        let fullRecipeCompletion = estimatedCompletionTime
-        let earliestStart = settingsManager.calculateEarliestStartTime(for: fullRecipeCompletion, recipeDuration: remainingDuration)
-        
-        // Delay the first step to start at the earliest time
-        let delay = earliestStart.timeIntervalSinceNow
-        if delay > 0 {
-            // Store the delayed start time for the first step
-            delayedSteps[currentStep.id] = earliestStart
-            
-            // Schedule notification to start the step later
-            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                self.delayedSteps.removeValue(forKey: self.currentStep.id)
-                let nextStep: BreadStep? = (self.currentStepIndex + 1 < self.recipe.steps.count) 
-                    ? self.recipe.steps[self.currentStepIndex + 1] 
-                    : nil
-                self.proceedWithStepCompletion(step: self.currentStep, nextStep: nextStep)
-            }
-        } else {
-            // If delay is 0 or negative, start immediately
-            let nextStep: BreadStep? = (currentStepIndex + 1 < recipe.steps.count) 
-                ? recipe.steps[currentStepIndex + 1] 
-                : nil
-            proceedWithStepCompletion(step: currentStep, nextStep: nextStep)
-        }
-    }
-    
-    private func handleDelayRecipeStart() {
-        // Delay the entire recipe to start at the next cooking start time
-        let nextStartTime = settingsManager.getNextCookingStartTime(from: Date())
-        let delay = nextStartTime.timeIntervalSinceNow
-        
-        if delay > 0 {
-            // Store the delayed start time for the first step
-            delayedSteps[currentStep.id] = nextStartTime
-            
-            // Schedule notification to start the recipe at next cooking time
-            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                self.delayedSteps.removeValue(forKey: self.currentStep.id)
-                let nextStep: BreadStep? = (self.currentStepIndex + 1 < self.recipe.steps.count) 
-                    ? self.recipe.steps[self.currentStepIndex + 1] 
-                    : nil
-                self.proceedWithStepCompletion(step: self.currentStep, nextStep: nextStep)
-            }
-        } else {
-            // If delay is 0 or negative, start immediately
-            let nextStep: BreadStep? = (currentStepIndex + 1 < recipe.steps.count) 
-                ? recipe.steps[currentStepIndex + 1] 
-                : nil
-            proceedWithStepCompletion(step: currentStep, nextStep: nextStep)
         }
     }
     
@@ -1290,19 +1271,33 @@ struct StepRow: View {
     let isTimerActive: Bool
     let remainingTime: TimeInterval?
     let completionTime: Date?
+    let isDelayed: Bool
     let onInfoTap: () -> Void
+    let onDelayTap: (() -> Void)?
     
     var body: some View {
         HStack(spacing: 15) {
             stepNumberBadge
             instructionView
             Spacer()
-            if !step.notes.isEmpty {
-                Button(action: onInfoTap) {
-                    Image(systemName: "info.circle.fill")
-                        .font(.system(size: 22))
-                        .foregroundColor(.white.opacity(0.8))
-                        .shadow(color: .black.opacity(0.3), radius: 3, x: 0, y: 1)
+            HStack(spacing: 8) {
+                // Show delay clock icon if step is delayed
+                if isDelayed, let delayAction = onDelayTap {
+                    Button(action: delayAction) {
+                        Image(systemName: "clock.badge.exclamationmark.fill")
+                            .font(.system(size: 22))
+                            .foregroundColor(.orange)
+                            .shadow(color: .black.opacity(0.3), radius: 3, x: 0, y: 1)
+                    }
+                }
+                
+                if !step.notes.isEmpty {
+                    Button(action: onInfoTap) {
+                        Image(systemName: "info.circle.fill")
+                            .font(.system(size: 22))
+                            .foregroundColor(.white.opacity(0.8))
+                            .shadow(color: .black.opacity(0.3), radius: 3, x: 0, y: 1)
+                    }
                 }
             }
         }

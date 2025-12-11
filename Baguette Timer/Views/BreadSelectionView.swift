@@ -109,10 +109,10 @@ struct BreadSelectionView: View {
                     .overlay(alignment: .topTrailing) {
                         // Menu Button with Add Recipe and Settings
                         Menu {
-                            Button(action: {
-                                recipeToEdit = nil
-                                showAddRecipe = true
-                            }) {
+                        Button(action: {
+                            recipeToEdit = nil
+                            showAddRecipe = true
+                        }) {
                                 Label("menu.add.recipe".localized, systemImage: "plus")
                             }
                             
