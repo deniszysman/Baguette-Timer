@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import MessageUI
 
 struct BreadSelectionView: View {
     @EnvironmentObject var navigationManager: NavigationManager
@@ -18,6 +19,7 @@ struct BreadSelectionView: View {
     @State private var showAddRecipe = false
     @State private var showKitchenTimer = false
     @State private var showSettings = false
+    @State private var showSendRecipe = false
     @State private var recipeToEdit: BreadRecipe?
     @State private var scale: CGFloat = 1.0
     @State private var navigationSubscription: AnyCancellable?
@@ -109,11 +111,17 @@ struct BreadSelectionView: View {
                     .overlay(alignment: .topTrailing) {
                         // Menu Button with Add Recipe and Settings
                         Menu {
-                        Button(action: {
-                            recipeToEdit = nil
-                            showAddRecipe = true
-                        }) {
+                            Button(action: {
+                                recipeToEdit = nil
+                                showAddRecipe = true
+                            }) {
                                 Label("menu.add.recipe".localized, systemImage: "plus")
+                            }
+                            
+                            Button(action: {
+                                showSendRecipe = true
+                            }) {
+                                Label("menu.send.recipe".localized, systemImage: "envelope")
                             }
                             
                             Button(action: {
@@ -203,6 +211,9 @@ struct BreadSelectionView: View {
             .sheet(isPresented: $showSettings) {
                 SettingsView()
                     .presentationDetents([.fraction(0.65)])
+            }
+            .sheet(isPresented: $showSendRecipe) {
+                SendRecipeMailView(isPresented: $showSendRecipe)
             }
             .onAppear {
                 // Trigger sort refresh when view appears
@@ -699,6 +710,67 @@ struct BreadCard: View {
             action: {}
         )
         .padding()
+    }
+}
+
+// MARK: - Send Recipe Mail View
+
+struct SendRecipeMailView: UIViewControllerRepresentable {
+    @Binding var isPresented: Bool
+    
+    func makeUIViewController(context: Context) -> UIViewController {
+        if MFMailComposeViewController.canSendMail() {
+            let mailVC = MFMailComposeViewController()
+            mailVC.mailComposeDelegate = context.coordinator
+            mailVC.setToRecipients(["recipe@breadoclock.com"])
+            mailVC.setSubject("Can you add my recipe to BreadOClock?")
+            mailVC.setMessageBody("""
+            Hi BreadO'Clock Team,
+            
+            I would love to share my recipe with you!
+            
+            Recipe Name: 
+            
+            Description:
+            
+            Steps:
+            1. 
+            2. 
+            3. 
+            
+            Thank you!
+            """, isHTML: false)
+            return mailVC
+        } else {
+            // If mail is not available, show an alert
+            let alertVC = UIAlertController(
+                title: "mail.not.available.title".localized,
+                message: "mail.not.available.message".localized,
+                preferredStyle: .alert
+            )
+            alertVC.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+                isPresented = false
+            })
+            return alertVC
+        }
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
+    class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
+        let parent: SendRecipeMailView
+        
+        init(_ parent: SendRecipeMailView) {
+            self.parent = parent
+        }
+        
+        func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+            parent.isPresented = false
+        }
     }
 }
 

@@ -239,7 +239,12 @@
 
 // MARK: - Menu
 "menu.add.recipe" = "Add Recipe";
+"menu.send.recipe" = "Send Us Your Recipe";
 "menu.settings" = "Settings";
+
+// MARK: - Mail
+"mail.not.available.title" = "Mail Not Available";
+"mail.not.available.message" = "Please configure an email account in your device settings, or send your recipe to recipe@breadoclock.com";
 
 // MARK: - Settings
 "settings.title" = "Settings";

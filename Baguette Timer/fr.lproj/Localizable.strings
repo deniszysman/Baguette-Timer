@@ -222,6 +222,15 @@
 "custom.recipe.keep.editing" = "Continuer";
 "custom.recipe.discard" = "Supprimer";
 
+// MARK: - Menu
+"menu.add.recipe" = "Ajouter une recette";
+"menu.send.recipe" = "Envoyez-nous votre recette";
+"menu.settings" = "Paramètres";
+
+// MARK: - Mail
+"mail.not.available.title" = "Mail non disponible";
+"mail.not.available.message" = "Veuillez configurer un compte email dans les paramètres de votre appareil, ou envoyez votre recette à recipe@breadoclock.com";
+
 // MARK: - Kitchen Timer
 "timer.title" = "Minuteur de cuisine";
 "timer.name.placeholder" = "Nom du minuteur (optionnel)";
