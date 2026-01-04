@@ -266,14 +266,14 @@ struct BreadMakingView: View {
         let completion = estimatedCompletionTime
         
         if calendar.isDate(completion, inSameDayAs: now) {
-            return "Today : \(formatter.string(from: completion))"
+            return "\("time.today".localized) : \(formatter.string(from: completion))"
         } else if calendar.isDate(completion, inSameDayAs: calendar.date(byAdding: .day, value: 1, to: now) ?? now) {
-            return "Tomorrow : \(formatter.string(from: completion))"
+            return "\("time.tomorrow".localized) : \(formatter.string(from: completion))"
         } else {
             // For dates further out, include date
             let dateFormatter = DateFormatter()
-            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-            dateFormatter.dateFormat = "MMM d, h:mm a"
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeStyle = .short
             return dateFormatter.string(from: completion)
         }
     }
@@ -998,6 +998,7 @@ struct StepCard: View {
     let onSkip: (() -> Void)?
     
     @State private var isPressed = false
+    @State private var showLargeNotes = false
     
     init(step: BreadStep, recipeKeyPrefix: String, isCompleted: Bool, isTimerActive: Bool, remainingTime: TimeInterval?, onComplete: @escaping () -> Void, onInfoTap: @escaping () -> Void, onSkip: (() -> Void)? = nil) {
         self.step = step
@@ -1020,7 +1021,7 @@ struct StepCard: View {
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.dateFormat = "h:mm a"
         
-        return "Next step at \(formatter.string(from: completionTime))"
+        return "step.next.at".localized(formatter.string(from: completionTime))
     }
     
     var body: some View {
@@ -1112,25 +1113,28 @@ struct StepCard: View {
                 }
                 .padding(.horizontal, 8)
                 
-                // Notes display
+                // Notes display - tappable to show larger
                 if !step.notes.isEmpty {
-                    Text(step.localizedNotes(recipeKeyPrefix: recipeKeyPrefix))
-                        .font(.system(size: 18, weight: .regular, design: .rounded))
-                        .foregroundColor(.white.opacity(0.95))
-                        .multilineTextAlignment(.center)
-                        .lineSpacing(6)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 10)
-                        .frame(maxWidth: .infinity)
-                        .background(
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(Color.black.opacity(0.3))
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 15)
-                                        .stroke(Color.white.opacity(0.2), lineWidth: 1)
-                                )
-                        )
-                        .fixedSize(horizontal: false, vertical: true)
+                    Button(action: { showLargeNotes = true }) {
+                        Text(step.localizedNotes(recipeKeyPrefix: recipeKeyPrefix))
+                            .font(.system(size: 18, weight: .regular, design: .rounded))
+                            .foregroundColor(.white.opacity(0.95))
+                            .multilineTextAlignment(.center)
+                            .lineSpacing(6)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 10)
+                            .frame(maxWidth: .infinity)
+                            .background(
+                                RoundedRectangle(cornerRadius: 15)
+                                    .fill(Color.black.opacity(0.3))
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .stroke(Color.white.opacity(0.2), lineWidth: 1)
+                                    )
+                            )
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    .buttonStyle(PlainButtonStyle())
                 }
                 
                 // Timer display - more prominent when running
@@ -1168,6 +1172,13 @@ struct StepCard: View {
                 completeButton
             }
             .padding(20)
+        }
+        .sheet(isPresented: $showLargeNotes) {
+            LargeNotesView(
+                stepNumber: step.stepNumber,
+                instruction: step.localizedInstruction(recipeKeyPrefix: recipeKeyPrefix),
+                notes: step.localizedNotes(recipeKeyPrefix: recipeKeyPrefix)
+            )
         }
     }
     
@@ -1370,13 +1381,13 @@ struct StepRow: View {
         let now = Date()
         
         if calendar.isDate(date, inSameDayAs: now) {
-            return "Today \(formatter.string(from: date))"
+            return "\("time.today".localized) \(formatter.string(from: date))"
         } else if calendar.isDate(date, inSameDayAs: calendar.date(byAdding: .day, value: 1, to: now) ?? now) {
-            return "Tomorrow \(formatter.string(from: date))"
+            return "\("time.tomorrow".localized) \(formatter.string(from: date))"
         } else {
             let dateFormatter = DateFormatter()
-            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-            dateFormatter.dateFormat = "MMM d, h:mm a"
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeStyle = .short
             return dateFormatter.string(from: date)
         }
     }
@@ -1782,6 +1793,58 @@ struct ShareSheet: UIViewControllerRepresentable {
     
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
         // No updates needed
+    }
+}
+
+// MARK: - Large Notes View
+struct LargeNotesView: View {
+    @Environment(\.dismiss) private var dismiss
+    let stepNumber: Int
+    let instruction: String
+    let notes: String
+    
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 24) {
+                    // Step header
+                    VStack(spacing: 12) {
+                        Text("step.number".localized(stepNumber))
+                            .font(.system(size: 20, weight: .semibold, design: .rounded))
+                            .foregroundColor(.secondary)
+                        
+                        Text(instruction)
+                            .font(.system(size: 28, weight: .bold, design: .rounded))
+                            .foregroundColor(.primary)
+                            .multilineTextAlignment(.center)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.bottom, 8)
+                    
+                    Divider()
+                    
+                    // Notes content - large and readable
+                    Text(notes)
+                        .font(.system(size: 24, weight: .regular, design: .rounded))
+                        .foregroundColor(.primary)
+                        .lineSpacing(10)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                .padding(24)
+            }
+            .background(Color(UIColor.systemBackground))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: { dismiss() }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 28))
+                            .foregroundColor(.secondary)
+                    }
+                }
+            }
+        }
+        .presentationDragIndicator(.visible)
     }
 }
 

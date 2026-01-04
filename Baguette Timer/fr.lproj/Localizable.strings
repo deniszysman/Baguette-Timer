@@ -15,6 +15,7 @@
 "step.number" = "Étape %d";
 "step.steps" = "%d étapes";
 "step.done" = "Terminé";
+"step.next.at" = "Prochaine étape à %@";
 "step.timer.running" = "Minuteur en cours";
 "step.timer.duration" = "Minuteur : %@";
 "step.notes" = "Notes";
@@ -66,7 +67,7 @@
 "time.day.hour" = "%dj %dh";
 
 // MARK: - Recipe Names
-"recipe.french.baguette.name" = "Baguette française";
+"recipe.french.baguette.name" = "Baguette tradition";
 "recipe.refresh.starter.name" = "Rafraîchissement du levain";
 "recipe.sourdough.bread.ball.name" = "Boule de pain au levain";
 "recipe.brioche.name" = "Brioche";

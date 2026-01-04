@@ -15,6 +15,7 @@
 "step.number" = "Step %d";
 "step.steps" = "%d steps";
 "step.done" = "Done";
+"step.next.at" = "Next step at %@";
 "step.timer.running" = "Timer Running";
 "step.timer.duration" = "Timer: %@";
 "step.notes" = "Notes";
@@ -253,9 +254,7 @@
 "settings.earliest.time" = "Earliest Time";
 "settings.latest.time" = "Latest Time";
 "settings.hours" = "Hours";
-"settings.minutes" = "Minutes";
-
-// MARK: - Cooking Time Conflict
+"settings.minutes" = "Minutes";// MARK: - Cooking Time Conflict
 "cooking.time.conflict.title" = "Cooking Time Conflict";
 "cooking.time.conflict.message" = "This step would complete at %@, which is outside your cooking time window.";
 "cooking.time.conflict.recipe.message" = "This recipe would complete at %@, which is outside your cooking time window.";
@@ -267,4 +266,3 @@
 "cooking.time.option.start.later.recipe.subtitle" = "Start recipe at %@ to complete within your cooking time window";
 "cooking.time.option.delay.step" = "Delay Step";
 "cooking.time.option.delay.step.subtitle" = "Wait until %@ (next cooking start time) to begin this step";
-

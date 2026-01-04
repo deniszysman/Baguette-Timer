@@ -773,4 +773,3 @@ struct SendRecipeMailView: UIViewControllerRepresentable {
         }
     }
 }
-
