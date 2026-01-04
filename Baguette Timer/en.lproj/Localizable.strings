@@ -237,6 +237,7 @@
 "timer.default.name" = "Timer";
 "timer.complete.title" = "Timer Complete!";
 "timer.complete.body" = "%@ is done!";
+"timer.summary.body" = "%@ remaining (Total: %@)";
 
 // MARK: - Menu
 "menu.add.recipe" = "Add Recipe";
