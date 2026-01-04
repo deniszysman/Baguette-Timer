@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "AR-232719-homemade-pita-bread-DDMFS-4x3-beauty-4f82a2ae98444cf58969214e3d8f66f0.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

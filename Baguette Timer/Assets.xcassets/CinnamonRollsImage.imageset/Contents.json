@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "Cinnamon-Swirl-Bread_EXPS_TOHON23_10083_DR_05_11_2b.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Cinnamon-Swirl-Bread_EXPS_TOHON23_10083_DR_05_11_2b 1.jpg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Cinnamon-Swirl-Bread_EXPS_TOHON23_10083_DR_05_11_2b 2.jpg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

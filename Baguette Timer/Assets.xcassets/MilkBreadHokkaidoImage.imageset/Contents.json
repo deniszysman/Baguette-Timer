@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "vegan-japanese-milk-bread-ft-image-1200x1200-1.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "vegan-japanese-milk-bread-ft-image-1200x1200-1 1.jpg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "vegan-japanese-milk-bread-ft-image-1200x1200-1 2.jpg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -228,6 +228,9 @@
 "menu.send.recipe" = "Envoyez-nous votre recette";
 "menu.settings" = "Paramètres";
 
+// MARK: - Search
+"search.placeholder" = "Rechercher des recettes...";
+
 // MARK: - Mail
 "mail.not.available.title" = "Mail non disponible";
 "mail.not.available.message" = "Veuillez configurer un compte email dans les paramètres de votre appareil, ou envoyez votre recette à recipe@breadoclock.com";

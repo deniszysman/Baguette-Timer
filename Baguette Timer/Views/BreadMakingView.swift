@@ -34,6 +34,7 @@ struct BreadMakingView: View {
     @ObservedObject private var settingsManager = SettingsManager.shared
     @State private var delayedSteps: [UUID: Date] = [:] // Track steps that are delayed with their scheduled start times
     @State private var selectedDelayedStepIndex: Int? // Track which delayed step's clock icon was tapped
+    @State private var customRecipeImage: UIImage?
     
     init(recipe: BreadRecipe) {
         self.recipe = recipe
@@ -295,27 +296,33 @@ struct BreadMakingView: View {
             .ignoresSafeArea()
             
             ScrollView {
-                VStack(spacing: 20) {
-                    // Header
-                    VStack(spacing: 8) {
-                        Text(recipe.localizedName)
-                            .font(.system(size: 34, weight: .bold, design: .rounded))
-                            .foregroundStyle(
-                                LinearGradient(
-                                    colors: [.white, .white.opacity(0.8)],
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
+                VStack(spacing: 0) {
+                    // Recipe Image Banner
+                    recipeImageBanner
+                        .frame(height: 250)
+                        .clipped()
+                    
+                    VStack(spacing: 20) {
+                        // Header
+                        VStack(spacing: 8) {
+                            Text(recipe.localizedName)
+                                .font(.system(size: 34, weight: .bold, design: .rounded))
+                                .foregroundStyle(
+                                    LinearGradient(
+                                        colors: [.white, .white.opacity(0.8)],
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    )
                                 )
-                            )
-                            .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 5)
-                            .multilineTextAlignment(.center)
-                        
-                        Text("step.current".localized(currentStep.stepNumber, recipe.steps.count))
-                            .font(.system(size: 18, weight: .medium, design: .rounded))
-                            .foregroundColor(.white.opacity(0.9))
-                    }
-                    .padding(.top, 8)
-                    .padding(.horizontal, 16)
+                                .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 5)
+                                .multilineTextAlignment(.center)
+                            
+                            Text("step.current".localized(currentStep.stepNumber, recipe.steps.count))
+                                .font(.system(size: 18, weight: .medium, design: .rounded))
+                                .foregroundColor(.white.opacity(0.9))
+                        }
+                        .padding(.top, 16)
+                        .padding(.horizontal, 16)
                     
                     // Progress bar
                     ProgressBar(progress: progress)
@@ -444,6 +451,7 @@ struct BreadMakingView: View {
             calculateProactiveDelays()
             // Then start timer updates
             startTimerUpdates()
+            loadCustomImage()
         }
         .onDisappear {
             timer?.invalidate()
@@ -488,8 +496,27 @@ struct BreadMakingView: View {
             }
         }
         .sheet(item: $selectedStepForNotes) { step in
-            StepNotesView(step: step, recipeKeyPrefix: recipe.recipeKeyPrefix)
-                .presentationDetents([.height(650)])
+            StepNotesView(step: step, recipe: recipe, recipeKeyPrefix: recipe.recipeKeyPrefix, onUpdate: { updatedRecipe in
+                // If it's a built-in recipe, convert it to a custom recipe
+                if !updatedRecipe.isCustom {
+                    // Create a custom version of the recipe
+                    let customRecipe = BreadRecipe(
+                        id: UUID(), // New ID for the custom copy
+                        name: updatedRecipe.name,
+                        steps: updatedRecipe.steps,
+                        isCustom: true,
+                        customIconName: updatedRecipe.customIconName,
+                        category: updatedRecipe.category
+                    )
+                    CustomRecipeManager.shared.addRecipe(customRecipe)
+                } else {
+                    // Update existing custom recipe
+                    CustomRecipeManager.shared.updateRecipe(updatedRecipe)
+                }
+                // Reload recipes in BreadSelectionView if needed
+                NotificationCenter.default.post(name: NSNotification.Name("RecipeUpdated"), object: updatedRecipe)
+            })
+                .presentationDetents([.height(750)])
                 .presentationDragIndicator(.visible)
         }
         .sheet(isPresented: $showSchedulingSheet) {
@@ -543,7 +570,8 @@ struct BreadMakingView: View {
                 )
             }
         }
-    }
+        } // Close ZStack
+    } // Close body
     
     private func scheduleBreadMaking(targetTime: Date) {
         // Calculate start time
@@ -583,6 +611,50 @@ struct BreadMakingView: View {
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.dateFormat = "h:mm a"
         return formatter.string(from: date)
+    }
+    
+    // MARK: - Recipe Image Banner
+    
+    private var recipeImageBanner: some View {
+        GeometryReader { geometry in
+            ZStack {
+                // Recipe image
+                Group {
+                    if let customImage = customRecipeImage {
+                        Image(uiImage: customImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    } else if let imageName = recipe.imageName {
+                        Image(imageName)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    } else {
+                        // Fallback to background or icon
+                        Image("Background")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    }
+                }
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                .clipped()
+                
+                // Gradient overlay for better visual appeal
+                LinearGradient(
+                    colors: [
+                        Color.black.opacity(0.0),
+                        Color.black.opacity(0.3)
+                    ],
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+            }
+        }
+    }
+    
+    private func loadCustomImage() {
+        if recipe.isCustom {
+            customRecipeImage = CustomRecipeManager.shared.loadCustomImage(for: recipe.id)
+        }
     }
     
     private func completeStep() {
@@ -1489,96 +1561,300 @@ struct TimerDisplay: View {
 
 struct StepNotesView: View {
     let step: BreadStep
+    let recipe: BreadRecipe
     let recipeKeyPrefix: String
+    let onUpdate: (BreadRecipe) -> Void
     @Environment(\.dismiss) private var dismiss
     
+    @State private var isEditing = false
+    @State private var editedNotes: String
+    @State private var editedDuration: TimeInterval
+    @State private var showTimerPicker = false
+    @State private var days: Int = 0
+    @State private var hours: Int = 0
+    @State private var minutes: Int = 0
+    
+    // Allow editing for all recipes
+    // Built-in recipes will be converted to custom recipes when saved
+    private var canEdit: Bool {
+        true
+    }
+    
+    init(step: BreadStep, recipe: BreadRecipe, recipeKeyPrefix: String, onUpdate: @escaping (BreadRecipe) -> Void) {
+        self.step = step
+        self.recipe = recipe
+        self.recipeKeyPrefix = recipeKeyPrefix
+        self.onUpdate = onUpdate
+        
+        // Initialize with current values
+        _editedNotes = State(initialValue: step.notes)
+        _editedDuration = State(initialValue: step.timerDuration)
+        
+        // Initialize duration components
+        let totalSeconds = Int(step.timerDuration)
+        _days = State(initialValue: totalSeconds / 86400)
+        _hours = State(initialValue: (totalSeconds % 86400) / 3600)
+        _minutes = State(initialValue: (totalSeconds % 3600) / 60)
+    }
+    
     var body: some View {
-        ZStack {
-            // Solid background for readability
-            Color(UIColor.systemBackground)
-                .ignoresSafeArea()
-            
-            ScrollView {
-                VStack(alignment: .leading, spacing: 24) {
-                    // Step header
-                    HStack {
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text("step.number".localized(step.stepNumber))
-                                .font(.system(size: 34, weight: .bold, design: .rounded))
-                                .foregroundColor(.primary)
-                            
-                            Text(step.localizedInstruction(recipeKeyPrefix: recipeKeyPrefix))
-                                .font(.system(size: 24, weight: .semibold, design: .rounded))
-                                .foregroundColor(.secondary)
+        NavigationStack {
+            ZStack {
+                // Solid background for readability
+                Color(UIColor.systemBackground)
+                    .ignoresSafeArea()
+                
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 24) {
+                        // Step header
+                        HStack {
+                            VStack(alignment: .leading, spacing: 10) {
+                                Text("step.number".localized(step.stepNumber))
+                                    .font(.system(size: 34, weight: .bold, design: .rounded))
+                                    .foregroundColor(.primary)
+                                
+                                Text(step.localizedInstruction(recipeKeyPrefix: recipeKeyPrefix))
+                                    .font(.system(size: 24, weight: .semibold, design: .rounded))
+                                    .foregroundColor(.secondary)
+                            }
+                            Spacer()
                         }
-                        Spacer()
-                    }
-                    .padding(.top, 16)
-                    
-                    // Notes section with card design
-                    VStack(alignment: .leading, spacing: 16) {
-                        HStack(spacing: 10) {
-                            Image(systemName: "note.text")
-                                .font(.system(size: 22))
-                                .foregroundColor(.orange)
-                            Text("step.notes".localized)
-                                .font(.system(size: 24, weight: .bold, design: .rounded))
-                                .foregroundColor(.primary)
-                        }
+                        .padding(.top, 16)
                         
-                        Text(step.localizedNotes(recipeKeyPrefix: recipeKeyPrefix))
-                            .font(.system(size: 18, weight: .regular, design: .rounded))
-                            .foregroundColor(.primary.opacity(0.85))
-                            .lineSpacing(8)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                    .padding(20)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(
-                        RoundedRectangle(cornerRadius: 20)
-                            .fill(Color(UIColor.secondarySystemBackground))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 20)
-                                    .stroke(Color.gray.opacity(0.2), lineWidth: 1)
-                            )
-                    )
-                    .shadow(color: .black.opacity(0.08), radius: 10, x: 0, y: 5)
-                    
-                    // Timer info card if step has a timer
-                    if step.timerDuration > 0 {
-                        VStack(alignment: .leading, spacing: 12) {
+                        // Notes section with card design
+                        VStack(alignment: .leading, spacing: 16) {
                             HStack(spacing: 10) {
-                                Image(systemName: "timer")
+                                Image(systemName: "note.text")
                                     .font(.system(size: 22))
-                                    .foregroundColor(.green)
-                                Text("step.timer".localized)
+                                    .foregroundColor(.orange)
+                                Text("step.notes".localized)
                                     .font(.system(size: 24, weight: .bold, design: .rounded))
                                     .foregroundColor(.primary)
                             }
                             
-                            Text("step.timer.duration.label".localized(step.formattedDuration))
-                                .font(.system(size: 18, weight: .medium, design: .rounded))
-                                .foregroundColor(.secondary)
+                            if isEditing && canEdit {
+                                TextEditor(text: $editedNotes)
+                                    .font(.system(size: 18, weight: .regular, design: .rounded))
+                                    .frame(minHeight: 150)
+                                    .padding(8)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 12)
+                                            .fill(Color(UIColor.tertiarySystemGroupedBackground))
+                                    )
+                            } else {
+                                Text(step.localizedNotes(recipeKeyPrefix: recipeKeyPrefix))
+                                    .font(.system(size: 18, weight: .regular, design: .rounded))
+                                    .foregroundColor(.primary.opacity(0.85))
+                                    .lineSpacing(8)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
                         }
                         .padding(20)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .background(
                             RoundedRectangle(cornerRadius: 20)
-                                .fill(Color.green.opacity(0.1))
+                                .fill(Color(UIColor.secondarySystemBackground))
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 20)
-                                        .stroke(Color.green.opacity(0.3), lineWidth: 1)
+                                        .stroke(Color.gray.opacity(0.2), lineWidth: 1)
                                 )
                         )
-                        .shadow(color: .green.opacity(0.1), radius: 10, x: 0, y: 5)
+                        .shadow(color: .black.opacity(0.08), radius: 10, x: 0, y: 5)
+                        
+                        // Timer info card if step has a timer
+                        if step.timerDuration > 0 || isEditing {
+                            VStack(alignment: .leading, spacing: 12) {
+                                HStack(spacing: 10) {
+                                    Image(systemName: "timer")
+                                        .font(.system(size: 22))
+                                        .foregroundColor(.green)
+                                    Text("step.timer".localized)
+                                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                                        .foregroundColor(.primary)
+                                }
+                                
+                                if isEditing && canEdit {
+                                    // Timer duration picker
+                                    Button(action: { showTimerPicker.toggle() }) {
+                                        HStack {
+                                            Image(systemName: "clock")
+                                                .font(.system(size: 18))
+                                                .foregroundColor(.green)
+                                            
+                                            Text(formatDuration(editedDuration))
+                                                .font(.system(size: 17, weight: .semibold, design: .rounded))
+                                                .foregroundColor(.primary)
+                                            
+                                            Spacer()
+                                            
+                                            Image(systemName: "chevron.down")
+                                                .font(.system(size: 14, weight: .semibold))
+                                                .foregroundColor(.secondary)
+                                                .rotationEffect(.degrees(showTimerPicker ? 180 : 0))
+                                        }
+                                        .padding(14)
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .fill(Color(UIColor.tertiarySystemGroupedBackground))
+                                        )
+                                    }
+                                    
+                                    if showTimerPicker {
+                                        timerDurationPicker
+                                            .transition(.opacity.combined(with: .scale(scale: 0.95)))
+                                    }
+                                } else {
+                                    Text("step.timer.duration.label".localized(step.formattedDuration))
+                                        .font(.system(size: 18, weight: .medium, design: .rounded))
+                                        .foregroundColor(.secondary)
+                                }
+                            }
+                            .padding(20)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(
+                                RoundedRectangle(cornerRadius: 20)
+                                    .fill(Color.green.opacity(0.1))
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 20)
+                                            .stroke(Color.green.opacity(0.3), lineWidth: 1)
+                                    )
+                            )
+                            .shadow(color: .green.opacity(0.1), radius: 10, x: 0, y: 5)
+                        }
+                        
+                        Spacer()
                     }
-                    
-                    Spacer()
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 30)
                 }
-                .padding(.horizontal, 24)
-                .padding(.bottom, 30)
+            }
+            .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("custom.recipe.cancel".localized) {
+                        if isEditing {
+                            // Cancel editing - restore original values
+                            editedNotes = step.notes
+                            editedDuration = step.timerDuration
+                            let totalSeconds = Int(step.timerDuration)
+                            days = totalSeconds / 86400
+                            hours = (totalSeconds % 86400) / 3600
+                            minutes = (totalSeconds % 3600) / 60
+                            isEditing = false
+                        } else {
+                            dismiss()
+                        }
+                    }
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if canEdit {
+                        if isEditing {
+                            Button("custom.recipe.done".localized) {
+                                saveChanges()
+                            }
+                            .fontWeight(.semibold)
+                        } else {
+                            Button("custom.recipe.edit".localized) {
+                                isEditing = true
+                            }
+                        }
+                    }
+                }
             }
         }
+        .animation(.spring(response: 0.3, dampingFraction: 0.7), value: showTimerPicker)
+    }
+    
+    private var timerDurationPicker: some View {
+        HStack(spacing: 0) {
+            Picker("custom.recipe.days".localized, selection: $days) {
+                ForEach(0..<31) { day in
+                    Text("\(day)").tag(day)
+                }
+            }
+            .pickerStyle(.wheel)
+            .frame(maxWidth: .infinity)
+            .onChange(of: days) { _, _ in updateDuration() }
+            
+            Picker("custom.recipe.hours".localized, selection: $hours) {
+                ForEach(0..<24) { hour in
+                    Text("\(hour)").tag(hour)
+                }
+            }
+            .pickerStyle(.wheel)
+            .frame(maxWidth: .infinity)
+            .onChange(of: hours) { _, _ in updateDuration() }
+            
+            Picker("custom.recipe.minutes".localized, selection: $minutes) {
+                ForEach(0..<60) { minute in
+                    Text("\(minute)").tag(minute)
+                }
+            }
+            .pickerStyle(.wheel)
+            .frame(maxWidth: .infinity)
+            .onChange(of: minutes) { _, _ in updateDuration() }
+        }
+        .frame(height: 150)
+        .padding(.vertical, 8)
+    }
+    
+    private func updateDuration() {
+        editedDuration = TimeInterval(days * 86400 + hours * 3600 + minutes * 60)
+    }
+    
+    private func formatDuration(_ duration: TimeInterval) -> String {
+        let totalSeconds = Int(duration)
+        let d = totalSeconds / 86400
+        let h = (totalSeconds % 86400) / 3600
+        let m = (totalSeconds % 3600) / 60
+        
+        var parts: [String] = []
+        if d > 0 { parts.append("\(d)d") }
+        if h > 0 { parts.append("\(h)hr") }
+        if m > 0 { parts.append("\(m)min") }
+        
+        return parts.isEmpty ? "0min" : parts.joined(separator: " ")
+    }
+    
+    private func saveChanges() {
+        // Find the step index in the recipe
+        guard let stepIndex = recipe.steps.firstIndex(where: { $0.id == step.id }) else {
+            dismiss()
+            return
+        }
+        
+        // Create updated step - preserve the original step data but update notes and duration
+        let updatedStep = BreadStep(
+            stepNumber: step.stepNumber,
+            instruction: step.instruction,
+            timerDuration: editedDuration,
+            notes: editedNotes
+        )
+        
+        // Create updated steps array with modified step
+        var updatedSteps = recipe.steps
+        updatedSteps[stepIndex] = updatedStep
+        
+        // Create updated recipe
+        // Note: BreadRecipe.init will reassign step IDs for custom recipes
+        // This is acceptable since custom recipe step IDs are random UUIDs anyway
+        // Any active timers for this step will need to be restarted
+        let updatedRecipe = BreadRecipe(
+            id: recipe.id,
+            name: recipe.name,
+            steps: updatedSteps,
+            isCustom: recipe.isCustom,
+            customIconName: recipe.customIconName,
+            category: recipe.category
+        )
+        
+        // Call update callback
+        onUpdate(updatedRecipe)
+        
+        isEditing = false
+        dismiss()
     }
 }
 

@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "dutch-oven-no-knead-bread-featured-square.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "dutch-oven-no-knead-bread-featured-square 1.jpg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "dutch-oven-no-knead-bread-featured-square 2.jpg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

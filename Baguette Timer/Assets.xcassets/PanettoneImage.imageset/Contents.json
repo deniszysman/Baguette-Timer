@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "ALR-6811-panettone-i-VAT-4x3-3ea8801a073b4f2482f6dafdf540c598.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "Simply-Recipes-Brioche-Cinnamon-Raisin-Loaf-LEAD-05-08765d740cba48bfbabe5cc50608f3c1.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

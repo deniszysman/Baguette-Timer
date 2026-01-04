@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "MarriagesDarkRyeloaf-1-e1672827142751.jpg.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

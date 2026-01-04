@@ -76,6 +76,64 @@
 "recipe.bagels.name" = "Bagels";
 "recipe.english.muffins.name" = "English Muffins";
 
+// Yeasted Breads
+"recipe.white.sandwich.bread.name" = "White Sandwich Bread";
+"recipe.whole.wheat.bread.name" = "Whole Wheat Bread";
+"recipe.multigrain.bread.name" = "Multigrain Bread";
+"recipe.country.loaf.name" = "Country Loaf";
+"recipe.farmhouse.bread.name" = "Farmhouse Bread";
+"recipe.pullman.loaf.name" = "Pullman Loaf";
+"recipe.milk.bread.hokkaido.name" = "Milk Bread (Hokkaido)";
+"recipe.potato.bread.name" = "Potato Bread";
+"recipe.oat.bread.name" = "Oat Bread";
+"recipe.spelt.bread.name" = "Spelt Bread";
+
+// Artisan Breads
+"recipe.levain.bread.name" = "Levain Bread";
+"recipe.ciabatta.name" = "Ciabatta";
+"recipe.pain.de.campagne.name" = "Pain de Campagne";
+"recipe.rustic.boule.name" = "Rustic Boule";
+"recipe.no.knead.bread.name" = "No-Knead Bread";
+"recipe.poolish.bread.name" = "Poolish Bread";
+"recipe.biga.bread.name" = "Biga Bread";
+"recipe.autolyse.bread.name" = "Autolyse Bread";
+
+// Enriched Breads
+"recipe.challah.name" = "Challah";
+"recipe.babka.name" = "Babka";
+"recipe.panettone.name" = "Panettone";
+"recipe.pandoro.name" = "Pandoro";
+"recipe.milk.rolls.name" = "Milk Rolls";
+"recipe.sweet.rolls.name" = "Sweet Rolls";
+"recipe.cinnamon.rolls.name" = "Cinnamon Rolls";
+"recipe.raisin.bread.name" = "Raisin Bread";
+
+// Flatbread
+"recipe.naan.name" = "Naan";
+"recipe.pita.name" = "Pita";
+"recipe.roti.name" = "Roti";
+"recipe.chapati.name" = "Chapati";
+"recipe.paratha.name" = "Paratha";
+"recipe.kulcha.name" = "Kulcha";
+"recipe.lavash.name" = "Lavash";
+"recipe.yufka.name" = "Yufka";
+"recipe.bazlama.name" = "Bazlama";
+
+// Rye Breads
+"recipe.rye.bread.name" = "Rye Bread";
+"recipe.pumpernickel.name" = "Pumpernickel";
+"recipe.black.bread.name" = "Black Bread";
+"recipe.vollkornbrot.name" = "Vollkornbrot";
+"recipe.borodinsky.bread.name" = "Borodinsky Bread";
+"recipe.mixed.rye.wheat.bread.name" = "Mixed Rye-Wheat Bread";
+
+// Mediterranean Breads
+"recipe.focaccia.name" = "Focaccia";
+"recipe.pizza.dough.name" = "Pizza Dough";
+"recipe.schiacciata.name" = "Schiacciata";
+"recipe.ligurian.flatbread.name" = "Ligurian Flatbread";
+"recipe.olive.bread.name" = "Olive Bread";
+
 // MARK: - French Baguette
 "recipe.french.baguette.step.1.instruction" = "Feed starter";
 "recipe.french.baguette.step.1.notes" = "50gr. of Water and 50 gr. of Flour for 2 baguettes";
@@ -244,6 +302,9 @@
 "menu.send.recipe" = "Send Us Your Recipe";
 "menu.settings" = "Settings";
 
+// MARK: - Search
+"search.placeholder" = "Search recipes...";
+
 // MARK: - Mail
 "mail.not.available.title" = "Mail Not Available";
 "mail.not.available.message" = "Please configure an email account in your device settings, or send your recipe to recipe@breadoclock.com";
@@ -267,3 +328,13 @@
 "cooking.time.option.start.later.recipe.subtitle" = "Start recipe at %@ to complete within your cooking time window";
 "cooking.time.option.delay.step" = "Delay Step";
 "cooking.time.option.delay.step.subtitle" = "Wait until %@ (next cooking start time) to begin this step";
+
+// MARK: - Recipe Categories
+"recipe.category.yeasted" = "Yeasted";
+"recipe.category.artisan" = "Artisan";
+"recipe.category.enriched" = "Enriched";
+"recipe.category.flatbread" = "Flatbread";
+"recipe.category.rye" = "Rye";
+"recipe.category.mediterranean" = "Mediterranean";
+"recipe.category.empty" = "No recipes in this category";
+"recipe.category.uncategorized" = "Uncategorized";

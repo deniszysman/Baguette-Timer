@@ -249,7 +249,8 @@ struct CustomRecipeData {
             name: name,
             steps: breadSteps,
             isCustom: true,
-            customIconName: iconName
+            customIconName: iconName,
+            category: nil // Custom recipes can have category set later if needed
         )
     }
     

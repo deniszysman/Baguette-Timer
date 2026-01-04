@@ -25,6 +25,7 @@ struct BreadSelectionView: View {
     @State private var navigationSubscription: AnyCancellable?
     @State private var timerUpdateTrigger: Int = 0
     @State private var updateTimer: Timer?
+    @State private var searchText: String = ""
     
     let builtInRecipes = BreadRecipe.availableRecipes
     
@@ -33,7 +34,36 @@ struct BreadSelectionView: View {
         let allRecipes = builtInRecipes + customRecipeManager.customRecipes
         // Using sortTrigger to force re-sort when needed
         _ = sortManager.sortTrigger
-        return sortManager.sortRecipes(allRecipes, timerManager: timerManager, customRecipeManager: customRecipeManager)
+        let sorted = sortManager.sortRecipes(allRecipes, timerManager: timerManager, customRecipeManager: customRecipeManager)
+        
+        // Filter by search text if provided
+        if searchText.isEmpty {
+            return sorted
+        } else {
+            let searchLower = searchText.lowercased()
+            return sorted.filter { recipe in
+                // Search in recipe name
+                if recipe.localizedName.lowercased().contains(searchLower) {
+                    return true
+                }
+                
+                // Search in step notes
+                for step in recipe.steps {
+                    // Check raw notes
+                    if step.notes.lowercased().contains(searchLower) {
+                        return true
+                    }
+                    
+                    // Check localized notes
+                    let localizedNotes = step.localizedNotes(recipeKeyPrefix: recipe.recipeKeyPrefix)
+                    if localizedNotes.lowercased().contains(searchLower) {
+                        return true
+                    }
+                }
+                
+                return false
+            }
+        }
     }
     
     var body: some View {
@@ -158,32 +188,164 @@ struct BreadSelectionView: View {
                     }
                     .padding(.top, 20)
                     
-                    // Bread selection cards with pull-to-refresh
-                    ScrollView {
-                        VStack(spacing: 16) {
-                            ForEach(recipes) { recipe in
-                                let progress = getRecipeProgress(for: recipe)
-                                let scheduled = getScheduledTime(for: recipe)
-                                BreadCard(
-                                    recipe: recipe,
-                                    currentStep: progress.currentStep,
-                                    remainingTime: progress.remainingTime,
-                                    scheduledStartTime: scheduled.startTime,
-                                    timerUpdateTrigger: timerUpdateTrigger,
-                                    action: {
-                                        // Mark recipe as used for sorting
-                                        RecipeSortManager.shared.markRecipeAsUsed(recipe.id)
-                                        selectedRecipe = recipe
-                                        showBreadMaking = true
-                                    },
-                                    onEdit: recipe.isCustom ? {
-                                        recipeToEdit = recipe
-                                        showAddRecipe = true
-                                    } : nil
-                                )
+                    // Search field
+                    HStack {
+                        HStack(spacing: 12) {
+                            Image(systemName: "magnifyingglass")
+                                .foregroundColor(.white.opacity(0.7))
+                                .font(.system(size: 18, weight: .medium))
+                            
+                            TextField("search.placeholder".localized, text: $searchText)
+                                .foregroundColor(.white)
+                                .font(.system(size: 16, weight: .medium, design: .rounded))
+                                .autocorrectionDisabled()
+                                .textInputAutocapitalization(.never)
+                            
+                            if !searchText.isEmpty {
+                                Button(action: {
+                                    searchText = ""
+                                }) {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .foregroundColor(.white.opacity(0.7))
+                                        .font(.system(size: 18))
+                                }
                             }
                         }
-                        .padding(.horizontal, 20)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 12)
+                        .background(
+                            RoundedRectangle(cornerRadius: 16)
+                                .fill(Color.white.opacity(0.2))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 16)
+                                        .stroke(Color.white.opacity(0.3), lineWidth: 1)
+                                )
+                        )
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.top, 8)
+                    
+                    // Bread selection cards with pull-to-refresh, grouped by category
+                    ScrollView {
+                        VStack(spacing: 24) {
+                            // Group recipes by category
+                            ForEach(RecipeCategory.allCases, id: \.self) { category in
+                                let categoryRecipes = sortManager.sortRecipes(
+                                    recipes.filter { $0.category == category },
+                                    timerManager: timerManager,
+                                    customRecipeManager: customRecipeManager
+                                )
+                                
+                                VStack(alignment: .leading, spacing: 12) {
+                                    // Category header
+                                    HStack {
+                                        Text(category.localizedName)
+                                            .font(.system(size: 24, weight: .bold, design: .rounded))
+                                            .foregroundColor(.white)
+                                            .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 2)
+                                        
+                                        Spacer()
+                                        
+                                        // Recipe count badge
+                                        if !categoryRecipes.isEmpty {
+                                            Text("\(categoryRecipes.count)")
+                                                .font(.system(size: 14, weight: .semibold, design: .rounded))
+                                                .foregroundColor(.white)
+                                                .padding(.horizontal, 10)
+                                                .padding(.vertical, 4)
+                                                .background(
+                                                    Capsule()
+                                                        .fill(Color.white.opacity(0.3))
+                                                )
+                                        }
+                                    }
+                                    .padding(.horizontal, 20)
+                                    
+                                    // Recipes in this category
+                                    if categoryRecipes.isEmpty {
+                                        // Show empty state
+                                        HStack {
+                                            Spacer()
+                                            Text("recipe.category.empty".localized)
+                                                .font(.system(size: 16, weight: .medium, design: .rounded))
+                                                .foregroundColor(.white.opacity(0.7))
+                                                .padding(.vertical, 20)
+                                            Spacer()
+                                        }
+                                        .padding(.horizontal, 20)
+                                    } else {
+                                        VStack(spacing: 16) {
+                                            ForEach(categoryRecipes) { recipe in
+                                                let progress = getRecipeProgress(for: recipe)
+                                                let scheduled = getScheduledTime(for: recipe)
+                                                BreadCard(
+                                                    recipe: recipe,
+                                                    currentStep: progress.currentStep,
+                                                    remainingTime: progress.remainingTime,
+                                                    scheduledStartTime: scheduled.startTime,
+                                                    timerUpdateTrigger: timerUpdateTrigger,
+                                                    action: {
+                                                        // Mark recipe as used for sorting
+                                                        RecipeSortManager.shared.markRecipeAsUsed(recipe.id)
+                                                        selectedRecipe = recipe
+                                                        showBreadMaking = true
+                                                    },
+                                                    onEdit: recipe.isCustom ? {
+                                                        recipeToEdit = recipe
+                                                        showAddRecipe = true
+                                                    } : nil
+                                                )
+                                            }
+                                        }
+                                        .padding(.horizontal, 20)
+                                    }
+                                }
+                            }
+                            
+                            // Recipes without category (if any)
+                            let uncategorizedRecipes = sortManager.sortRecipes(
+                                recipes.filter { $0.category == nil },
+                                timerManager: timerManager,
+                                customRecipeManager: customRecipeManager
+                            )
+                            if !uncategorizedRecipes.isEmpty {
+                                VStack(alignment: .leading, spacing: 12) {
+                                    HStack {
+                                        Text("recipe.category.uncategorized".localized)
+                                            .font(.system(size: 24, weight: .bold, design: .rounded))
+                                            .foregroundColor(.white)
+                                            .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 2)
+                                        
+                                        Spacer()
+                                    }
+                                    .padding(.horizontal, 20)
+                                    
+                                    VStack(spacing: 16) {
+                                        ForEach(uncategorizedRecipes) { recipe in
+                                            let progress = getRecipeProgress(for: recipe)
+                                            let scheduled = getScheduledTime(for: recipe)
+                                            BreadCard(
+                                                recipe: recipe,
+                                                currentStep: progress.currentStep,
+                                                remainingTime: progress.remainingTime,
+                                                scheduledStartTime: scheduled.startTime,
+                                                timerUpdateTrigger: timerUpdateTrigger,
+                                                action: {
+                                                    RecipeSortManager.shared.markRecipeAsUsed(recipe.id)
+                                                    selectedRecipe = recipe
+                                                    showBreadMaking = true
+                                                },
+                                                onEdit: recipe.isCustom ? {
+                                                    recipeToEdit = recipe
+                                                    showAddRecipe = true
+                                                } : nil
+                                            )
+                                        }
+                                    }
+                                    .padding(.horizontal, 20)
+                                }
+                            }
+                        }
                         .padding(.top, 20)
                         .padding(.bottom, 40)
                     }
